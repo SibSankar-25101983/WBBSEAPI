@@ -1,0 +1,333 @@
+﻿@using Common;
+@model ViewModel.VMContentDetails
+
+@{
+    ViewBag.Title = "Examination";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Exam Schedule Editing</h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.ContentId)
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+@section header
+{
+    <hr class="pb-2" />
+    <div class="row pb-2">
+        <div class="col-md-12">
+            @if (ViewData[ViewDataNames.AddYN] == "visible")
+            {
+                <div class="btn-group float-right">
+                    <button type="button" id="btnAdd" class="btn btn-outline-secondary" accesskey="A">Add New</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<table id="GridExamSchedule" class="gj-grid table table-light table-bordered table-striped"></table>
+
+@*Main Modal*@
+<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-50">
+        <div id="divModalContent" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title"><span id="lblModalHeader"></span></h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm("Examination", "AdminExamSchedule", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false)
+                <div class="modal-body" id="divPopupBody">
+                    <div class="alert alert-danger alert-dismissible" id="AlertInfo">
+                        <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                        <strong><span id="AlertInfoMsg"></span></strong>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Note:</strong> Marked with an astrix(<span style="color: red;"> * </span>) is mandatory data.
+                    </div>
+                    <div class="row pb-2" id="trPdf1">
+                        <div class="col-md-12">
+                            <span>Select PDF<span style="color: red;"> * </span>(<span class="text-primary">Maximum Size Allowed : 4 mb</span>)</span>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="row pb-4" id="trPdf2">
+                        <div class="col-sm-12">
+                            <input type="file" id="fuPdf" name="postedFiles" accept="application/pdf" />
+                            <hr />
+                        </div>
+                    </div>
+                   <div class="row mb-4" id="trNew">
+                        <div class="col-sm-2">
+                            <span class="font-weight-bold">New</span>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="checkbox" id="chkNewYN" name="NewYN" class="checkbox-custom" />
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.EntType, new { @id = "e" })
+                    @Html.HiddenFor(m => m.ContentId, new { @id = "C" })
+                    @Html.HiddenFor(m => m.PdfFilePath, new { @id = "P" })
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <input type="submit" id="btnSave" value="Save" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- View Modal -->
+<div class="modal fade" id="popupModalView" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-50">
+        <div id="divModalContentView" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title"><span id="lblModalHeaderView"></span></h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center" id="divPopupBodyView">
+                <table class="table table-bordered table-striped table-hover">
+                    <tbody id="trViewData"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/js/BasicFunctions.js"></script>
+    <script src="~/js/Message.js"></script>
+    @*<script src="~/vendor/cle_editor/jquery.cleditor.js"></script>*@
+    <script type="text/javascript">
+        var grid;
+
+        function ClearData() {
+            $('#divPopupBody input').val('');
+        }
+
+        function ClearViewData() {
+            $("#trViewData").empty();
+        }
+
+        function Add() {
+            ClearData();
+            $('#AlertInfo').hide();
+            $("#e").val(setET(1));
+            $("#C").val(DefaultSetting.DefaultValEnc);
+            $("#lblModalHeader").text("Exam Schedule :: Add New");
+            $("#popupModal").modal("show");
+        }
+
+        $('#chkNewYN').click(function () {
+            if ($(this).prop("checked")) {
+                $(this).val(DefaultSetting.DefaultValY);
+            }
+            else {
+                $(this).val(DefaultSetting.DefaultValN);
+            }
+        });
+
+        function Save() {
+            $('#AlertInfo').hide();
+
+            try {
+                if ($("#e").val() != setET(3)) {
+                    if ($("#e").val() == setET(1)) {
+                        var postedFiles = document.getElementsByName("postedFiles");
+                        if (postedFiles == null) {
+                            $('#AlertInfo').show();
+                            $('#AlertInfoMsg').text(Content.Validation.PDFRequired);
+                            $('#popupModal').scrollTop(0);
+                            return false;
+                        }
+                        if (postedFiles[0].value == null || postedFiles[0].value == "") {
+                            $('#AlertInfo').show();
+                            $('#AlertInfoMsg').text(Content.Validation.PDFRequired);
+                            $('#popupModal').scrollTop(0);
+                            return false;
+                        }
+                        var pExt = /[^.]+$/.exec(postedFiles[0].value);
+                        for (i = 0; i < postedFiles.length; i++) {
+                            if (pExt[i].toLowerCase() != "pdf") {
+                                $('#AlertInfo').show();
+                                $('#AlertInfoMsg').text(Content.Validation.PdfFileExt);
+                                $('#popupModal').scrollTop(0);
+                                return false;
+                            }
+                        }
+                        if (postedFiles[0].files[0].size > Content.PdfAllowedSize) {
+                            $('#AlertInfo').show();
+                            $('#AlertInfoMsg').text(Content.Validation.PdfFileSize);
+                            $('#popupModal').scrollTop(0);
+                            return false;
+                        }
+                    }
+                }
+
+                var x = confirm(Msg_Confirm());
+                if (x) {
+                    $("#popupModal").modal("hide");
+                    ShowLoader();
+                }
+                return x;
+            }
+            catch (err) {
+                alert(OperationError());
+                console.log(err.message);
+                return false;
+            }
+        }
+
+        function View(e) {
+            ClearViewData();
+
+            try {
+                $("#lblModalHeader").text("Exam Schedule :: View");
+                $("#trViewData").append("<tr><td>Link Type</td><td>" + e.data.record.LinkType + "</td></tr>");
+                $("#trViewData").append("<tr><td>PDF Link</td><td><a href='/Web/PdfViewer?l=" + e.data.record.ContentId + "' target='_blank' rel='noopener'>Click to view pdf</a></td></tr>");
+                $("#popupModalView").modal("show");
+            }
+            catch (err) {
+                alert(OperationError());
+                console.log(err.message);
+            }
+        }
+
+        function Edit(e) {
+            $("#lblModalHeader").text("");
+            ClearData();
+
+            try {
+                $('#AlertInfo').hide();
+                $("#e").val(setET(2));
+                $("#C").val(e.data.record.ContentId);
+                $("#lblModalHeader").text("Exam Schedule :: Edit");
+                if (e.data.record.NewYN == DefaultSetting.DefaultValY) {
+                    $("#chkNewYN").prop("checked", true);
+                    $("#chkNewYN").val(DefaultSetting.DefaultValY);
+                }
+                else {
+                    $("#chkNewYN").prop("checked", false);
+                    $("#chkNewYN").val(DefaultSetting.DefaultValN);
+                }
+                $("#P").val(e.data.record.PdfFilePath);
+                $("#popupModal").modal("show");
+            }
+            catch (err) {
+                alert(OperationError());
+                console.log(err.message);
+            }
+        }
+
+        function Remove(e) {
+            $("#e").val(setET(3));
+            $("#C").val(e.data.record.ContentId);
+            $("#P").val(e.data.record.PdfFilePath);
+            $("#btnSave").click();
+        }
+
+        var chkMod = function (e) {
+            try {
+                if (e.target.parentElement.nodeName.toLowerCase() == "td") {
+                    console.log(e);
+                    window.location.href = "../../../../Error/Unexpected.html";
+                }
+            }
+            catch (err) {
+            }
+        };
+
+        window.onbeforeunload = DisableButtons;
+
+        $(document).ready(function () {
+            DisableButtons();
+            ShowLoader();
+            ClearData();
+
+            if (screen.availWidth <= 1130.0) {
+                $("#GridExamSchedule").addClass("table-responsive");
+            }
+            else {
+                $("#GridExamSchedule").removeClass("table-responsive");
+            }
+            
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                $("#GridExamSchedule").find("th").find("div").css("font-size", "13.5px");
+                $("#GridExamSchedule").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+                EnableButtons();
+                if ($("#GridExamSchedule tr")[1].innerText != Grid.NoData) {
+                    $("#btnAdd").css("display", "none");
+                }
+            };
+
+            grid = $("#GridExamSchedule").grid({
+                dataKey: "ContentId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../AdminExamSchedule/GetExamScheduleList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridExamSchedule").off('DOMSubtreeModified');
+            });
+
+            $("#btnAdd").on("click", Add);
+            $("#btnSave").on("click", Save);
+
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

@@ -1,0 +1,116 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: RTI";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/css/CustomStyle.css" rel="stylesheet" />
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner">
+        <div class="row">
+            <div class="col-12 pt-5">
+                <span class="custom-heading-website">RTI</span>
+            </div>
+        </div>
+        <div class="row" style="font-size: 20px;">
+            <div class="col-12 pb-5 align-items-center">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i> <a class="text-warning" id="lnkCurrent">RTI</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="bg-light">
+    <div class="container-fluid">
+        <div class="row border rounded m-5">
+            <div class="col-12 p-4">
+                <p style="color:#990000; font-weight:bold;">R.T.I. Section</p>
+                <P>S.P.I.O. :- Deputy Secretary(Academic)<br />
+                    Nivedita Bhavan,D.J.-8,Sector-2,Karunamoyee,Salt Lake,Kolkata:700091.  Phone.:- 2321 3827.
+                    e-mail:- wbbse05@yahoo.co.in
+                </P>
+                <P>S.P.I.O. Burdwan: Regional Officer Burdwan<br />
+                    Iswarchandra Bhavan,Tinkonia,P.O. & Dt.:Burdwan.  Phone.:- 95342-266 2377/256 9241.
+                </P>
+                <P>S.P.I.O. North Bengal : Regional Officer North Bengal<br />
+                    Kanchanjangha Bhavan,P.O.:North Bengal University,Dt.:Darjeeling.  Phone.:- 0353-258 2152/258 1054.
+                </P>
+                <P>S.P.I.O. Midnapore: Regional Officer Midnapore<br />
+                    Keranitola Chak,P.O.:Midnapore.  Phone.:- 03222-275 524.
+                </P>
+                <P>S.P.I.O. Kolkata: Regional Officer Kolkata<br />
+                    Derozio Bhaban,D.J.-8,Sector-2,Karunamoyee,Salt Lake,Kolkata:700091.  Phone.:- 2358 0611/5837.
+                </P>
+                <P>Appelete Authority:- Secretary, W.B.B.S.E.<br />
+                    Nivedita Bhavan,D.J.-8,Sector-2,Karunamoyee,Salt Lake,Kolkata:700091.  Phone:- 2229 3775,2321 3816
+                    e-mail:- wbbse05@yahoo.co.in
+                </P>
+            </div>
+            <div class="col-12 p-4 pt-2">
+                <div class="p-0">
+                    <table id="GridRTI" class="gj-grid table table-light table-bordered"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/client/rt.js"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function () {
+            try {
+                var onSuccessFunc = function (response) {
+                    grid.render(response);
+                    HideLoader();
+                    try {
+                        $("#GridRTI div").removeAttr("title");
+                        $(".custom-pdf").prop("title", Content.LinkType.PDF);
+                        $(".custom-url").prop("title", Content.LinkType.URL);
+                        $(".custom-view").prop("title", "View RTI Document");
+                        $("#GridRTI").find("th").find("div").css("font-size", "13.5px");
+                        setTimeout(chkFooter, 100);
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                    $("#GridRTI").on('DOMSubtreeModified', chkMod);
+                };
+
+                grid = $("#GridRTI").grid({
+                    dataKey: "SlNo",
+                    uiLibrary: "fontawesome",
+                    iconsLibrary: 'fontawesome',
+                    dataSource: { url: "../../Web/GetRTIList", success: onSuccessFunc },
+                    columns: [
+                        @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                    ],
+                    pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+                });
+                grid.on('pageChanging', function (e, newPage) {
+                    $("#GridRTI").off('DOMSubtreeModified');
+                });
+
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

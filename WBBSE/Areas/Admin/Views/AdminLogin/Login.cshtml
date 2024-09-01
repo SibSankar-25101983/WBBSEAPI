@@ -1,0 +1,144 @@
+﻿@using Common;
+@using System.Web.Optimization;
+@model ViewModel.VMAdminLogin
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WBBSE Admin : Login</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/img/Favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="~/img/Favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/img/Favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/Favicons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/img/Favicons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/Favicons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/img/Favicons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/Favicons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/Favicons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/Favicons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/Favicons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/Favicons/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="~/img/Favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <link href="~/css/util.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/CustomLogin.css" rel="stylesheet" />
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=../../../../Error/JSDisabled.html" />
+    </noscript>
+</head>
+<body class="body-admin-login">
+    <div class="text-center custom-login-div1">
+        <h3 class="custom-login-h3">@BoardInfo.BoardName</h3>
+        <h5 class="custom-login-h5">@BoardInfo.BoardAddress</h5>
+    </div>
+    <div class="login-form custom-login-div2">
+        @using (Html.BeginForm("Login", "AdminLogin", FormMethod.Post, new { autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="avatar">
+                <img src="~/img/avatar.png" alt="Avatar" />
+            </div>
+            <div class="pb-4"></div>
+            <div class="alert alert-danger custom-login-div3" style="display:@ViewData[ViewDataNames.divLoginAlertVisibility]">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <ul class="custom-login-ul">
+                    <li>
+                        @Html.ValidationMessage(ViewDataNames.LoginInfo)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.UserName)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.LoginPwd)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.Captcha)
+                    </li>
+                    <li>
+                        @Html.ValidationMessage(ViewDataNames.InvalidCaptcha)
+                    </li>
+                </ul>
+            </div>
+            <h2 class="text-center">Administrative Login</h2>
+            <div class="wrap-input100 validate-input" id="divUserName">
+                <input class="input100 alpha custom-border-10" id="txtUserName" type="text" name="UserName" placeholder="User Name">
+                <span class="focus-input100"></span><span class="symbol-input100"><i class="fa fa-user"
+                    aria-hidden="true"></i>&nbsp;</span>
+            </div>
+            <div class="wrap-input100 validate-input" id="divUserPwd">
+                <input class="input100 custom-border-10" id="txtPassword" type="password" name="LoginPwd" placeholder="Password">
+                <span class="focus-input100"></span><span class="symbol-input100"><i class="fa fa-lock"
+                    aria-hidden="true"></i></span>
+            </div>
+            <div class="wrap-input100 validate-input" id="divCaptcha">
+                <input class="input100 alphaWithoutSpace custom-border-10" id="txtCaptcha"
+                    type="text" name="Captcha" placeholder="Enter Captcha" maxlength="6"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                <span class="focus-input100"></span><span class="symbol-input100"><i class="fa fa-pencil-alt"
+                    aria-hidden="true"></i></span>
+            </div>
+            <div class="wrap-input100 validate-input pb-2 text-center" id="divcapcha">
+                <img id="imgCaptcha" class="custom-login-captcha-img" alt="Captcha" />
+                <a onclick="refreshCaptcha()" class="custom-login-captcha-a" title="Refresh Captcha">
+                    <img src="~/img/reload.png" />
+                </a>
+                <span id="lblCaptchaInfo" class="text-center p-t-136 custom-login-span2"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg btn-block"><span class="align-middle">Sign in</span></button>
+            </div>
+            <div class="clearfix">
+                <!-- <label class="pull-left checkbox-inline">
+                    <input type="checkbox">
+                    Remember me</label>-->
+                <a href="#" class="pull-right">Forgot Password?</a>
+            </div>
+        }
+    </div>
+    <div id="fAdmin" class="text-center custom-login-div1">
+        <p><strong>Disclaimer:</strong> This site is designed and Developed by <strong>NIC</strong> and the contents are provided by WBBSE.</p>
+        <p>Copyright &copy; 2019 WBBSE | All rights reserved </p>
+    </div>
+    <!--===============================================================================================-->
+    @Scripts.Render("~/vendor/jquery/jquery.min.js")
+    @Scripts.Render("~/vendor/bootstrap/js/bootstrap.min.js")
+    @Scripts.Render("~/js/SHA256.js")
+    @Scripts.Render("~/js/main.js")
+    @Scripts.Render("~/js/tilt.jquery.min.js")
+    @Scripts.Render("~/js/Duplicate.js")
+    @Scripts.Render("~/js/jquery-required.js?v=" + DateTime.Now.ToFileTime().ToString())
+    @Scripts.Render("~/js/Message.js?v=" + DateTime.Now.ToFileTime().ToString())
+    @Scripts.Render("~/js/BasicFunctions.js?v=" + DateTime.Now.ToFileTime().ToString())
+    @Scripts.Render("~/js/client/logina.js?v=" + DateTime.Now.ToFileTime().ToString())
+    <script type="text/javascript">
+        $("#btnSubmit").click(function () {
+            if (validate()) {
+                var salt = "@Session[SessionNames.Salt]";
+                document.getElementById('txtPassword').value = (Sha256.hash(document.getElementById('txtPassword').value)).toUpperCase();
+                document.getElementById('txtPassword').value = (Sha256.hash(document.getElementById('txtPassword').value + salt)).toUpperCase();
+                $("#btnSubmit").append(' <span class="spinner-border spinner-border-sm align-middle"></span>');
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+    </script>
+    <!--===============================================================================================-->
+</body>
+</html>

@@ -1,0 +1,182 @@
+﻿@model ViewModel.VMContentDetails
+@using Common;
+@{
+    ViewBag.Title = "WBBSE School :: Inboxs";
+    Layout = "~/Areas/Schools/Views/Shared/_LayoutSchool.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Circular/Notification</h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.ContentId)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.LinkType)
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<section id="content" class="bg-light">
+    <div class="container-fluid">
+        <div class="row mt-5 m-1">
+            <div class="col-12 p-2">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" id="ulTabs">
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-light active" data-toggle="tab" href="#circular">CIRCULAR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#notification">NOTIFICATION</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content border">
+                    <div id="circular" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-sm-2 p-4 pb-0 text-right">
+                                <span class="text-primary">Select Type</span>
+                            </div>
+                            <div class="col-sm-4 p-4 pb-0">
+                                <select id="ddlCircularType" class="form-control">
+                                    <option value="M" selected="selected">Non-Archived</option>
+                                    <option value="A">Archived</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 p-4 pb-0">
+                                <div class="input-group text-right">
+                                    <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search Circular" />
+                                    <div class="input-group-append">
+                                        <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <div class="table-responsive">
+                                    <table id="GridCircular" class="gj-grid table table-light table-bordered table-striped"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="notification" class="tab-pane fade">
+                        <div class="row">
+                            <div class="col-sm-2 p-4 pb-0 text-right">
+                                <span class="text-primary">Select Type</span>
+                            </div>
+                            <div class="col-sm-4 p-4 pb-0">
+                                <select id="ddlNotificationType" class="form-control">
+                                    <option value="M" selected="selected">Non-Archived</option>
+                                    <option value="A">Archived</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 p-4 pb-0">
+                                <div class="input-group text-right">
+                                    <input type="text" id="txtSearchNotification" class="form-control alpha" placeholder="Search Notification" />
+                                    <div class="input-group-append">
+                                        <button type="button" id="btnSearchNotification" class="btn btn-primary">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 P-2">
+                                <div class="table-responsive">
+                                    <table id="GridNotification" class="gj-grid table table-light table-bordered table-striped"></table>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/Areas/Schools/js/inbox.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        var grid, grid1;
+        $(document).ready(function () {
+            ShowLoader();
+            var onSuccessFuncC = function (response) {
+                grid.render(response);
+                $("#GridCircular").find("th").find("div").css("font-size", "13.5px");
+                $("#GridCircular").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+            };
+            var onSuccessFuncN = function (response) {
+                grid1.render(response);
+                $("#GridNotification").find("th").find("div").css("font-size", "13.5px");
+                $("#GridNotification").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+            };
+            grid = $("#GridCircular").grid({
+                dataKey: "ContentId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../SchoolInboxs/GetCircularList", success: onSuccessFuncC },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridCircular").off('DOMSubtreeModified');
+            });
+            grid1 = $("#GridNotification").grid({
+                dataKey: "ContentId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../SchoolInboxs/GetNotificationList", success: onSuccessFuncN },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumnsAlternative])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid1.on('pageChanging', function (e, newPage) {
+                $("#GridNotification").off('DOMSubtreeModified');
+            });
+
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+
+
+    </script>
+}

@@ -1,0 +1,242 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "Section/Department";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12 text-wrap">
+                <span class="text-wrap custom-heading-website">WBBSE SECTIONS / DEPARTMENT</span>
+            </div>
+            <div class="col-md-12 align-items-center text-wrap" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Sections / Department</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="my-5">
+    <div class="container-fluid">
+        <div class="card-group mt-2 ml-1 mr-1">
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-layer-group fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Establishment</h5>
+                            <p class="card-text">An internal section that maintains personal service records of all employees,from joining to leave, promotion, Confirmation, Transfer Posting & Retirement</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.Establishment)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-copy fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Duplicate Records</h5>
+                            <p class="card-text">Issues duplicate records related toMP(SE) upon the prayers of petitioners against lost records</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DuplicateRecords)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-user-check fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Records Verification</h5>
+                            <p class="card-text">Verifies MP(SE) records of any Boards students for the purpose of his/her employment, only upon the request of concerned employee</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.RecordsVerification)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-group ml-1 mr-1">
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-check-square fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Records Correction</h5>
+                            <p class="card-text">Correct/Modifies MP(SE) record upon prayer of individual petitioner based on primary documents</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.RecordsCorrection)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-award fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Recognition</h5>
+                            <p class="card-text">Accords recognition to schools and upgrades them to X class upon the recommendation of the school education department</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.Recognition)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-rss fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">General</h5>
+                            <p class="card-text">Looks into the leave matters of the teachers and the formation/renewal of school managing committee including appointment of administrator, if any</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.GeneralSection)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-group ml-1 mr-1">
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-gavel fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Law</h5>
+                            <p class="card-text">Defends the Boards in all legal matters and also provides legal advises time to time</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.Law)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fab fa-asymmetrik fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Academic</h5>
+                            <p class="card-text">Looks into the academic and curriculum related issues of all schools, also heads the disciplinary section for all teaching and non-teaching staff</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.AcademicSection)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-users-cog fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Administration</h5>
+                            <p class="card-text">Looks into the internal administration of the Board including all regional offices, maintenance office logistic, infrastructure and establishment affairs</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.Administration)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-group ml-1 mr-1">
+            <div class="card mb-3 mx-auto" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fa fa-edit fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Examination</h5>
+                            <p class="card-text">Conducts MP(SE) & external test examination every year. All activities from enrollment of students till publication of result and PPR/PPS are conducted and supervised by this section</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.ExaminationSection)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-atlas fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Sales Counter</h5>
+                            <p class="card-text">Sells Board published text books to all the unaided schools on requisition against proper price stipulated by Board</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.BookSalesCounter)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/Section_Department.png" class="card-img img-fluid mt-lg-2 ml-lg-2" alt="...">*@
+                        <i class="fas fa-calendar-check fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Appointment Cell</h5>
+                            <p class="card-text">Issues appointment to all teaching and non-teaching staff of Govt. added / Sponsored schools upon the recommendation of WBCSSc</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.AppointmentCell)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(".card").on("mouseenter", function () {
+            $(this).removeClass("shadow-sm");
+            $(this).addClass("shadow-lg");
+        });
+        $(".card").on("mouseleave", function () {
+            $(this).removeClass("shadow-lg");
+            $(this).addClass("shadow-sm");
+        });
+        $(document).ready(function () {
+            try {
+                $(".card").addClass('shadow-sm');
+                $(".card-text").css('font-size', '13px');
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}
+

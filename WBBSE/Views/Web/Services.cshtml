@@ -1,0 +1,308 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">WBBSE SERVICES</span>
+            </div>
+            <div class="col-md-12 align-items-center custom-heading-website">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Services</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="my-5">
+    <div class="container-fluid">
+        <div class="card-group mt-2 ml-1 mr-1">
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-user-plus fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Registration</h5>
+                            <p class="card-text">
+                                The act of registering on official record, name & other informations of all class IX students preparing for oncoming Board exam.
+                            </p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.Registration)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-clipboard-list fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Enrolment</h5>
+                            <p class="card-text">The act of enrolling Madhyamik candidates for a given year</p>
+                            <a href="/Web/SearchPage?l=@(GblFunctions.encryptPassword(MenuCode.Enrollment))&a=@(GblFunctions.Base64Encode("#v-pills-Enrollment"))" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-user-shield fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">PPR / PPS</h5>
+                            <p class="card-text">All application for Review & Scrutiny post publication of Madhyamik result</p>
+                            <a href="/Web/SearchPage?l=@(GblFunctions.encryptPassword(MenuCode.PPRPPS))&a=@(GblFunctions.Base64Encode("#v-pills-PPRPPS"))" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-group mt-2 ml-1 mr-1">
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-copy fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Duplicate</h5>
+                            <p class="card-text">For the issue of Duplicate Certificate / Mark Sheet / Admit Card / Registration Certificate</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.Duplicate)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-random fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Migration</h5>
+                            <p class="card-text">Approval to Board’s registered candidate for change of Board post final exam.</p>
+                            <a href="/Web/SearchPage?l=@(GblFunctions.encryptPassword(MenuCode.Migration))&a=@(GblFunctions.Base64Encode("#v-pills-MigrationCertificate"))" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-check-square fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Correction</h5>
+                            <p class="card-text">Correction of any registered record of any candidate who had appeared Madhyamik examination under this Board.</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.RecordsCorrection)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-group mt-2 ml-1 mr-1">
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-user-check fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Verification</h5>
+                            <p class="card-text">The process of establishing the truth, accuracy or validity of records</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.RecordsVerification)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-unlock-alt fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">RTI for MP(S.E)</h5>
+                            <p class="card-text">The student can apply under section 6 of the RTI Act to get a copy of his/her answer script</p>
+                            <a href="@FilePath.RTIMPSE" class="card-text text-primary" target="_blank" rel="noopener">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-award fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Recognition</h5>
+                            <p class="card-text">Getting Board’s affiliationof schools on the basis of predetermined</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.Recognition)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-group mt-2 ml-1 mr-1">
+            @*<div class="card mb-3 mx-auto custom-max-width">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Study Leave</h5>
+                                <p class="card-text text-justify"></p>
+                                <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.StudyLeave)&a=@(GblFunctions.Base64Encode("#v-pills-StudyLeave"))" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            @*<div class="card mb-3 mx-auto custom-max-width">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Special Leave</h5>
+                                <p class="card-text text-justify"></p>
+                                <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.SpecialLeave)&a=@(GblFunctions.Base64Encode("#v-pills-SpecialLeave"))" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-hourglass-half fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Extra time</h5>
+                            <p class="card-text">Permission to the MP(SE) candidates for additional time beyond the standard time set by instructors for the exam.</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.ExtraTime)&a=@(GblFunctions.Base64Encode("#v-pills-ExtraTime"))" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-sitemap fa-3x custom-section2-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">School Directory</h5>
+                            <p class="card-text">Detail of the schools affiliated with Boards District wise, Block Wise, region wise, school level wise</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.SchoolDirectory)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="no-border" class="card mb-3 mx-auto custom-max-width bg-transparent border-0"></div>
+        </div>
+
+        @*<div class="card-group mt-2 ml-1 mr-1">
+                <div class="card mb-3 mx-auto custom-max-width">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Duty Leave</h5>
+                                <p class="card-text text-justify"></p>
+                                <a href="#" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3 mx-auto custom-max-width">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Extraordinary Leave</h5>
+                                <p class="card-text text-justify"></p>
+                                <a href="#" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3 mx-auto custom-max-width">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="~/ReadWriteData/Section/School_Services.png" class="card-img img-fluid" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">School Directory</h5>
+                                <p class="card-text text-justify"></p>
+                                <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.SchoolDirectory)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(".card").on("mouseenter", function () {
+            $(this).removeClass("shadow-sm");
+            $(this).addClass("shadow-lg");
+            $("#no-border").removeClass('shadow-sm');
+            $("#no-border").removeClass('shadow-lg');
+        });
+        $(".card").on("mouseleave", function () {
+            $(this).removeClass("shadow-lg");
+            $(this).addClass("shadow-sm");
+            $("#no-border").removeClass('shadow-sm');
+            $("#no-border").removeClass('shadow-lg');
+        });
+        $(document).ready(function () {
+            try {
+                $(".card").addClass('shadow-sm');
+                $("#no-border").removeClass('shadow-sm');
+                $(".card-text").css('font-size', '13px');
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

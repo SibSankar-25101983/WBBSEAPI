@@ -1,0 +1,225 @@
+﻿@using Common;
+@model ViewModel.VMContactUs
+@{
+    ViewBag.Title = "WBBSE :: Contact Us";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@*<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner">
+        <div class="row">
+            <div class="col-12 pt-5">
+                <span>CONTACT US</span>
+            </div>
+        </div>
+        <div class="row" style="font-size: 20px;">
+            <div class="col-12 pb-5 align-items-center">                
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-warning" id="lnkCurrent" href="#">Contact Us</span>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">CONTACT US</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-warning" id="lnkCurrent" href="#">Contact Us</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="bg-light">
+    <div class="container-fluid">
+        @using (Html.BeginForm("WBBSESendContact", "Web", FormMethod.Post, new { autocomplete = "off", @class = "needs-validation" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="row m-4">
+                <div class="col-sm-6 p-4 border rounded shadow">
+                    <h2>Write to us</h2>
+                    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <ul style="list-style-type: none; text-align: center;">
+                            <li>
+                                @Html.ValidationMessageFor(m => m.Name)
+                            </li>
+                            <li>
+                                @Html.ValidationMessageFor(m => m.EmailId)
+                            </li>
+                            <li>
+                                @Html.ValidationMessageFor(m => m.MobileNo)
+                            </li>
+                            <li>
+                                @Html.ValidationMessageFor(m => m.Subject)
+                            </li>
+                            <li>
+                                @Html.ValidationMessageFor(m => m.Message)
+                            </li>
+                            <li>
+                                @Html.ValidationMessageFor(m => m.Captcha)
+                            </li>
+                            <li>
+                                @ViewData[ViewDataNames.SaveInfo]
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <ul style="list-style-type: none; text-align: center;">
+                            <li>
+                                @ViewData[ViewDataNames.SaveInfo]
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible" id="AlertInfo" style="display: none;">
+                        <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                        <strong><span id="AlertInfoMsg"></span></strong>
+                    </div>
+                    <div class="form-group has-error has-feedback">
+                        <label for="txtname">Name:<span class="text-danger"> *</span></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
+                            </div>
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control OnlyAlpha", @placeholder = "Enter your name *", @id = "txtName", @required = "" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEmail">Email Id:<span class="text-danger"> *</span></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control allowCharForEmailId", @placeholder = "Enter email *", @id = "txtEmailId", @required = "" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtContactNo">Mobile No:<span class="text-danger"> *</span></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                            </div>
+                            @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control checkContactNo", @placeholder = "Enter mobile no *", @id = "txtMobileNo", @required = "", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtSubject">Subject:<span class="text-danger"> *</span></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control alpha", @placeholder = "Enter subject", @id = "txtSubject", @required = "", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtMessage">Message:<span class="text-danger"> *</span></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-edit"></i></span>
+                            </div>
+                            @Html.TextAreaFor(m => m.Message, new { @class = "form-control alpha", @placeholder = "Enter message", @id = "txtBodyText", @required = "", @rows = 6, @maxlength = 4000, @style = "resize:none;", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtCaptcha">Captcha:<span class="text-danger"> *</span></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                            </div>
+                            @Html.TextBoxFor(m => m.Captcha, new { @id = "txtCaptcha", @placeholder = "Enter Captcha", @class = "form-control input-lg alphaWithoutSpace", @maxlength = "6", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <img id="imgCaptcha" alt="Captcha" class="img-fluid bg-dark" style="border-radius: 25px; background-color: #f2fff8; border-color: black;" />
+                        <a onclick="refreshCaptcha()" style="cursor: pointer; margin-left: 8px;" title="Refresh Captcha">
+                            <img src="~/img/reload.png" />
+                        </a>
+                    </div>
+                    <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
+                </div>
+
+                <div class="col-sm-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.807258663455!2d88.41996251501975!3d22.5863109851757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275bfbd37268d%3A0x2226d73f648e7c1c!2sWest%20Bengal%20Board%20Of%20Secondary%20Education!5e0!3m2!1sen!2sin!4v1572954944025!5m2!1sen!2sin" class="border rounded shadow" style="width: 100%; height: 70%;"></iframe>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="card shadow">
+                                <div class="card-body text-center p-2">
+                                    <div class="text-center text-primary">
+                                        <i class="fas fa-map-marker-alt" style="font-size: 30px;"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="p-0 m-0">Nivedita Bhavan, Sector II, DJ-8</p>
+                                        <p class="p-0 m-0">Sector II, Bidhannagar, Kolkata 700091</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card shadow p-0 m-0">
+                                <div class="card-body text-center p-2 m-0">
+                                    <div class="text-center text-primary">
+                                        <i class="fas fa-phone-square" style="font-size: 30px;"></i>
+                                    </div>
+                                    <div class="text-center p-2">
+                                        <p>
+                                            033-23213827
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card shadow p-0 m-0">
+                                <div class="card-body text-center p-2 m-0">
+                                    <div class="text-center text-primary">
+                                        <i class="fas fa-envelope" style="font-size: 30px;"></i>
+                                    </div>
+                                    <div class="text-center p-2">
+                                        <p>
+                                            wbbse05@yahoo.co.in
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/BasicFunctions.js"></script>
+    <script src="~/js/Message.js"></script>
+    <script src="~/js/client/cu.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                refreshCaptcha();
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

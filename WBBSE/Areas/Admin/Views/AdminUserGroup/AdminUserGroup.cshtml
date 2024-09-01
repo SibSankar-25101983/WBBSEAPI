@@ -1,0 +1,166 @@
+﻿@using Common;
+@using ViewModel;
+@model ViewModel.VMAdminUserGroup
+
+@{
+    ViewBag.Title = "WBBSE Admin :: UserGroup";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">User Group
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none; text-align: center;">
+            <li>
+                @Html.ValidationMessageFor(m => m.VMMstUserGroup.GroupName)
+            </li>
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none; text-align: center;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+@section header
+{
+    <div class="row pb-2">
+        <div class="col-md-5">
+            <div class="input-group">
+                <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search by Group Name">
+                <div class="input-group-append">
+                    <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            @if (ViewData[ViewDataNames.AddYN] == "visible")
+            {
+                <div class="btn-group float-right">
+                    <button type="button" id="btnAdd" class="btn btn-outline-secondary" accesskey="A">Add New</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<div class="table-responsive">
+    <table id="gridUserGroup" class="gj-grid table table-light table-bordered table-striped"></table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="userGroupPermissionModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-50">
+        <div class="modal-content">
+            @* height:600px;*@
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title" id="myModalLabel">User Group Management </h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm("AdminUserGroup", "AdminUserGroup", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-body" id="divPopupBody">
+                    <div class="alertBoxInner" id="AlertInfo">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <ul style="font-size: small;" id="AlertInfoUL"></ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Group Name <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control alpha" name="VMMstUserGroup.GroupName" id="txtGroupName" placeholder="Enter Name" maxlength="100" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                    </div>
+                    <div class="form-group">
+                        <label for="chkActiveYN">Active Y/N</label>
+                        <input type="checkbox" class="checkbox-custom" name="VMMstUserGroup.ActiveYN" id="chkActiveYN" style="margin-left: 5px; margin-top: 5px;">
+                    </div>
+                    @if (Session[SessionNames.GroupId] != null && (Session[SessionNames.GroupId].ToString() == "1") || (Session[SessionNames.GroupId].ToString() == "2"))
+                    {
+                        <div class="form-group" id="divUserType">
+                            <label for="ddlGroupType">Group Type <span style="color: red;">*</span></label>
+                            <select id="ddlGroupType" name="VMMstUserGroup.UserTypeId" class="form-control"></select>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label for="ddlRoleDetailsFilter">Filter</label>
+                        <select id="ddlRoleDetailsFilter" name="filter" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <table id="gridRoleDetails" class="table table-bordered table-hover gridRoleDetails"></table>
+                    </div>
+                    <input type="hidden" name="VMMstUserGroup.EntType" id="e">
+                    <input type="hidden" name="VMMstUserGroup.GroupId" id="g">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" accesskey="X">Close</button>
+                    <button type="submit" id="btnSave" class="btn btn-primary" accesskey="S">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Areas/Admin/js/user-group.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function () {
+            DisableButtons()
+            ShowLoader();
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                $("#gridUserGroup").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+                EnableButtons();
+            };
+            grid = $("#gridUserGroup").grid({
+                dataKey: "GroupId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../AdminUserGroup/GetUserGroupList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#gridUserGroup").off('DOMSubtreeModified');
+            });
+
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+        /***********************************************/
+    </script>
+}

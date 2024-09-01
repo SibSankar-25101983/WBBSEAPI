@@ -1,0 +1,239 @@
+﻿@model ViewModel.VMMstDistrict
+@using Common;
+
+@{
+    ViewBag.Title = "WBBSE Admin :: Districts";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/css/select2.min.css" rel="stylesheet" />
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Districts
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none; text-align: center;">
+            <li>
+                @Html.ValidationMessageFor(m => m.DistrictId)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.DistrictName)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.ZoneId)
+            </li>
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none; text-align: center;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+@section header
+{
+    <div class="row pb-2">
+        <div class="col-md-5">
+            <div class="input-group">
+                <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search by District Name">
+                <div class="input-group-append">
+                    <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            @if (ViewData[ViewDataNames.ReportYN] == "visible")
+            {
+                <button type="button" id="btnShowReport" class="btn btn-outline-success" data-toggle="modal" data-target="#reportModal">Download Report</button>
+                <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                    <div class="modal-dialog modal-lg modal-width-50">
+                        <div id="divModalReportContent" class="modal-content">
+                            <div class="modal-header bg-primary text-light">
+                                <h4 class="modal-title">Report Type</h4>
+                                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+                            </div>
+                            @using (Html.BeginForm("DownloadReport", "AdminDistrict"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="modal-body" id="divPopupReportBody" style="font-size:20px;">
+                                    <div class="row mb-2">
+                                        <div class="col-4 text-right">
+                                            Select Report Type
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio1">
+                                                    <input type="radio" class="form-check-input" id="radio1" name="ReportType" value="1" checked>Excel
+                                                </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio2">
+                                                    <input type="radio" class="form-check-input" id="radio2" name="ReportType" value="2">Pdf
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-4"></div>
+                                        <div class="col-8">
+                                            <div class="btn-group">
+                                                <button type="submit" id="btnReport" class="btn btn-primary">Download Report</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-4">
+            @if (ViewData[ViewDataNames.AddYN] == "visible")
+            {
+                <div class="btn-group float-right">
+                    <button type="button" id="btnAdd" class="btn btn-outline-secondary" accesskey="A">Add New</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<div class="table-responsive">
+    <table id="GridDistrict" class="gj-grid table table-light table-bordered table-striped"></table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-50">
+        <div id="divModalContent" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title" id="myModalLabel"><span id="lblModalHeader"></span></h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm("Districts", "AdminDistrict", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-body" id="divPopupBody">
+                    <div class="alert alert-danger alert-dismissible" id="AlertInfo">
+                        @*<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <ul style="font-size: small;" id="AlertInfoUL"></ul>*@
+                        <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                        <strong><span id="AlertInfoMsg"></span></strong>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Note:</strong> Marked with an astrix(<span style="color: red;"> * </span>) is mandatory data.
+                    </div>
+                    <div class="row mb-2" id="divLblZone">
+                        <div class="col-sm-12">
+                            <span>Zone Name</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4" id="divZone">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.ZoneId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlZone" })
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="divLblIndex">
+                        <div class="col-sm-12">
+                            <span>Index Initial</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4" id="divIndex">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.IndexInitial, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlIndexInitial" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span>District Name</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(m => m.DistrictName, new { @class = "form-control alpha", @placeholder = "District Name *", @id = "txtDistrictName" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.EntType, new { @id = "e" })
+                    @Html.HiddenFor(m => m.DistrictId, new { @id = "d" })
+                    @Html.HiddenFor(m => m.ZoneId, new { @id = "oz" })
+                    @Html.HiddenFor(m => m.MigYN, new { @id = "m" })
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/js/select2.min.js"></script>
+    <script src="~/Areas/Admin/js/district.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        var grid;
+
+        $(document).ready(function () {
+            DisableButtons()
+            ShowLoader();
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                $("#GridDistrict").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+                EnableButtons();
+            };
+            grid = $("#GridDistrict").grid({
+                dataKey: "DistrictId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../AdminDistrict/GetDistrictList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridDistrict").off('DOMSubtreeModified');
+            });
+            
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

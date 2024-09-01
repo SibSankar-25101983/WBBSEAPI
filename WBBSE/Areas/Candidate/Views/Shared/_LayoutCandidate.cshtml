@@ -1,0 +1,219 @@
+﻿@using Common;
+@using System.Web.Optimization;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="NIC Kolkata">
+    <title>@ViewBag.Title</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/img/Favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="~/img/Favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/img/Favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/Favicons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/img/Favicons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/Favicons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/img/Favicons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/Favicons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/Favicons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/Favicons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/Favicons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/Favicons/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="~/img/Favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=../../../../Error/JSDisabled.html" />
+    </noscript>
+
+    @*CSS*@
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/GoogleFonts.css" rel="stylesheet" />
+    <link href="~/css/gijgo.min.css" rel="stylesheet" />
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="~/css/CustomStyle.css?v=@DateTime.Now.ToFileTime().ToString()" rel="stylesheet" />
+    @*<link href="~/css/gijgo.min.css" rel="stylesheet" />*@
+
+    @RenderSection("htmlhead", false)
+</head>
+<body id="page-top">
+
+    @*<div class="container">
+            <div class="ring">
+                Loading
+                <span class="ring-span"></span>
+            </div>
+        </div>*@
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion d-print-none" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Candidate/CandidateHome/Home">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fa fa-id-badge"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">WBBSE Candidate</div>
+            </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0" />
+
+            <!-- Nav Item - Dashboard -->
+            <li id="liAdminHome" class="nav-item">
+                <a class="nav-link" href="/Candidate/CandidateHome/Home">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
+            @Html.Raw(Session[SessionNames.MenuDetails])
+
+            <!-- Divider -->
+            @*<hr class="sidebar-divider d-none d-md-block">*@
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav id="navTop" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="input-group d-none d-md-block">
+                        <span class="mr-4">Logged in as : <span class="text-center text-success"><strong><u>@Session[SessionNames.GroupName]</u></strong></span></span>
+                        <span>Server Time : <span id="time" class="text-center text-success"></span></span>
+                        @*<div>
+                                <span>Logged in as : <span class="text-center text-success"><strong><u>@Session[SessionNames.GroupName]</u></strong></span></span>
+                            </div>
+                            <div class="topbar-divider d-none d-sm-block"></div>
+                            <div>
+                                Server Time : <span id="time" class="text-center text-success"></span>
+                            </div>*@
+                    </div>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Session[SessionNames.Name]</span>
+                                <img class="img-profile rounded-circle" src="@Session[SessionNames.ProfileImage]" style="background-color: lightcoral;">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                @*<a class="dropdown-item" href="/Candidate/CandidateProfile/Profile">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <div class="dropdown-divider"></div>*@
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid" id="divMainBody">
+                    @RenderSection("pageheader", false)
+                    <div class="row pb-1">
+                        <div class="col-md-12">
+                            @RenderSection("info", false)
+                        </div>
+                    </div>
+                    <div class="row pb-1">
+                        <div class="col-md-12">
+                            @RenderSection("header", false)
+                        </div>
+                    </div>
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white d-print-none">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span><strong>Disclaimer: This site is designed and develped by <a href="https://www.nic.in/" target="_blank" rel="noopener">National Informatics Center</a> and the contents are provided by the respective Department.</strong></span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top" style="z-index: 999999;">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Logout</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/Web/CandidatePPLogOut">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*JS*@
+    @Scripts.Render("~/vendor/jquery/jquery.min.js")
+    @Scripts.Render("~/vendor/bootstrap/js/bootstrap.bundle.min.js")
+    @Scripts.Render("~/js/gijgo.min.js")
+    @Scripts.Render("~/vendor/fontawesome-free/js/fontawesome.min.js")
+    @Scripts.Render("~/vendor/jquery-easing/jquery.easing.min.js")
+    @Scripts.Render("~/js/sb-admin-2.min.js")
+    @Scripts.Render("~/js/BasicFunctions.js?v=" + DateTime.Now.ToFileTime().ToString())
+    @Scripts.Render("~/js/ErrorCodes.js?v=" + DateTime.Now.ToFileTime().ToString())
+    @Scripts.Render("~/js/Message.js?v=" + DateTime.Now.ToFileTime().ToString())
+    @Scripts.Render("~/js/SHA256.js")
+    @Scripts.Render("~/js/Duplicate.js")
+    @Scripts.Render("~/js/Clock.js")
+    @*@Scripts.Render("~/js/jquery-required.js?v=" + DateTime.Now.ToFileTime().ToString())*@
+    @*<script type="text/javascript">
+        $("#divMainBody input").css('text-transform', 'uppercase');
+        $("#divMainBody textarea").css('text-transform', 'uppercase');
+    </script>*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

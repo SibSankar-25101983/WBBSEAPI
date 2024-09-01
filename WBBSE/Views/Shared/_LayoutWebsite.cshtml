@@ -1,0 +1,87 @@
+﻿@using Common;
+@using System.Web.Optimization;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@ViewBag.Title</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/img/Favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="~/img/Favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/img/Favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/Favicons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/img/Favicons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/Favicons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/img/Favicons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/Favicons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/Favicons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/Favicons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/Favicons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/Favicons/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="~/img/Favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=../../Error/JSDisabled.html" />
+    </noscript>
+    @*CSS*@
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/GoogleFonts.css" rel="stylesheet" />
+    <link href="~/css/gijgo.min.css" rel="stylesheet" />
+    <link href="~/css/CustomStyle.css?v=@DateTime.Now.ToFileTime().ToString()" rel="stylesheet" />
+    @*JS*@
+    @*@Scripts.Render("~/vendor/jquery/jquery.min.js")
+        @Scripts.Render("~/js/popper.min.js")
+        @Scripts.Render("~/vendor/bootstrap/js/bootstrap.min.js")
+        @Scripts.Render("~/js/gijgo.min.js")
+        @Scripts.Render("~/vendor/fontawesome-free/js/fontawesome.min.js")
+        @Scripts.Render("~/js/jquery.easy-ticker.min.js")
+        @Scripts.Render("~/js/BasicFunctions.js?v=" + DateTime.Now.ToFileTime().ToString())
+        @Scripts.Render("~/js/ErrorCodes.js?v=" + DateTime.Now.ToFileTime().ToString())
+        @Scripts.Render("~/js/Message.js?v=" + DateTime.Now.ToFileTime().ToString())*@
+    <script src="~/vendor/jquery/jquery.min.js" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    <script src="~/js/popper.min.js" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    <script src="~/js/gijgo.min.js" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    <script src="~/vendor/fontawesome-free/js/fontawesome.min.js" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    <script src="~/js/jquery.easy-ticker.min.js" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    <script src="~/js/BasicFunctions.js?v=@DateTime.Now.ToFileTime()" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    <script src="~/js/ErrorCodes.js?v=?v=@DateTime.Now.ToFileTime()" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    <script src="~/js/Message.js?v=?v=@DateTime.Now.ToFileTime()" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    @RenderSection("htmlhead", false)
+</head>
+@*<body class="bg-light" style="font-family: 'Bookman Old Style', Bookman, 'URW Bookman L', 'Palatino Linotype', serif;">*@
+<body class="bg-light" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:url(../../img/bg-5.jpg) repeat;">
+    @*Header Data*@
+    @Html.Raw(Session[SessionNames.WebsiteHeaderData])
+    @*MENU*@
+    <nav id="navFixed" class="navbar navbar-expand-lg navbar-dark m-0 p-0" style="background-color: #31c9df;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#MainMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse m-0 p-0 border border-light" id="MainMenu">
+            <ul id="ulMainMenu" class="navbar-nav m-0 p-0 text-uppercase" style="font-size:13px;">
+                @Html.Raw(Session[SessionNames.WebsiteMenuData])
+            </ul>
+        </div>
+    </nav>
+    <button onclick="topFunction()" id="btnNavTopBottom" title="Go to top"><i class="fa fa-angle-double-up p-1"></i></button>
+    @RenderBody()
+    <div class="d-xl-block d-lg-block d-md-none d-sm-none d-none" id="desk"></div>
+    <footer id="fWebsite" class="mt-5 text-center text-light p-2" style="background-color: #365f91;">
+        <p><strong>Disclaimer:</strong> This site is designed and Developed by <strong><a href="https://www.nic.in/" class="text-warning" target="_blank" rel="noopener">NIC</a></strong> and the contents are provided by WBBSE</p>
+        Copyright © 2019 WBBSE | All rights reserved
+    </footer>
+    <script src="~/js/client/wc.js?v=@DateTime.Now.ToFileTime()" type="text/javascript" nonce="@Session[SessionNames.Nonce]"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

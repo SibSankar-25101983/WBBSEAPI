@@ -1,0 +1,42 @@
+﻿@using Microsoft.Security.Application;
+
+@{
+    ViewBag.Title = "WBBSE Admin :: Home";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Dashboard</h1>
+<hr class="pb-2" />
+
+<div class="row d-none" id="dvStat1">
+    <div class="col-xl-6 col-md-12 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div id="canvas-holder" class="col-12">
+                    <canvas id="chartArea"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-12 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div id="canvas-holder1" class="col-12">
+                    <canvas id="chartArea1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="mt-3">
+    <div id="dvStat2"></div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/Chart.min.js"></script>
+    <script src="~/js/utils.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/Areas/Admin/js/home.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+}

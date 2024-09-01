@@ -1,0 +1,116 @@
+﻿@model ViewModel.VMProfileVerification
+@using Common;
+
+@{
+    ViewBag.Title = "WBBSE School :: School Email Verification";
+    Layout = "~/Areas/Schools/Views/Shared/_LayoutSchool.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/css/main.css" rel="stylesheet" />
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">
+        School Email Verification
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="color:#721c24;background-color:#f8d7da;border-color:#f5c6cb;display:@ViewData[ViewDataNames.ErrorVisibility];">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @Html.Raw(ViewData[ViewDataNames.SaveInfo])
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="color:#155724;background-color:#d4edda;border-color#c3e6cb;display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<div class="custom-div-center">
+    @using (Html.BeginForm("EmailVerification", "SchoolProfileVerification", FormMethod.Post, new { @autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col-md-12 text-center">
+                Verify Email Address <hr />
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col-sm-3" style="text-align: right;">Email Id <span style="color: red;">*</span></div>
+            <div class="col-sm-6">
+                @Html.TextBoxFor(m => m.EMailId, new { @id = "txtEmailId", @class = "form-control allowCharForEmailId", @placeholder = "Email Id *", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+            </div>
+            <div class="col-sm-3">
+                <button type="submit" id="btnGetOTPEmailId" class="btn btn-outline-info">Get OTP</button>
+                @if (ViewData[ViewDataNames.EmailOTPVisibleYN] == "Y")
+                {
+                    <button type="submit" id="btnResendOTPEmailId" title="Resend OTP" class="btn-link" style="margin-left: 5px;" onclick="return resendOTPE()">Resend OTP</button>
+                }
+            </div>
+        </div>
+        if (@ViewData[ViewDataNames.EmailOTPVisibleYN] == "Y")
+        {
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-sm-3" style="text-align: right;">Confirm OTP <span style="color: red;">*</span></div>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.OTP, new { @class = "form-control checkContactNo", @id = "txtOTPEmailId", @placeholder = "Enter OTP", @maxlength = 6, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                </div>
+                <div class="col-sm-3">
+                    <button type="submit" id="btnSaveEmailId" class="btn btn-primary" onclick="return saveOTPE()">Confirm</button>
+                </div>
+            </div>
+        }
+        <div class="row" id="divEInfo" style="display: none;">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 text-center">
+                <div class="alert alert-danger" style="padding: 10px;color:#721c24;background-color:#f8d7da;border-color:#f5c6cb;">
+                    <button type="button" class="close" id="btnEClose">×</button>
+                    <span id="InfoE"></span>
+                </div>
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.OperationType, new { @id = "he" })
+    }
+</div>
+
+@section scripts
+{
+    <script src="~/Areas/Schools/js/email-verification.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            HideLoader();
+
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

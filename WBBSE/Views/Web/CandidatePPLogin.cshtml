@@ -1,0 +1,208 @@
+﻿@using Common;
+@using System.Web.Optimization;
+@model ViewModel.VMCandidateLogin
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WBBSE PPR/PPS Candidate Login</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/img/Favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="~/img/Favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/img/Favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/Favicons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/img/Favicons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/Favicons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/img/Favicons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/Favicons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/Favicons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/Favicons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/Favicons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/Favicons/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="~/img/Favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=../../Error/JSDisabled.html" />
+    </noscript>
+    @*CSS*@
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/css/GoogleFonts.css" rel="stylesheet" />
+    <link href="~/css/CustomStyle.css?v=@DateTime.Now.ToFileTime().ToString()" rel="stylesheet" />
+    <link href="~/vendor/jqueryUI/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/css/captcha.css" rel="stylesheet" />
+</head>
+<body class="bg-light body-custom-fonts">
+    <section id="topbar" class="p-2 text-light custom-topbar-bg-color">
+        <div class="container h-100 clearfix">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-12 text-right font-weight-light">
+                    <i class="fa fa-envelope"></i><a class="mr-4 text-light" href="mailto:wbbse05@yahoo.co.in">&nbsp;wbbse05@yahoo.co.in</a>
+                    <i class="fas fa-phone-square"></i>&nbsp;033-23213827
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="icon" class="bg-light p-2 border">
+        <div class="container h-100 clearfix">
+            <div class="row justify-content-center align-items-center custom-topbar-icon-color">
+                <div class="col-sm-2 text-center">
+                    <img class="img-fluid rounded mr-4 custom-home-icon-size" src="../../img/logo.png" />
+                </div>
+                <div class="col-sm-10">
+                    <p class="pt-3 text-center text-justify" style="font-weight: 400; font-size: 42px;">West Bengal Board of Secondary Education</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="Position" class="bg-light">
+        <div class="container-fluid text-center text-light custom-banner">
+            <div class="row">
+                @*<div class="col-md-2 text-right my-4">
+                    <a class="text-light" href="/Web/Default"><i class="fas fa-home"></i></a>
+                </div>*@
+                <div class="col-md-12 my-4">
+                    <a class="text-light pr-2" href="/Web/Default" title="Back to Home"><i class="fas fa-home"></i></a>
+                    <span>PPR/PPS APPLICATION PORTAL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="my-5" id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 mx-auto border shadow">
+                    @using (Html.BeginForm("CandidatePPLogin", "Web", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div id="divE" class="alert alert-danger alert-dismissible my-2" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+                            <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                            <ul class="custom-ul-login">
+                                <li>
+                                    @Html.ValidationMessageFor(m => m.RollNo)
+                                </li>
+                                <li>
+                                    @Html.ValidationMessageFor(m => m.SchoolIndexNo)
+                                </li>
+                                <li>
+                                    @Html.ValidationMessageFor(m => m.StudentName)
+                                </li>
+                                <li>
+                                    @Html.ValidationMessageFor(m => m.DOB)
+                                </li>
+                                <li>
+                                    @ViewData[ViewDataNames.SaveInfo]
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="divS" class="alert alert-success alert-dismissible my-2" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+                            <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                            <ul class="custom-ul-login">
+                                <li>
+                                    @ViewData[ViewDataNames.SaveInfo]
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible my-2" id="AlertInfo">
+                            <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                            <strong><span id="AlertInfoMsg"></span></strong>
+                        </div>
+                        <h3 class="my-3">Candidate Login</h3>
+                        <div class="alert alert-warning pb-2" role="alert">
+                            <strong>Note:</strong> Please fill in below details as printed on admit card.
+                        </div>
+                        <div class="alert alert-warning pb-2" role="alert">
+                            <strong>Note:</strong>Columns Marked with Astrix(<span class="custom-red"> * </span>) are mandatory data.
+                        </div>
+                        <div class="form-group">
+                            <label for="txtRollNo">Roll No:<span class="text-danger"> *</span></label>
+                            <span id="RollNoMsg" class="alert-info pt-1 pb-1 pl-2 pr-2 rounded"></span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                                </div>
+                                @Html.TextBoxFor(m => m.RollNo, new { @class = "form-control alphaWithoutSpace", @placeholder = "Enter Roll No *", @id = "txtRollNo", @maxlength = 11, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtSchoolIndexNo">Index No:<span class="text-danger"> *</span></label>
+                            <span id="SchoolIndexNoMsg" class="alert-info pt-1 pb-1 pl-2 pr-2 rounded"></span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-edit"></i></span>
+                                </div>
+                                @Html.TextBoxFor(m => m.SchoolIndexNo, new { @class = "form-control alphaWithoutSpace", @placeholder = "Enter Index No *", @id = "txtSchoolIndexNo", @maxlength = 5, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtStudentName">Name:<span class="text-danger"> *</span></label>
+                            <span id="StudentNameMsg" class="alert-info pt-1 pb-1 pl-2 pr-2 rounded"></span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
+                                </div>
+                                @Html.TextBoxFor(m => m.StudentName, new { @class = "form-control OnlyAlpha", @placeholder = "Enter Your Name *", @id = "txtStudentName", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtDOB">Date of Birth:<span class="text-danger"> *</span></label>
+                            <span id="DOBMsg" class="alert-info pt-1 pb-1 pl-2 pr-2 float-right rounded"></span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control checkContactNo", @placeholder = "Enter Your Date of Birth *", @id = "txtDOB", @maxlength = 6, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtCaptcha">Captcha:<span class="text-danger"> *</span></label>
+                            <span id="CaptchaMsg" class="alert-info pt-1 pb-1 pl-2 pr-2 rounded"></span>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                                </div>
+                                @Html.TextBoxFor(m => m.Captcha, new { @id = "txtCaptcha", @placeholder = "Enter Captcha *", @class = "form-control input-lg alphaWithoutSpace", @maxlength = "6", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <img id="imgCaptcha" alt="Captcha" class="img-fluid bg-dark custom-captcha-img border-primary" />
+                            <a class="custom-captcha-anchor align-middle" onclick="refreshCaptcha()" title="Refresh Captcha">
+                                <i class="fas fa-sync fa-2x align-middle text-primary"></i>
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="btnSubmit" class="btn btn-primary btn-block">Login</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="fWebsite" class="mt-5 text-center text-light p-2 custom-footer-bg-color">
+        <p><strong>Disclaimer:</strong> This site is designed and Developed by <strong><a href="https://www.nic.in/" target="_blank" rel="noopener">NIC</a></strong> and the contents are provided by WBBSE</p>
+        Copyright © 2019 WBBSE | All rights reserved
+    </footer>
+    @*JS*@
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/vendor/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="~/js/BasicFunctions.js?v=@DateTime.Now.ToFileTime()"></script>
+    <script src="~/js/Message.js?v=@DateTime.Now.ToFileTime()"></script>
+    <script src="~/js/Duplicate.js"></script>
+    <script src="~/js/jquery-required.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/vendor/jqueryUI/jquery-ui.min.js"></script>
+    <script src="~/js/client/cl.js?v=@DateTime.Now.ToFileTime()"></script>
+</body>
+</html>

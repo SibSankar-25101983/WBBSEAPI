@@ -1,0 +1,269 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE Duplicate Record Section";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">WBBSE DUPLICATE RECORDS SECTION</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                @*<a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a id="lnkCurrent" class="text-warning" href="#">Duplicate Records</a>*@
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Section / Department</span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning">Duplicate Records</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-Guideline-tab" data-toggle="pill" href="#v-pills-Guideline" role="tab" aria-controls="v-pills-Guideline" aria-selected="true">Guideline</a>
+                    <a class="nav-link" id="v-pills-Admit-tab" data-toggle="pill" href="#v-pills-Admit" role="tab" aria-controls="v-pills-Admit" aria-selected="false">Admit / Mark Sheet / Certificate / Registration Certificate</a>
+                    <a class="nav-link" id="v-pills-MigrationCertificate-tab" data-toggle="pill" href="#v-pills-MigrationCertificate" role="tab" aria-controls="v-pills-MigrationCertificate" aria-selected="false">Migration Certificate</a>
+                    <a class="nav-link" id="v-pills-Transcript-tab" data-toggle="pill" href="#v-pills-Transcript" role="tab" aria-controls="v-pills-Transcript" aria-selected="false">Transcript</a>
+                    <a class="nav-link" id="v-pills-Posthumous-tab" data-toggle="pill" href="#v-pills-Posthumous" role="tab" aria-controls="v-pills-Posthumous" aria-selected="false">Posthumous</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content border p-2 shadow-lg bg-light" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-Guideline" role="tabpanel" aria-labelledby="v-pills-Guideline-tab">
+                        <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3"> FOR THE ISSUE OF DUPLICATE CERTIFICATE / MARKSHEET / ADMIT CARD / REGISTRATION CERTIFICATE / MIGRATION CERTIFICATE / TRANSCRIPTION</h6>
+                        <div class="pr-2 text-justify">
+                            <ol class="fa-ol">
+                                <li>
+                                    The documents may not be delivered by post. It should be collected by the candidate or his authorised person with Board’s case challan, obtained on payment of fees.
+                                </li>
+                                <li> In case of a regular candidate of a school the application should be forwarded by the Head of the Institution from which the candidate was enrolled and for CC, compartmental, Private of External candidate, the application may ne forwarded by <b>(I)</b> The Headmaster or Headmistress of a recognized high school, <b>(II)</b> The Principal of a recognized college, <b>(III)</b> a Gazetted Officer of the Central or State Government.</li>
+                                <li>
+                                    Application for the issue of any of the documents is to be properly countersigned and sent to the Deputy Secretary(Records) along with the requisite fee and following details:
+                                    <ul class="list-unstyled pl-4 custom-text-indent">
+                                        <li><b>a)</b> Full name of the candidate and his/her present address in full in block letter.</li>
+                                        <li><b>b)</b> The name, month and year of the Examination.</li>
+                                        <li><b>c)</b> The name of the Institution from which he/she was sent up for the Examination concerned.</li>
+                                        <li><b>d)</b> Correct Roll, Number and Registration No. of the candidate with year.</li>
+                                        <li><b>e)</b> For Duplicate certificate, either damaged portion of the certificate or General Diary No. and date with seal duly signed by the O.C. should be attached with the application.</li>
+                                        <li><b>f)</b> For Migration Certificate, attested Xerox copy of Admit Card, Marks Sheet, Certificate and Registration Certificate should be attached with the application form.</li>
+                                    </ul>
+                                    <div class="mt-2"></div>
+                                    The board shall not be held responsible for not issuing any duplicate document in case of the absence of the details stated above.
+                                    <div class="mt-2"></div>
+                                    Nationals of Bangladesh are to apply through the ministry of education, Dhaka.
+                                </li>
+                                <li>
+                                    The documents will be made available for delivery after 15 clear working days from the date of receipt of the application and fees. The Board, however, reserves the right-not to issue any duplicate document in case it is deemed fit. <b>Complaints for non-receipt of the documents will not be entertained after a period of 3 months from the date of submission.</b>
+                                    <div class="mt-2"></div>
+                                    <b>The Board shall not however be responsible for the delay in preparing the duplicate due to unavoidable circumstances.</b>
+                                </li>
+                                <li>
+                                    Receiving Hours at office cash counter(Application & Fees) <b>10:00 A.M. to 4:00 P.M. on weekdays</b>
+                                </li>
+                                <li>
+                                    <b>Revised Rate of Fees:</b>
+                                    <ul class="list-unstyled mb-3 pl-4 custom-text-indent">
+                                        <li>
+                                            <b>i.</b> Duplicate Certificate <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-
+                                        </li>
+                                        <li><b>ii.</b> Duplicate Mark Sheet <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-</li>
+                                        <li><b>iii.</b> Duplicate Admit Card <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-</li>
+                                        <li><b>iv.</b> Duplicate Registration Certificate <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-</li>
+                                        <li><b>v.</b> Migration Certificate <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-</li>
+                                    </ul>
+                                    <div class="text-right">
+                                        <p class="m-0 p-0">By order</p>
+                                        <p class="m-0 p-0"><strong>Secretary</strong></p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-Admit" role="tabpanel" aria-labelledby="v-pills-Admit-tab">
+                        <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">DUPLICATE RECORDS</h6>
+                        <div class="p-2 text-justify">
+                            <h6 class="font-weight-bold">Step 1:</h6>
+                            <p class="pl-4">
+                                The form(##) necessary to be filled up by the candidate for getting the duplicate record has to be downloaded from the <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary font-weight-bold" title="Click here to go to download section">DOWNLOAD SECTION</a>.
+                            </p>
+                            <h6 class="font-weight-bold">Step 2:</h6>
+                            <p class="pl-4">
+                                It has then to be filled up accurately.
+                            </p>
+                            <h6 class="font-weight-bold">Step 3:</h6>
+                            <p class="pl-4">
+                                For <u>duplicate certificate</u> photocopy of the General diary made to the local Police Station. has to be submitted mandatorily.
+                            </p>
+                            <h6 class="font-weight-bold">Step 4:</h6>
+                            <p class="pl-4">
+                                The applicant will be requested to deposit requisite fees(*) through Cash Challan to be filled up in triplicate to the Cash Section of the Board at 77/2 Park Street, Kolkata-16 for the districts under Kolkata Regional Council Offices. And for other districts it has to be submitted to concerned Regional Council Office under West Bengal Board of Secondary Education. (See Regional Council Office for more details of district).
+                            </p>
+                            <h6 class="font-weight-bold">Step 5:</h6>
+                            <p class="pl-4">
+                                Once done, submit the filled up form along with the relevant documents to the concerned section of the concerned office and get your token number.
+                            </p>
+                            <h6 class="font-weight-bold">* Fee structure-</h6>
+                            <ul class="list-unstyled pl-4 text-left custom-text-indent">
+                                <li>
+                                    <b>a)</b> Duplicate Registration Certificate <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-
+                                </li>
+                                <li>
+                                    <b>b)</b> Duplicate Admit <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-
+                                </li>
+                                <li>
+                                    <b>c)</b> Duplicate Mark Sheet <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-
+                                </li>
+                                <li>
+                                    <b>d)</b> Duplicate Certificate <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-
+                                </li>
+                            </ul>
+                            <h6 class="font-weight-bold mt-5">
+                                ## Application Form-
+                                <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-MigrationCertificate" role="tabpanel" aria-labelledby="v-pills-MigrationCertificate-tab">
+                        <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">MIGRATION CERTIFICATE</h6>
+                        <div class="p-2 text-justify">
+                            <h6 class="font-weight-bold">Step 1:</h6>
+                            <p class="pl-4">
+                                The candidate would download the Migration form from the download section.
+                            </p>
+                            <h6 class="font-weight-bold">Step 2:</h6>
+                            <p class="pl-4">
+                                The candidate has to fill up all the detailed information about her/his migration.
+                            </p>
+                            <h6 class="font-weight-bold">Step 3:</h6>
+                            <p class="pl-4">
+                                The candidate has to append relevant documents viz. copy of Registration Certificate, Admit card, Mark sheet and Pass Certificate with the migration form.
+                            </p>
+                            <h6 class="font-weight-bold">Step 4:</h6>
+                            <p class="pl-4">
+                                The applicant will be requested to deposit requisite fees through Cash Challan to be filled up in triplicate to the Cash Section of the Board at 77/2 Park Street, Kolkata-16 for the districts under Kolkata Regional Council Offices. And for other districts it has to be submitted to concerned Regional Examination Council Office under WBBSE. (See Regional Examination Council for more details of district)
+                            </p>
+                            <h6 class="font-weight-bold">Step 5:</h6>
+                            <p class="pl-4">
+                                Once done, submit the filled up form along with the relevant documents to the concerned section of the concerned office.
+                            </p>
+                            <h6 class="font-weight-bold">* Fee structure-</h6>
+                            <ul class="list-unstyled pl-4 text-left custom-text-indent">
+                                <li>
+                                    <b>a)</b> Migration Certificate <i class="fas fa-rupee-sign d-inline pl-2"></i><b>300</b>/-
+                                </li>
+                            </ul>
+                            <h6 class="font-weight-bold mt-5">
+                                ## Application Form-
+                                <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-Transcript" role="tabpanel" aria-labelledby="v-pills-Transcript-tab">
+                        <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">TRANSCRIPT CERTIFICATE</h6>
+                        <div class="p-2 text-justify">
+                            <h6 class="font-weight-bold">Step 1:</h6>
+                            <p class="pl-4">
+                                The candidate has to download the TRANSCRIPT form for issuance of transcript certificate by WBBSE.
+                            </p>
+                            <h6 class="font-weight-bold">Step 2:</h6>
+                            <p class="pl-4">
+                                The candidate has to fill up all the detailed information about her/his transcription.
+                            </p>
+                            <h6 class="font-weight-bold">Step 3:</h6>
+                            <p class="pl-4">
+                                The candidate has to append relevant documents viz. copy of Registration Certificate, Admit card, Mark sheet and Pass Certificate with the transcript form.
+                            </p>
+                            <h6 class="font-weight-bold">Step 4:</h6>
+                            <p class="pl-4">
+                                The applicant will be requested to deposit requisite fees through challan to be filled up in triplicate to the cash section of Board at 77/2 Park Street, Kolkata-16.
+                            </p>
+                            <h6 class="font-weight-bold">Step 5:</h6>
+                            <p class="pl-4">
+                                Once done, submit the filled up form along with the relevant documents to the concerned section.
+                            </p>
+                            <h6 class="font-weight-bold">Step 6:</h6>
+                            <p class="pl-4">
+                                After verifying all the information and documents WBBSE will issue the Transcript to the concerned candidates through their registered mail id.
+                            </p>
+                            <h6 class="font-weight-bold">* Fee structure-</h6>
+                            <ul class="list-unstyled pl-4 text-left custom-text-indent">
+                                <li>
+                                    <b>a)</b> Transcript (per copy) <i class="fas fa-rupee-sign d-inline pl-2"></i><b>500</b>/-
+                                </li>
+                            </ul>
+                            <h6 class="font-weight-bold mt-5">
+                                ## Application Form-
+                                <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-Posthumous" role="tabpanel" aria-labelledby="v-pills-Posthumous-tab">
+                        <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">POSTHUMOUS</h6>
+                        <div class="p-2 text-justify">
+                            <h6 class="font-weight-bold">Step 1:</h6>
+                            <p class="pl-4">
+                                The candidate would download the Posthumous form from the download section.
+                            </p>
+                            <h6 class="font-weight-bold">Step 2:</h6>
+                            <p class="pl-4">
+                                The candidate has to fill up all the detailed information about her/his Posthumous.
+                            </p>
+                            <h6 class="font-weight-bold">Step 3:</h6>
+                            <p class="pl-4">
+                                The candidate has to append relevant documents viz. copy of Registration Certificate, Admit card, Mark sheet and Pass Certificate with the migration form.
+                            </p>
+                            <h6 class="font-weight-bold">Step 4:</h6>
+                            <p class="pl-4">
+                                The applicant will be requested to deposit requisite fees through Cash Challan to be filled up in triplicate to the Cash Section of the Board at 77/2 Park Street, Kolkata-16 for the districts under Kolkata Regional Council Offices. And for other districts it has to be submitted concerned Regional Examination Council Office under WBBSE. (See Regional Examination Council for more details of district).
+                            </p>
+                            <h6 class="font-weight-bold">Step 5:</h6>
+                            <p class="pl-4">
+                                Once done, submit the filled up form along with the relevant documents to the concerned section of the concerned office.
+                            </p>
+                            <h6 class="font-weight-bold">* Fee structure-</h6>
+                            <ul class="list-unstyled pl-4 text-left custom-text-indent">
+                                <li>
+                                    <b>a)</b> Posthumous Certificate <i class="fas fa-rupee-sign d-inline pl-2"></i><b>100</b>/-
+                                </li>
+                            </ul>
+                            <h6 class="font-weight-bold mt-5">
+                                ## Application Form-
+                                <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $("#v-pills-tab").click(function () {
+            setTimeout(chkFooter, 200);
+        });
+        $(document).ready(function () {
+            try {
+                //check whether to open particular tab or not
+                var a = '@ViewData[ViewDataNames.ActiveLinkTab]';
+                if (a != DefaultSetting.EmptyVal) {
+                    $('#v-pills-tab a[href="' + a + '"]').tab('show');
+                }
+
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

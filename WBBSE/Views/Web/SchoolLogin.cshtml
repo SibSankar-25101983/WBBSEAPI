@@ -1,0 +1,118 @@
+﻿@using Common;
+@model ViewModel.VMSchoolLogin
+@{
+    ViewBag.Title = "SchoolLogin";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">SCHOOL/JUNIOR-SCHOOL LOGIN</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                @*<a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a id="lnkCurrent" class="text-warning">School/Pre-School Login</a>*@
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning">School/Junior-School Login</span>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content" class="my-5">
+    <div class="container">
+        @*NEED TO CONFIGURE*@
+        <div class="row">
+            <div class="col-md-4 mx-auto border p-4 shadow bg-light" style="background: -webkit-linear-gradient(left, #daecee, #b1d1ec21) !important;">
+
+                @using (Html.BeginForm("SchoolLogin", "Web", FormMethod.Post, new { autocomplete = "off" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="text-center form-group mb15" style="color: #00206B;">
+                        <h3>School Login</h3>
+                    </div>
+                    <div class="form-inputs">
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.UserName, new { @id = "txtUserName", @placeholder = "User Name", @class = "form-control input-lg alpha" })
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.LoginPwd, new { @id = "txtPassword", @placeholder = "Password", @class = "form-control input-lg" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Captcha, new { @id = "txtCaptcha", @placeholder = "Enter Captcha", @class = "form-control input-lg alphaWithoutSpace", @maxlength = "6", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="form-group text-center">
+                            <img id="imgCaptcha" alt="Captcha" class="img-fluid" style="border-radius: 25px; background-color: #f2fff8;" />
+                            <a onclick="refreshCaptcha()" style="cursor: pointer; margin-left: 8px;" title="Refresh Captcha">
+                                <img src="~/img/reload.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <button class="btn btn-success btn-block btn-lg mb15" type="submit" id="btnSubmit"><span>Sign in</span></button>
+
+                    <div id="divInfo" class="alert alert-danger mt-2" style="display: none;">
+                        <span class="closebtn" style="color: #000;" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <span id="lblInfo"></span>
+                    </div>
+
+                    <div class="alert alert-danger mt-2" style="display:@ViewData[ViewDataNames.divLoginAlertVisibility]">
+                        <span class="closebtn" style="color: #000;" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <ul id="ulInfo" style="font-size: medium; list-style-type:none;">
+                            <li>
+                                @Html.ValidationMessage(ViewDataNames.LoginInfo)
+                            </li>
+                            <li>
+                                @Html.ValidationMessageFor(model => model.UserName)
+                            </li>
+                            <li>
+                                @Html.ValidationMessageFor(model => model.LoginPwd)
+                            </li>
+                            <li>
+                                @Html.ValidationMessageFor(model => model.Captcha)
+                            </li>
+                            <li>
+                                @Html.ValidationMessage(ViewDataNames.InvalidCaptcha)
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+@section scripts
+{
+    <script src="~/js/Duplicate.js"></script>
+    <script src="~/js/jquery-required.js"></script>
+    <script src="~/js/SHA256.js" type="text/javascript"></script>
+    <script src="~/js/client/ls.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        window.onbeforeunload = DisableButtons;
+        $(document).ready(function () {
+            try {
+                refreshCaptcha();
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+        $("#btnSubmit").click(function () {
+            if (validate()) {
+                var salt = "@Session[SessionNames.Salt]";
+                document.getElementById('txtPassword').value = (Sha256.hash(document.getElementById('txtPassword').value)).toUpperCase();
+                document.getElementById('txtPassword').value = (Sha256.hash(document.getElementById('txtPassword').value + salt)).toUpperCase();
+                $("#btnSubmit").append(' <span class="spinner-border spinner-border-sm"></span>');
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+    </script>
+}

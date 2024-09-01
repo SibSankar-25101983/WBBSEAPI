@@ -1,0 +1,253 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Record Correction";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">Record Correction</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Sections / Department </span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Record Correction</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="bd-example bd-example-tabs">
+            <div class="row">
+                <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                    <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-CorrectionGuideline-tab" data-toggle="pill" href="#v-pills-CorrectionGuideline" role="tab" aria-controls="v-pills-CorrectionGuideline" aria-selected="true">Correction Guideline</a>
+                        <a class="nav-link" id="v-pills-CorrectionProcess-tab" data-toggle="pill" href="#v-pills-CorrectionProcess" role="tab" aria-controls="v-pills-CorrectionProcess" aria-selected="false">Correction Process</a>
+                        <a class="nav-link" id="v-pills-Admission-tab" data-toggle="pill" href="#v-pills-Admission" role="tab" aria-controls="v-pills-Admission" aria-selected="false">Admission/Late Admission/Break of Studies</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content border p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-CorrectionGuideline" role="tabpanel" aria-labelledby="v-pills-CorrectionGuideline-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3 text-danger"> Instruction to the applicants before filling up the Form (No. WBBSE/02) for correction</h6>
+                            <div class="text-center mb-2">
+                                <span class="font-weight-bold text-danger custom-font-17"><u>Documents to be submitted</u></span>
+                            </div>
+                            <div class="p-2 text-justify">
+                                <ul class="list-unstyled custom-text-indent">
+                                    <li class="pl-4 mb-2">
+                                        <b>a.</b> Photocopy to Registration Certificate, Admit Card, Mark Sheet and Pass Certificate duly attested by the concerned Head of the Institution.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>b.</b> For Correction of Name/Father’s or Mother’s Name/Surname/Middle Name/Date of Birth as per Admission Register of High School(where the Applicant appearing Board’s Examination) Primary School(where got first admission) Photocopy of the Admission Register/Register’s(relevant page/pages) must be attested by the concerned Head of the Institution and countersigned by D.I./A.D.I. of Schools(H.S.), Application Form for Registration in Class IX or Cheek List duly attested by the concerned H.M./T.I.C.
+                                        <p class="mt-2 mb-0">
+                                            <span class="pl-5">If necessary</span>, Birth Registration Certificate(Birth must be Registered with in one year of its occurrence)in case of delayed Birth Registration Certificate (must be submitted along with order copy of the competent Authority)  Photocopy of the Birth Registration Certificate must be self attested / by Gazetted Officer / by D.I. of Schools(S.E.). if Corrected Birth Registration Certificate is produced, then its photocopy of previous incorrect Birth Registration Certificate is to be produced as proof of correction(B.R.C.).
+                                        </p>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>c. <u class="text-danger">Auxiliary documents:-</u></b>
+                                        <ul class="list-unstyled custom-text-indent pl-3">
+                                            <li>
+                                                <b>a)</b> <b>i)</b> Photocopy of Baptism certificate for students, <b>ii)</b> Photocopy of Discharge Certificate and Caste Certificate (must be prepared before Registration/appearing Board’s Examination and issued by the competent authority) attested by Gazetted officer or any officer of WBBSE.
+                                            </li>
+                                            <li>
+                                                <b>b)</b> Attested photocopy of service book of applicant/father(in case of employment of applicant on the ground of die-in-harness). Death Certificate of father, attested by Gazetted officer / any officer of WBBSE.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>d. <u class="text-danger">In case of adoption:-</u></b>
+
+                                        <ul class="list-unstyled custom-text-indent pl-3">
+                                            <li>
+                                                <b>I)</b> Photocopy of Admission Register(relevant page) of High School must be attested by the concerned Head of the Institution.
+                                            </li>
+                                            <li>
+                                                <b>II)</b> Photocopy of Deed of adoption with order of competent authority (Must be made below 15 years of the adoptive child) by any Gazetted Officer/ any Officer of the WBBSE, may be entertained for change Father’s Name / Surname/Middle Name of the applicant before the Registration by the Board.
+                                            </li>
+                                            <li>
+                                                <b>III)</b> Photocopy of marriage Registration Certificate(in case of remarriage) must be attested by the Gazetted officer/any officer of WBBSE.
+                                            </li>
+                                            <li>
+                                                <b>IV)</b> Photocopy of Decree of Divorce by the competent court of law must be attested by any Gazetted officer/any officer of WBBSE.
+                                            </li>
+                                            <li>
+                                                <b>V)</b> Affidavit to be sworn before first class Magistrate disclosing the proposed Father’s Name/Surname/Middle Name to be changed.
+                                            </li>
+                                            <li>
+                                                <b>VI)</b> The identity of the candidate with the proposed change in the Name/Surname/Middle Name to be published in the daily newspaper and the paper cutting should be submitted.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>e. <u class="text-danger">In case of Single Mother(Parent):-</u></b>
+                                        <ul class="list-unstyled custom-text-indent pl-3">
+                                            <li>
+                                                <b>I)</b> Photocopy of Death Certificate of Candidate’s biological father.
+                                            </li>
+                                            <li>
+                                                <b>II)</b> Photocopy of Decree of Divorce by the competent Court of Law must be attested by any Gazetted officer.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>f. <u class="text-danger">In case of Gender Change</u></b>
+                                        <ul class="list-unstyled custom-text-indent pl-3">
+                                            <li class="mb-2">
+                                                <b>I)</b> Photocopy of Certificate of sex Reassignment Surgery(SER) from competent medical officer.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="mb-2">
+                                        <ul class="list-unstyled custom-text-indent">
+                                            <li class="border border-warning rounded-lg pl-5 pt-2 pb-2 custom-border-width-3">
+                                                <ul class="list-unstyled custom-text-indent pr-4">
+                                                    <li class="text-danger">
+                                                        <b><u>FEE</u></b>
+                                                        <ul class="list-unstyled custom-text-indent">
+                                                            <li>
+                                                                <b>I)</b> &nbsp;Requisite fee of<i class="fas fa-rupee-sign d-inline pl-2"></i> <b>50</b>/- for each name, surname correction
+                                                            </li>
+                                                            <li>
+                                                                <b>II)</b> <b>A.</b> Requisite fee of<i class="fas fa-rupee-sign d-inline pl-2"></i> <b>100</b>/- for AGE CORRECTION for regular students (Class-V-X)
+                                                            </li>
+                                                            <li>
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>B.</b><i class="fas fa-rupee-sign d-inline pl-2"></i> <b>300</b>/- within 3 yrs. of appearing in MP(SE)
+                                                            </li>
+                                                            <li>
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>C.</b><i class="fas fa-rupee-sign d-inline pl-2"></i> <b>600</b>/- within 3 yrs. of appearing in Board’s examination.
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pl-4 my-4">
+                                        <b><u class="text-danger">N. B.:-</u></b>
+                                        <ul class="list-unstyled custom-text-indent pl-3">
+                                            <li>
+                                                <b>1)</b> Prayer for any type of correction of External Candidates will not be entertained.
+                                            </li>
+                                            <li>
+                                                <b>2)</b> Incomplete/tampered documents will not be entertained.
+                                            </li>
+                                            <li>
+                                                <b>3)</b> Each column of every page of Admission Register of High / Primary School must have been recorded and signed by the concerned Head of the Institution properly.
+                                            </li>
+                                            <li>
+                                                <b>4)</b> Applicants who are applying for correction of Death of Birth after five years form the year of passing / appearing Board’s Examination must obtain prior permission from the Board’s authority.
+                                            </li>
+                                            <li>
+                                                <b>5)</b> In case of time barred applications, photocopy of the letter of appointment duly attested must be submitted.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-CorrectionProcess" role="tabpanel" aria-labelledby="v-pills-CorrectionProcess-tab">
+                            @*<h6 class="text-center pb-3 custom-font-20"></h6>*@
+                            <div class="mt-2 p-2">
+                                <span class="font-weight-bold">Correction of Name of the Candidate, Name of Father, Name of Guardian, Date of Birth, Address, Name of the School etc.</span>
+                            </div>
+                            <div class="p-2 text-justify">
+                                <ul class="list-unstyled custom-text-indent">
+                                    <li class="pl-4 mb-2">
+                                        <b>a.</b> The record correction form should be downloaded from the <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary font-weight-bold" title="Click here to go to download section">DOWNLOAD SECTION</a> and then filled up accurately.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>b.</b> The documents that need to be attached for correction(s) are:
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <ul class="list-unstyled custom-text-indent pl-3">
+                                            <li class="mb-1">
+                                                <b>1.</b> Copy of the Registration Certificate, Admit card, Marksheet, Pass Certificate duly attested by the Head of the Institution.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>2.</b> Birth Registration Certificate. In case of unavailability of the original Birth Registration Certificate, the copy of the Admission Register duly attested by the A.I. (SE)/ A.D.I (SE) and Head of the Institution has to be submitted. In case of availability of the Birth Registration Certificate, it has to be attested by any gazetted officer.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>3.</b> Duly filled up correction form with signature of Head of the Institution along with all the relevant documents are to be verified by the concerned official of the record section before submission of the same.
+                                            </li>
+                                            <li>
+                                                <b>4.</b> On approval of the correction from the competent authority of WBBSE, the applicant will be requested to deposit requisite fees through Cash Challan to be filled up in triplicate to the cash section of Board at 77/2 Park Street, Kolkata-16 for the districts under Kolkata Regional Council Offices. And for other districts it has to be submitted concerned Regional Examination Council Office under WBBSE.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>c.</b> Fee structure - <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary font-weight-bold">Click Here</a>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>d.</b> Application Form - <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary font-weight-bold">Click Here</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-Admission" role="tabpanel" aria-labelledby="v-pills-Admission-tab">
+                            @*<h6 class="text-center pb-3 custom-font-20"></h6>*@
+                            <div class="mt-2 p-2">
+                                <span class="font-weight-bold">Admission or Late Admission or Break of Studies of Students.</span>
+                            </div>
+                            <div class="p-2 text-justify">
+                                <ul class="list-unstyled custom-text-indent">
+                                    <li class="pl-4 mb-2">
+                                        <b>a.</b> The Admission/Late Admission/Break of Studies form should be downloaded from the <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary font-weight-bold" title="Click here to go to download section">DOWNLOAD SECTION</a> and then filled up accurately.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>b.</b> The documents that need to be attached for Admission/Late Admission/Break of Studie(s) are:
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <ul class="list-unstyled custom-text-indent pl-3">
+                                            <li class="mb-1">
+                                                <b>1.</b> Application from the guardian of the student (The guardian should state the full details of the student’s absence from school for the above period / late admission / reason for change of school) to be addressed to the Secretary, WBBSE.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>2.</b> Attested copy of Transfer Certificate and pass Mark Sheet (for class X).
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>3.</b> Medical Certificate in Original (if the break or late admission is due to illness).
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>4.</b> Registration Certificate Xerox copy attested by H.M. or Regn. Application Form Xerox copy attested by H.M.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>5.</b> Cash challan or Draft in original showing mode of payment as chargeable fees<span class="text-danger"> (<i class="fas fa-rupee-sign d-inline pl-2"></i> <b>50</b>/- )</span> in the Board.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>c.</b> Application Form - <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary font-weight-bold">Click Here</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $("#v-pills-tab").click(function () {
+            setTimeout(chkFooter, 200);
+        });
+        $(document).ready(function () {
+            try {
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { console.log(err); }
+        });
+    </script>
+}

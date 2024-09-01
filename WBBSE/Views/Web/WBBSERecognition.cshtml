@@ -1,0 +1,230 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSERecognition";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">Recognition</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Sections / Department </span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Recognition</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="bd-example bd-example-tabs">
+            <div class="row">
+                <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                    <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-UnaidedSchool-tab" data-toggle="pill" href="#v-pills-UnaidedSchool" role="tab" aria-controls="v-pills-UnaidedSchool" aria-selected="true">Unaided School (V-VIII)</a>
+                        <a class="nav-link" id="v-pills-AidedSchool-tab" data-toggle="pill" href="#v-pills-AidedSchool" role="tab" aria-controls="v-pills-AidedSchool" aria-selected="false">Aided School (V-VIII)</a>
+                        <a class="nav-link" id="v-pills-FormalRecognition-tab" data-toggle="pill" href="#v-pills-FormalRecognition" role="tab" aria-controls="v-pills-FormalRecognition" aria-selected="false">Formal Recognition of Aided school(V-VIII)</a>
+                        <a class="nav-link" id="v-pills-UpgradationSecondary-tab" data-toggle="pill" href="#v-pills-UpgradationSecondary" role="tab" aria-controls="v-pills-UpgradationSecondary" aria-selected="false">Upgradation to Secondary section of aided & unaided school</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content border p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-UnaidedSchool" role="tabpanel" aria-labelledby="v-pills-UnaidedSchool-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Recognition of unaided School (V-VIII)</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="list-unstyled custom-text-indent">
+                                    <li class="pl-4 mb-2">
+                                        <b>a.</b> Prayer to DI.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>b.</b> DI submits the prayer to the Commissioner of School Education with DLIT report.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>c.</b> Commissioner of School Education will send the recommendation to School Education Department.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>d.</b> School Education Department sends recommendation of the Govt. to WBBSE.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>e.</b> Board will give the provisional NOC / permanent NOC (board’s form) to the school.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>f.</b> Concerned school will submit the form to the Board after signing from the concerned DI (SE).
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>g.</b> Board will issue provisional / permanent recognition letter to the school.
+                                    </li>
+                                </ul>
+                            </div>
+                            <h6 class="font-weight-bold mt-5 mb-3">
+                                ## Annexure Form-
+                                <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                            </h6>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-AidedSchool" role="tabpanel" aria-labelledby="v-pills-AidedSchool-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Recognition of aided School (V-VIII)</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="list-unstyled custom-text-indent">
+                                    <li class="pl-4 mb-2">
+                                        <b>a.</b> Prayer to DI.<span class="text-danger font-weight-bold"> (Depends on Govt.)</span>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>b.</b> DI submits the prayer to the Commissioner of School Education with DLIT report.<span class="text-danger font-weight-bold"> (Depends on Govt.)</span>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>c.</b> Commissioner of School Education will send the recommendation to School Education Department.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>d.</b> School Education Department sends recommendation of the Govt. to WBBSE.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>e.</b> Board will issue the provisional recognition to the school on the basis of the Govt. recommendation (New setup).
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>f.</b> Board will issue annexure X form (to be supplied by the Board) for formal recognition on the basis of the forwarding/ recommendation of the DI(SE).
+                                    </li>
+                                </ul>
+                                <h6 class="font-weight-bold mt-5">
+                                    ## Annexure X Form-
+                                    <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-FormalRecognition" role="tabpanel" aria-labelledby="v-pills-FormalRecognition-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Formal Recognition of Aided school(V-VIII)</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="list-unstyled custom-text-indent">
+                                    <li class="pl-4 mb-2">
+                                        <b>a.</b> Prayer to District Inspector of Schools(SE) alongwith filled up <span class="text-danger font-weight-bold"> (annexure X)</span>.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>b.</b> Board, if satisfied, will issue Formal Recognition on the basis of Recommendation of D.I.(SE) alongwith all attested documents as referred in <span class="text-danger font-weight-bold"> (annexure X)</span>.
+                                    </li>
+                                </ul>
+                                <h6 class="font-weight-bold mt-5">
+                                    ## Annexure X Form-
+                                    <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-UpgradationSecondary" role="tabpanel" aria-labelledby="v-pills-UpgradationSecondary-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Upgradation to Secondary section of aided & unaided school</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="list-unstyled custom-text-indent">
+                                    <li class="pl-4 mb-2">
+                                        <b>a.</b> Prayer to D.I. after fulfilling the below mentioned criteria.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <ul class="list-unstyled custom-text-indent pl-3">
+                                            <li class="mb-1">
+                                                <b>1.</b> Site & Accommodation.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>2.</b> Sanitary Arrangement.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>3.</b> No of Teaching staff.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>4.</b> Roll strength (have at least 40 effective enrolments in each class).
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>5.</b> B.Ed. certificate is mandatory for each teaching staff.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>6.</b> Age of the staff.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>7.</b> Nature of the Institution.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>8.</b> Laboratory for elementary	Science, Math, Language.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>9.</b> Facilities for CWSW / differently abled students.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>10.</b> Fire Security Measures.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>11.</b> Evacuation an amusement for disaster management.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>12.</b> Proper Drinking Water Facility.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>13.</b> Sick room.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>14.</b> Reserve fund.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>15.</b> Formation of school Management Committee.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>16.</b> School Development plan.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>17.</b> Library.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>18.</b> Adequate furniture.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>19.</b> Equipments for games and sports.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>20.</b> Girls’ common room, if it is a girls’ or co-educational school.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>21.</b> Congenial atmosphere for smooth running of the school.
+                                            </li>
+                                            <li class="mb-1">
+                                                <b>22.</b> Playground and sports equipment.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>b.</b> DLIT will inspect the school and will send the report to the Commissioner.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>c.</b> Commissioner sends the recommendation of the Govt. to Board for issuing upgradation letter.
+                                    </li>
+                                    <li class="pl-4 mb-2">
+                                        <b>d.</b> Board will issue upgradation status and index no. to the school as per the recommendation of the Govt. of W.B.
+                                    </li>
+                                </ul>
+                                <h6 class="font-weight-bold mt-5">
+                                    ## Annexure X Form-
+                                    <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $("#v-pills-tab").click(function () {
+            setTimeout(chkFooter, 200);
+        });
+        $(document).ready(function () {
+            try {
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { console.log(err); }
+        });
+    </script>
+}

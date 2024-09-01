@@ -1,0 +1,62 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: PrimeFocus";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner">
+        <div class="row">
+            <div class="col-12 pt-5">
+                <span class="custom-heading-website">PRIME FOCUS</span>
+            </div>
+        </div>
+        <div class="row" style="font-size: 20px;">
+            <div class="col-12 pb-5 align-items-center">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a class="text-warning" href="/Web/WBBSEPrimeFocus?l=GmOMh4ieAsfBrSunLPBveA==">Prime Focus</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="bg-light">
+    <div class="container-fluid">
+        <div class="row border rounded m-5">
+            <div class="col-12 p-4">
+                <ul>
+                    <li>
+                        Innovation of teaching learning methodologies by devising student friendly and student centric paradigms, keeping in mind the socio-cultural and economic background of the students.
+                    </li>
+                    <li>
+                        Giving freedom to new experiment with new ideas and practices.
+                    </li>
+                    <li>
+                        Regularly updating and upgrading the pedagogical and professional skills of the teachers by conducting in-service training programmes and workshops, etc.
+                    </li>
+                    <li>
+                        Time to time reforms in examination and evaluation systems.
+                    </li>
+                    <li>
+                        To ensure 100% enrollment and retention of students till they pass out MP(S E) with desired learning outcomes.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#lnkCurrent").prop("href", window.location.href);
+
+        try {
+            //remove active link
+            $("#ulMainMenu li").removeClass("custom-navbar");
+            //get new active link id
+            var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+            var activeLI = document.getElementById(activeLinkId);
+            activeLI.classList.add("custom-navbar");
+        }
+        catch (err) {}
+    });
+</script>

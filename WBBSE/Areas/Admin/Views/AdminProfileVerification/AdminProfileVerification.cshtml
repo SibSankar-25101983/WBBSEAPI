@@ -1,0 +1,357 @@
+﻿@using Common;
+@model ViewModel.VMProfileVerification
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>WBBSE Admin :: Profile Verification</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/img/Favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="~/img/Favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/img/Favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/Favicons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/img/Favicons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/Favicons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/img/Favicons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/Favicons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/Favicons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/Favicons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/Favicons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/Favicons/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="~/img/Favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Custom fonts for this template-->
+    <link href="~/css/GoogleFonts.css" rel="stylesheet" />
+    <link href="~/css/gijgo.css" rel="stylesheet" />
+    <!-- Custom styles for this template-->
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+</head>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav id="navTop" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="input-group">
+                        <div>
+                            <span>Logged in as : <span class="text-center text-success"><strong><u>@Session[SessionNames.GroupName]</u></strong></span></span>
+                        </div>
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <div>
+                            Server Time : <span id="time" class="text-center text-success"></span>
+                        </div>
+                    </div>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Session[SessionNames.Name]</span>
+                                <img class="img-profile rounded-circle" src="@Session[SessionNames.ProfileImage]" style="background-color: lightcoral;">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid pb-5" id="divMainBody">
+                    <!--Loader-->
+                    <div id="preloader">
+                        <div id="loader"></div>
+                    </div>
+                    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Profile Verification</h1>
+                    <hr class="pb-2" />
+                    <div class="row pb-1">
+                        <div class="col-md-12">
+                            @if (ViewData[ViewDataNames.ErrorVisibility] == "")
+                            {
+                                <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <ul style="list-style-type: none; text-align: center;">
+                                        <li>
+                                            @ViewData[ViewDataNames.SaveInfo]
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                            @if (ViewData[ViewDataNames.SucessVisibility] == "")
+                            {
+                                <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <ul style="list-style-type: none; text-align: center;">
+                                        <li>
+                                            @ViewData[ViewDataNames.SaveInfo]
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @if (Session[SessionNames.NewPasswordChangedYN] != null && Session[SessionNames.NewPasswordChangedYN].ToString() == "N")
+                    {
+                        <div class="custom-div-center">
+                            @using (Html.BeginForm("AdminProfileVerification", "AdminProfileVerification", FormMethod.Post, new { autocomplete = "off" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        Change Password
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Old Password<span style="color: red;"> *</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.PasswordFor(m => m.OldPassword, new { @class = "form-control", @placeholder = "Old Password *" })
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">New Password<span style="color: red;"> *</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control", @placeholder = "New Password *" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a data-toggle="popover" data-placement="right" style="font-size: large; cursor: pointer;">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Confirm Password<span style="color: red;"> *</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password *" })
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-md-12 text-center" style="align-items: center;">
+                                        <button type="submit" id="btnSavePassword" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                                <div class="row" id="divPInfo" style="display: none;">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-6 text-center">
+                                        <div class="alert alert-danger" style="padding: 10px;">
+                                            <button type="button" class="close" id="btnPClose">×</button>
+                                            <span id="InfoP"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(m => m.OperationType, new { @id = "hp" })
+                            }
+                        </div>
+                    }
+                    @if (Session[SessionNames.EmailVerifiedYN] != null && Session[SessionNames.EmailVerifiedYN].ToString() == "N")
+                    {
+                        <div class="custom-div-center">
+                            @using (Html.BeginForm("AdminProfileVerification", "AdminProfileVerification", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-md-12 text-center">
+                                        Verify Email Address
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Email Id <span style="color: red;">*</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(m => m.EMailId, new { @class = "form-control allowCharForEmailId", @placeholder = "Email Id *", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                        @*, @Value = ViewData[ViewDataNames.EmailId]*@
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="submit" id="btnGetOTPEmailId" class="btn btn-outline-info">Get OTP</button>
+                                        @if (ViewData[ViewDataNames.EmailOTPVisibleYN] == "Y")
+                                        {
+                                            <button type="submit" id="btnResendOTPEmailId" title="Resend OTP" class="btn-link" style="margin-left: 5px;" onclick="return resendOTPE()">Resend OTP</button>
+                                        }
+                                    </div>
+                                </div>
+                                        if (@ViewData[ViewDataNames.EmailOTPVisibleYN] == "Y")
+                                        {
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Confirm OTP<span style="color: red;">*</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(m => m.OTP, new { @class = "form-control checkContactNo", @id = "txtOTPEmailId", @placeholder = "Enter OTP", @maxlength = 6, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="submit" id="btnSaveEmailId" class="btn btn-primary" onclick="return saveOTPE()">Confirm</button>
+                                    </div>
+                                </div>
+                                        }
+                                <div class="row" id="divEInfo" style="display: none;">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-6 text-center">
+                                        <div class="alert alert-danger" style="padding: 10px;">
+                                            <button type="button" class="close" id="btnEClose">×</button>
+                                            <span id="InfoE"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(m => m.OperationType, new { @id = "he" })
+                            }
+                        </div>
+                    }
+                    @if (Session[SessionNames.ContactNoVerifiedYN] != null && Session[SessionNames.ContactNoVerifiedYN].ToString() == "N")
+                    {
+                        <div class="custom-div-center">
+                            @using (Html.BeginForm("AdminProfileVerification", "AdminProfileVerification", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-md-12 text-center">
+                                        Verify Contact No
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Contact No<span style="color: red;">*</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(m => m.ContactNo, new { @class = "form-controlcheckContactNo", @placeholder = "Contact No *", @Value = ViewData[ViewDataNames.ContactNo], @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="submit" id="btnGetOTPContactNo" class="btn btn-outline-info">Get OTP</button>
+                                        @if (ViewData[ViewDataNames.ContactOTPVisibleYN] == "Y")
+                                        {
+                                            <button type="submit" id="btnResendOTPContactNo" title="Resend OTP" class="btn-outline-info" style="margin-left: 5px;" onclick="return resendOTPC()">Resend OTP</button>
+                                        }
+                                    </div>
+                                </div>
+                                        if (ViewData[ViewDataNames.ContactOTPVisibleYN] == "Y")
+                                        {
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Confirm OTP<span style="color: red;">*</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(m => m.OTP, new { @class = "form-control checkContactNo", @id = "txtOTPContactNo", @placeholder = "Enter OTP" })
+                                    </div>
+                                    <div class="col-sm-3" style="text-align: center;">
+                                        <button type="submit" id="btnSaveContactNo" class="btn btn-primary" onclick="return saveOTPC()">Confirm</button>
+                                    </div>
+                                </div>
+                                        }
+                                <div class="row" id="divCInfo" style="display: none;">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-6 text-center">
+                                        <div class="alert alert-danger" style="padding: 10px;">
+                                            <button type="button" class="close" id="btnCClose">×</button>
+                                            <span id="InfoC"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(m => m.OperationType, new { @id = "hc" })
+                            }
+                        </div>
+                    }
+                    @if (ViewData[ViewDataNames.ShowHomeLinksYN] == "Y")
+                    {
+                        <div style="margin: auto; width: 80%; margin-top: 20px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.ActionLink("Go To Home", "AdminHome", "AdminHome", new { id = string.Empty }, new { @class = "btn btn-info", @style = "float:right;" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            @*style="padding: 10px; position: fixed; right: 0; bottom: 0; left: 0;"*@
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span><strong>Disclaimer: This site is designed and develped by <a href="https://www.nic.in/" target="_blank" rel="noopener">National Informatics Center</a> and the contents are provided by the respective Department.</strong></span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Logout</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/Admin/AdminLogin/LogOut">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/gijgo.js"></script>
+    <script src="~/vendor/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="~/js/SHA256.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="~/js/sb-admin-2.min.js"></script>
+    <script src="~/js/Duplicate.js"></script>
+    <script src="~/js/jquery-required.js"></script>
+    <script src="~/js/Message.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script src="~/js/ErrorCodes.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script src="~/js/BasicFunctions.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script src="~/Areas/Admin/js/profile-verification.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            HideLoader();
+            getTime();
+        });
+    </script>
+</body>
+</html>

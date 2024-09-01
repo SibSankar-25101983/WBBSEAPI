@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "WBBSE :: President's Desk";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner">
+        <div class="row">
+            <div class="col-12 pt-5">
+                <span class="custom-heading-website">PRESIDENT'S DESK</span>
+            </div>
+        </div>
+        <div class="row" style="font-size: 20px;">
+            <div class="col-12 pb-5 align-items-center">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a id="lnkCurrent" class="text-warning">President's Desk</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="bg-light">
+    <div class="container-fluid">
+        <div class="row border rounded m-5">
+            <div class="col-12 p-5" style="font-size: 18px; font-weight: 400;">
+                <p class="text-center">
+                    <img src="~/ReadWriteData/BoardDesk/President.png" class="img-fluid rounded border" />
+                </p>
+                <p>
+                    In this era of technology and apps, "update" is the new in. We constantly need to update our apps to make them work faster and better.
+                </p>
+                <p>
+                    Keeping in pace with this digital era, we at WBBSE have endeavoured to ‘update’ and improvise our website to provide all our esteemed visitors a better and improved experience.
+                </p>
+                <p>
+                    It has been converted to be more accessible, user-friendly, mobile compatible, has a well planned information architecture
+                    , effective navigation and browser consistency with al l the information you need about US literally at your fingertips.
+                </p>
+                <p>
+                    Here’s wishing you a seamless logging in and a marvellous/successful usability.
+                </p>
+                <p>
+                    <b>Kalyanmoy Ganguly
+                    <br />
+                        President
+                    <br />
+                        WBBSE
+                    </b>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                $("#lnkCurrent").prop("href", window.location.href);
+            }
+            catch (err) {
+                console.log(err.responseText);
+            }
+        });
+    </script>
+}

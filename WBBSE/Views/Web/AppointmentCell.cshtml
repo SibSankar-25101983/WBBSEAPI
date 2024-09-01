@@ -1,0 +1,574 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Appointment Cell";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">Appointment Cell</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Sections / Department </span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Appointment Cell</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-About-tab" data-toggle="pill" href="#v-pills-About" role="tab" aria-controls="v-pills-About" aria-selected="true">About Appointment Cell</a>
+                    <a class="nav-link" id="v-pills-Verification-tab" data-toggle="pill" href="#v-pills-Verification" role="tab" aria-controls="v-pills-Verification" aria-selected="false">Police Verification</a>
+                    <a class="nav-link" id="v-pills-Fitness-tab" data-toggle="pill" href="#v-pills-Fitness" role="tab" aria-controls="v-pills-Fitness" aria-selected="false">Medical fitness Test</a>
+                    <a class="nav-link" id="v-pills-DocumentVerification-tab" data-toggle="pill" href="#v-pills-DocumentVerification" role="tab" aria-controls="v-pills-DocumentVerification" aria-selected="false">Document Verification</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-About" role="tabpanel" aria-labelledby="v-pills-About-tab">
+                        <div class="p-2 text-justify">
+                            <p>
+                                Vide Notification No. <strong>214-SE/S/10M-01/18</strong> dated <strong>8th March, 2018</strong>, the West Bengal Board of Secondary Education is now the Appointing Authority for all Teaching and Non-teaching staff recruited & recommended by the West Bengal Central School Services Commission. President, West Bengal Board of Secondary Education is the Appointing Authority.
+                            </p>
+                            <p>
+                                Appointment letters are issued by West Bengal Board of Secondary Education subject to verification of testimonials on pre fixed dates notified at Boards website<strong>(www.wbbse.wb.gov.in)</strong>.
+                                For any correction, modification or revision of appointment candidates may contact Appointment, Cell headed by an Assistant Secretary at <strong>Nivedita Bhawan, 4th floor</strong>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="v-pills-Verification" role="tabpanel" aria-labelledby="v-pills-Verification-tab">
+                        <div class="p-2 text-justify">
+                            <p>
+                                Verification Roll may be downloaded from Board’s Website, <b>www.wbbse.wb.gov.in</b>. The same shall be duly filled up and signed by incumbent and submitted in triplicate, within three months from the date of joining, to the <b>President, WBBSE, NiveditaBhavan, Saltlake, Kolkata-700091</b>.
+                            </p>
+                            <p>
+                                WBBSE sends Police Verification Roll(PVR) to respective home district police authority for verification of candidate’s antecedents. On receipts of the same the reports are maintained in candidates file.
+                            </p>
+                            <p>
+                                <span class="font-weight-bold">Police Verification Roll(PVR) Form -</span> <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="v-pills-Fitness" role="tabpanel" aria-labelledby="v-pills-Fitness-tab">
+                        <div class="p-2 text-justify">
+                            <p>
+                                West Bengal Board of Secondary Education sends list of new appointees to the Zonal medical Boards for conduct of medical fitness test. On receipt of medical certificate the same is preserved in candidate’s personal file. The Zones are as follows.
+                            </p>
+                            <p>
+                                <strong>Medical Zone list -</strong> @*<a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>*@
+                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-hover table-striped table-responsive-md border-bottom">
+                                        <thead class="table-warning">
+                                            <tr>
+                                                <th scope="col" class="font-weight-bold w-25">ZONE</th>
+                                                <th scope="col" class="font-weight-bold w-50">ADDRESS</th>
+                                                <th scope="col" class="font-weight-bold w-25">SCHOOL DISTRICT</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="align-middle">
+                                                <th scope="row" class="align-middle">ZONE - A</th>
+                                                <td class="align-middle">
+                                                    <div>
+                                                        To
+                                                    </div>
+                                                    <div>
+                                                        The M. S. V. P. (Chairman),
+                                                    </div>
+                                                    <div>
+                                                        Zonal Medical Board,
+                                                    </div>
+                                                    <div>
+                                                        Bankura Sammilani Medical College and Hospital,
+                                                    </div>
+                                                    <div>
+                                                        Kenduadihi, P.O. & Dist. Bankura,
+                                                    </div>
+                                                    <div>
+                                                        Pin – 722102
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle font-weight-bold">
+                                                    <div>
+                                                        Bankura
+                                                    </div>
+                                                    <div>
+                                                        Purulia
+                                                    </div>
+                                                    <div>
+                                                        East Midnapore
+                                                    </div>
+                                                    <div>
+                                                        West Midnapore
+                                                    </div>
+                                                    <div>
+                                                        Jhargram
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="align-middle">
+                                                <th scope="row" class="align-middle">ZONE - B</th>
+                                                <td class="align-middle">
+                                                    <div>
+                                                        To
+                                                    </div>
+                                                    <div>
+                                                        The M. S. V. P. (Chairman),
+                                                    </div>
+                                                    <div>
+                                                        Zonal Medical Board,
+                                                    </div>
+                                                    <div>
+                                                        Burdwan Medical College and Hospital,
+                                                    </div>
+                                                    <div>
+                                                        Baburbag, P.O. Rajbati,  Dist. Burdwan,
+                                                    </div>
+                                                    <div>
+                                                        Pin – 723101
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle font-weight-bold">
+                                                    <div>
+                                                        Purba Burdwan
+                                                    </div>
+                                                    <div>
+                                                        Paschim Burdwan
+                                                    </div>
+                                                    <div>
+                                                        Birbhum
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="align-middle">
+                                                <th scope="row" class="align-middle">ZONE - C</th>
+                                                <td class="align-middle">
+                                                    <div>
+                                                        To
+                                                    </div>
+                                                    <div>
+                                                        The M. S. V. P. (Chairman),
+                                                    </div>
+                                                    <div>
+                                                        Zonal Medical Board,
+                                                    </div>
+                                                    <div>
+                                                        North Bengal Medical College and Hospital,
+                                                    </div>
+                                                    <div>
+                                                        P.O. Shusruta Nagar,  Dist. Darjeeling,
+                                                    </div>
+                                                    <div>
+                                                        Pin – 734012
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle font-weight-bold">
+                                                    <div>
+                                                        Alipurduar
+                                                    </div>
+                                                    <div>
+                                                        Jalpaiguri
+                                                    </div>
+                                                    <div>
+                                                        Cooch Behar
+                                                    </div>
+                                                    <div>
+                                                        Uttar Dinajpur
+                                                    </div>
+                                                    <div>
+                                                        Dakshin Dinajpur
+                                                    </div>
+                                                    <div>
+                                                        Malda
+                                                    </div>
+                                                    <div>
+                                                        Darjeeling
+                                                    </div>
+                                                    <div>
+                                                        Siliguri
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="align-middle">
+                                                <th scope="row" class="align-middle">ZONE - D</th>
+                                                <td class="align-middle">
+                                                    <div>
+                                                        To
+                                                    </div>
+                                                    <div>
+                                                        The M. S. V. P. (Chairman),
+                                                    </div>
+                                                    <div>
+                                                        Zonal Medical Board,
+                                                    </div>
+                                                    <div>
+                                                        N.R.S.  Medical College and Hospital,
+                                                    </div>
+                                                    <div>
+                                                        138, A.J.C. Bose Road,
+                                                    </div>
+                                                    <div>
+                                                        Kolkata – 700014
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle font-weight-bold">
+                                                    <div>
+                                                        Kolkata
+                                                    </div>
+                                                    <div>
+                                                        South 24 Parganas
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="align-middle">
+                                                <th scope="row" class="align-middle">ZONE - E</th>
+                                                <td class="align-middle">
+                                                    <div>
+                                                        To
+                                                    </div>
+                                                    <div>
+                                                        The M. S. V. P. (Chairman),
+                                                    </div>
+                                                    <div>
+                                                        Zonal Medical Board,
+                                                    </div>
+                                                    <div>
+                                                        Medical College and Hospital,
+                                                    </div>
+                                                    <div>
+                                                        88, Collage Street,
+                                                    </div>
+                                                    <div>
+                                                        Kolkata 700073
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle font-weight-bold">
+                                                    <div>
+                                                        Howrah
+                                                    </div>
+                                                    <div>
+                                                        Hooghly
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="align-middle">
+                                                <th scope="row" class="align-middle">ZONE - F</th>
+                                                <td class="align-middle">
+                                                    <div>
+                                                        To
+                                                    </div>
+                                                    <div>
+                                                        The M. S. V. P. (Chairman),
+                                                    </div>
+                                                    <div>
+                                                        Zonal Medical Board,
+                                                    </div>
+                                                    <div>
+                                                        R. G. Kar. Medical College and Hospital,
+                                                    </div>
+                                                    <div>
+                                                        1, Khudiram Bose Sarani,
+                                                    </div>
+                                                    <div>
+                                                        Kolkata-700004
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle font-weight-bold">
+                                                    <div>
+                                                        Nadia
+                                                    </div>
+                                                    <div>
+                                                        Murshidabad
+                                                    </div>
+                                                    <div>
+                                                        North 24 Parganas
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="v-pills-DocumentVerification" role="tabpanel" aria-labelledby="v-pills-DocumentVerification-tab">
+                        <div class="p-2 text-justify">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Testimonials Required for Verification by Appointing Authority</h6>
+                            <div class="ml-2 mb-2 font-weight-bold">
+                                <u>Appointment of Clerk and Group-D</u>
+                            </div>
+                            <ol>
+                                <li>
+                                    Admit Card of WBSSC.
+                                </li>
+                                <li>
+                                    Recommendation Letter of WBSSC (two copies).
+                                </li>
+                                <li>
+                                    Mark sheet and Admit Card of Madhyamik /Equivalent examination (for CLERK).
+                                </li>
+                                <li>
+                                    Marksheet/ relevant certificate testifying Minimum Qualification, as applicable. (Gr.D).
+                                </li>
+                                <li>
+                                    Birth Registration Certificate OR Any Govt. Approved Age Proof document viz. AADHAR/PAN.(for Gr. D only).
+                                </li>
+                                <li>
+                                    Caste Certificate and Disabled Certificate, if applicable.
+                                </li>
+                                <li>
+                                    One Photo bearing document viz. EPIC/AADHAR/PAN/Driving License.
+                                </li>
+                                <li>
+                                    Two coloured passport size photographs.
+                                </li>
+                            </ol>
+                            <div class="ml-2 mb-2 font-weight-bold">
+                                <u>Appointment of Clerk and Gr.D inDied-in-Harness</u>
+                            </div>
+                            <ol>
+                                <li>
+                                    Recommendation Letter of WBSSC.
+                                </li>
+                                <li>
+                                    Candidates application for Appointment to the Competent Authority.  (Photocopy allowed).
+                                </li>
+                                <li>
+                                    Death Certificate of Employee.
+                                </li>
+                                <li>
+                                    Last Pay slip showing gross monthly salary of deceased before his / her demise.
+                                </li>
+                                <li>
+                                    Monthly Income Certificate issued by D.M./ S.D.O./ B.D.O. OR ANY Gazetted Officer.
+                                </li>
+                                <li>
+                                    Legal Heir Certificate issued by competent authority(1st Class Magistrate / Judicial Magistrate or District Magistrate).
+                                </li>
+                                <li>
+                                    Amount of Death benefit (Gratuity, Leave Encashment etc.) sanctioned by Pension sanctioning authority / Pension Payment Order.
+                                </li>
+                                <li>
+                                    Amount of Family Pension received.
+                                </li>
+                                <li>
+                                    N. O. C. from other family members in the form of affidavit(Notary not acceptable).
+                                </li>
+                                <li>
+                                    Birth Registration Certificate OR School leaving certificate.
+                                </li>
+                                <li>
+                                    One Photo bearing document viz. EPIC/AADHAR/PAN/Driving License.
+                                </li>
+                                <li>
+                                    Caste Certificate and Disabled Certificate, if applicable.
+                                </li>
+                                <li>
+                                    Marksheet and releavantcetificate testifying minimum qualification.
+                                </li>
+                                <li>
+                                    Two coloured passport size photographs.
+                                </li>
+                            </ol>
+                            <div class="ml-2 mb-2 font-weight-bold">
+                                <u>Appointment of Assistant Teacher for Class Level- Upper-Primary,Physical Education & Work Education</u>
+                            </div>
+                            <ol>
+                                <li>
+                                    Admit Card of WBCSSC.
+                                </li>
+                                <li>
+                                    Recommendation Letter of WBCSSC.
+                                </li>
+                                <li>
+                                    Mark sheet and Final Certificate of Graduate Dergree from UGC recognised University.
+                                </li>
+                                <li>
+                                    B.ED. or Equivalent Training Certificate from NCTE recognised institution(NCTE Certificate to be submitted).
+                                </li>
+                                <li>
+                                    BCA from UGC Recognised University, if applicable.
+                                </li>
+                                <li>
+                                    Birth Registration Certificate/ Admit Card of WBBSE or equivalent document.
+                                </li>
+                                <li>
+                                    Caste Certificate and Disabled Certificate, if applicable.
+                                </li>
+                                <li>
+                                    One Photo bearing document viz. EPIC/AADHAR/PAN/Driving License.
+                                </li>
+                                <li>
+                                    Two coloured passport size photographs.
+                                </li>
+                            </ol>
+                            <div class="ml-2 mb-2 font-weight-bold">
+                                <u>Appointment of Assistant Teachers (IX- X)</u>
+                            </div>
+                            <ol>
+                                <li>
+                                    Admit Card of WBCSSC.
+                                </li>
+                                <li>
+                                    Recommendation Letter of WBCSSC.
+                                </li>
+                                <li>
+                                    Mark sheet of Graduate Dergree in relevant subject from recorgnised institutions.
+                                </li>
+                                <li>
+                                    Final Certificate of Graduation Degree.
+                                </li>
+                                <li>
+                                    B.ED. or Equivalent Training Certificate from NCTE recognised Institution. (NCTE Certificate to be submitted).
+                                </li>
+                                <li>
+                                    Admit Card of WBBSE or other Board or Birth Registration Certificate.
+                                </li>
+                                <li>
+                                    Caste Certificate and Disabled Certificate, if applicable.
+                                </li>
+                                <li>
+                                    One Photo bearing document viz. EPIC/AADHAR/PAN/Driving License.
+                                </li>
+                                <li>
+                                    Two coloured passport size photographs.
+                                </li>
+                            </ol>
+                            <div class="ml-2 mb-2 font-weight-bold">
+                                <u>Appointment of  Assistant Teachers (XI- XII)</u>
+                            </div>
+                            <ol>
+                                <li>
+                                    Admit Card of WBCSSC.
+                                </li>
+                                <li>
+                                    Recommendation Letter of WBCSSC.
+                                </li>
+                                <li>
+                                    Mark sheet of Post Graduate Dergree in relevant subject from recorgnised institutions.
+                                </li>
+                                <li>
+                                    Final Certificate of Post Graduation Degree.
+                                </li>
+                                <li>
+                                    B.ED. or Equivalent Training Certificate from NCTE recognised Institution. (NCTE Certificate to be submitted).
+                                </li>
+                                <li>
+                                    Admit Card of WBBSE or other Board or Birth Registration Certificate.
+                                </li>
+                                <li>
+                                    Caste Certificate and Disabled Certificate, if applicable.
+                                </li>
+                                <li>
+                                    One Photo bearing document viz. EPIC/AADHAR/PAN/Driving License.
+                                </li>
+                                <li>
+                                    Two coloured passport size photographs.
+                                </li>
+                            </ol>
+                            <div class="ml-2 mb-2 font-weight-bold">
+                                <u>Appointment of Headmaster/Headmistress</u>
+                            </div>
+                            <ol>
+                                <li>
+                                    Admit Card of WBCSSC.
+                                </li>
+                                <li>
+                                    Recommendation Letter of WBCSSC.
+                                </li>
+                                <li>
+                                    Mark sheet of Post Graduation Degree.
+                                </li>
+                                <li>
+                                    Final Certificate of Post Graduation Degree.
+                                </li>
+                                <li>
+                                    B.ED. or Equivalent Training Certificate from NCTE recognised institution. (NCTE Certificate to be submitted).
+                                </li>
+                                <li>
+                                    Admit Card of WBBSE or other Board or Birth Registration Certificate.
+                                </li>
+                                <li>
+                                    N.O.C. from President and Secretary of Managing Committee or Administrator of existing school or Photocopy of Managing Committee meeting resolution.
+                                </li>
+                                <li>
+                                    D.I. approval of first joining.
+                                </li>
+                                <li>
+                                    Caste Certificate and Disabled Certificate, if applicable.
+                                </li>
+                                <li>
+                                    One Photo bearing document viz. EPIC/AADHAR/PAN/Driving License.
+                                </li>
+                                <li>
+                                    Two coloured passport size photographs.
+                                </li>
+                            </ol>
+                            <div class="ml-2 mb-2 font-weight-bold">
+                                <u>Appointment of Transfer on Special ground</u>
+                            </div>
+                            <ol>
+                                <li>
+                                    Appointment letter of existing school.
+                                </li>
+                                <li>
+                                    Their Joining Report in the existing school(Authenticated xerox allowed).
+                                </li>
+                                <li>
+                                    Recommendation Letter of WBSSC.
+                                </li>
+                                <li>
+                                    N.O.C. of existing school(Authenticated xerox allowed).
+                                </li>
+                                <li>
+                                    D/I's approval of joining in the existing school(Authenticated xerox allowed).
+                                </li>
+                                <li>
+                                    Birth Registration Certificate OR Admit Card of WBBSE or equivalent document.
+                                </li>
+                                <li>
+                                    Caste Certificate and Disabled Certificate, if applicable.
+                                </li>
+                                <li>
+                                    One Photo bearing document viz. EPIC/AADHAR/PAN/Driving License.
+                                </li>
+                                <li>
+                                    Two coloured passport size photographs.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/BasicFunctions.js"></script>
+    <script type="text/javascript">
+        $("#v-pills-tab").click(function () {
+            setTimeout(chkFooter, 200);
+        });
+        $(document).ready(function () {
+            try {
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

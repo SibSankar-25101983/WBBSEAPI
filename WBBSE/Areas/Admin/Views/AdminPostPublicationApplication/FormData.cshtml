@@ -1,0 +1,140 @@
+﻿@using Common;
+@model ViewModel.VMPostPublicationApplicationData
+
+@{
+    ViewBag.Title = "WBBSE Admin :: Post Publication Application Data";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/vendor/jqueryUI/jquery-ui.css" rel="stylesheet" />
+    <link href="~/css/CustomAutoComplete.css" rel="stylesheet" />
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">
+        Post Publication Application Data
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @Html.Raw(ViewData[ViewDataNames.SaveInfo])
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+@section header
+{
+    <div class="row pb-2">
+        <div class="col-md-8">
+            <div class="input-group">
+                <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search Application">
+                <div class="input-group-append">
+                    <select id="ddlSearchType" class="form-control">
+                        <option value="1" selected="selected">By Roll Name</option>
+                        <option value="2">By Candidate Name</option>
+                        @*<option value="3">By School Name</option>*@
+                    </select>
+                </div>
+                <div class="input-group-append">
+                    <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            @if (ViewData[ViewDataNames.AddYN] == "visible")
+            {
+                <div class="btn-group float-right">
+                    <button type="button" id="btnAdd" class="btn btn-outline-secondary" accesskey="A">Add New</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<div class="table-responsive">
+    <table id="GridData" class="gj-grid table table-light table-bordered table-striped"></table>
+</div>
+
+<!-- View Modal -->
+<div class="modal fade" id="popupModalView" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-75">
+        <div id="divModalContentView" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title">Post Publication Application :: View Data</h4>
+                <button type="button" class="close text-light" data-dismiss="modal" onclick="ClearViewData()">&times;</button>
+            </div>
+            <div class="modal-body" id="divPopupBodyView">
+                <table class="table table-bordered table-striped table-hover">
+                    <tbody id="tblViewData"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ClearViewData()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/vendor/jqueryUI/jquery-ui.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/Areas/Admin/js/ppform-data.js?v=@DateTime.Now.ToFileTime()"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function () {
+            DisableButtons();
+            ShowLoaderNew();
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                $("#GridData").on('DOMSubtreeModified', chkMod);
+                HideLoaderNew();
+                EnableButtons();
+            };
+            grid = $("#GridData").grid({
+                dataKey: "RollNo",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../AdminPostPublicationApplication/GetApplicationData", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridData").off('DOMSubtreeModified');
+            });
+            $("#txtSearch").autocomplete("option", "disabled", true);
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

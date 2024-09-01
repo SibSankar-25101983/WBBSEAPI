@@ -1,0 +1,77 @@
+﻿@using Common;
+
+@{
+    ViewBag.Title = "WBBSE :: Photo Gallery";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/css/CustomStyle.css" rel="stylesheet" />
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">PHOTO GALLERY</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning">Photo Gallery</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container">
+        <div class="row m-auto">
+            <div class="row">
+                @Html.Raw(ViewData[ViewDataNames.RawData])
+            </div>
+            <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="image-gallery-title"></h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img id="image-gallery-image" class="img-responsive col-md-12" src="#">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary float-left" id="show-previous-image">
+                                <i class="fa fa-arrow-left"></i>
+                            </button>
+
+                            <button type="button" id="show-next-image" class="btn btn-secondary float-right">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/PhotoGallery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("#lnkCurrent").prop("href", window.location.href);
+            //remove active link
+            $("#ulMainMenu li").removeClass("custom-navbar");
+            //get new active link id
+            var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+            var activeLI = document.getElementById(activeLinkId);
+            activeLI.classList.add("custom-navbar");
+        }
+        catch (err) { }
+    });
+    </script>
+}

@@ -1,0 +1,205 @@
+﻿@using Common;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>WBBSE :: Un-Authorized</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/img/Favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="~/img/Favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/img/Favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/Favicons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/img/Favicons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/Favicons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/img/Favicons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/Favicons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/Favicons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/Favicons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/Favicons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/Favicons/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="~/img/Favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=../../Error/JSDisabled.html" />
+    </noscript>
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/CustomStyle.css" rel="stylesheet" />
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/vendor/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="~/js/BasicFunctions.js"></script>
+</head>
+<body>
+    <!--Loader-->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+
+    <div class="modal fade" id="popupModalView" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg modal-width-75">
+            <div id="divModalContentView" class="modal-content">
+                <div class="modal-header bg-primary text-light">
+                    <h4 class="modal-title">How to Verify Download</h4>
+                    <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body text-left" id="divPopupBodyView">
+                    <h5 class="font-weight-normal">Provided softwares are digitally signed with PGP. Downloaded Software can be verified with the <strong>public key & digital signature</strong> provided with the download.
+                    </h5>
+                    <h5>
+                        <u>Step 1:-</u>
+                    </h5>
+                    <h6 class="font-weight-normal">Before verifying digital signature, you need to have GnuPG installed in your computer. Curently provided softwares only support Windows environment. You may download <strong><a href="https://www.gpg4win.org/get-gpg4win.html" target="_blank" rel="noopener noreferrer">Gpg4win</a></strong> which is an open source software & official GnuPG distribution for Windows.
+                    </h6>
+                    <h5>
+                        <u>Step 2:-</u>
+                    </h5>
+                    <h6 class="font-weight-normal">Import <strong>@Html.ActionLink("PUBLIC KEY", "PublicKey", "Web")</strong> to verify signature.
+                        <br />
+                        Type following command in command prompt -
+                        <br />
+                        <strong>gpg --import "NIC Kolkata - WBBSE Public Key.asc"</strong> (assuming downloaded file name : "NIC Kolkata - WBBSE Public Key.asc")
+                    </h6>
+                    <h5>
+                        <u>Step 3:-</u>
+                    </h5>
+                    <h6 class="font-weight-normal">
+                        <strong>VERIFY</strong> fingerprint (<strong>6B6B 3E49 3EA0 8679 4E72 B0F1 18F7 87C2 670E F1B3</strong>) for the imported key to ensure you have the right key.
+                        <br />
+                        Type following command in command prompt -
+                        <br />
+                        <strong>gpg --list-keys</strong>
+                        <br />
+                        In the given list of key(s), find key with uid : <strong>NIC Kolkata - WBBSE</strong>. It should have the above mentioned fingerprint.
+                    </h6>
+                    <h5>
+                        <u>Step 4:-</u>
+                    </h5>
+                    <h6 class="font-weight-normal">Verify signature of downloaded file(s) using signature file(s)(.sig) provided.
+                        <br />
+                        Type the following command in command prompt to verify WBBSEToken.exe file (Token Software) -
+                        <br />
+                        <strong>gpg --verify WBBSEToken.exe.sig WBBSEToken.exe</strong> (assuming both files present in same directory & downloaded signature file name : WBBSEToken.exe.sig & downloaded file name : WBBSEToken.exe)
+                        <br />
+                        Given result should contain a similar type message mentioned below-
+                        <br />
+                        <strong>Good signature from "NIC Kolkata - WBBSE"</strong> (signature should be : Good signature)
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+        <section id="icon" class="bg-light p-2">
+            <div class="container h-100 clearfix">
+                <div class="row justify-content-center align-items-center" style="color: #00a2ea;">
+                    <div class="col-sm-2 text-center">
+                        <img class="img-fluid rounded mr-4" src="../../img/logo.png" style="max-height: 90px; max-width: 90px;">
+                    </div>
+                    <div class="col-sm-10">
+                        <p class="pt-3 text-center text-justify" style="font-weight: 400; font-size: 42px;">West Bengal Board of Secondary Education</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="SectionMsg" class="mt-5">
+            <div class="container h-100">
+                <div class="row align-items-center h-100 mt-4">
+                    <div class="col-sm-12 mx-auto">
+                        <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <ul style="list-style-type: none; text-align: center;">
+                                <li>
+                                    @ViewData[ViewDataNames.SaveInfo]
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="SectionInfo" class="mt-5">
+            <div class="container h-100">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <img src="../../img/not-permitted.png" class="img-fluid" alt="" style="width: 200px; height: 200px;" />
+                    </div>
+                </div>
+                <div class="row align-items-center h-100 mt-4">
+                    <div class="col-sm-12 mx-auto">
+                        @using (Html.BeginForm("UnAuthorized", "Web", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="alert alert-danger text-center">
+                                Current Device is not <strong>AUTHORIZED</strong> to Access Admin Portal.
+                            </div>
+                            <div class="alert alert-info text-center">
+                                Download
+                                <button id="btnToken" type="submit" class="btn btn-outline-primary" title="Download Token Software">Token Software</button>
+                                to request access for current device.
+                                <button id="btnTokenManual" type="submit" class="btn btn-warning" title="Download Token Software Manual">Download Manual</button>
+                            </div>
+                            <div class="alert alert-success text-center">
+                                Download
+                                <button type="submit" id="btnAuthorize" class="btn btn-outline-info" title="Download Authorization Software">Authorization Software</button>
+                                to access Admin Portal from current device (if permission is granted).
+                                <button id="btnAuthorizeManual" type="submit" class="btn btn-warning" title="Download Token Software Manual">Download Manual</button>
+                            </div>
+                            <input type="hidden" name="DownloadType" id="hd" />
+                            <input type="hidden" name="u" value="@ViewData[ViewDataNames.RawData]" />
+                        }
+                        <button type="button" class="btn btn-outline-warning float-right" data-toggle="modal" data-target="#popupModalView">Verify Download</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="divSpace"></div>
+    </div>
+    <footer id="fWebsite" class="mt-5 text-center text-light p-2 custom-footer" style="background-color: #365f91;">
+        <p><strong>Disclaimer:</strong> This site is designed and Developed by <strong>NIC</strong> and the contents are provided by WBBSE</p>
+        Copyright © 2019 WBBSE | All rights reserved
+    </footer>
+    <script type="text/javascript">
+        function chkFooter() {
+            try {
+                var fh = $("#fWebsite").outerHeight();
+                $("#divSpace").css("margin-bottom", (fh * 2) + "px");
+            }
+            catch (err) {
+                console.log(err.message);
+            }
+        }
+        $("#btnToken").click(function () {
+            $("#hd").val(MacDownloadType.Token);
+            return true;
+        });
+        $("#btnTokenManual").click(function () {
+            $("#hd").val(MacDownloadType.TokenManual);
+            return true;
+        });
+        $("#btnAuthorize").click(function () {
+            $("#hd").val(MacDownloadType.Authorization);
+            return true;
+        });
+        $("#btnAuthorizeManual").click(function () {
+            $("#hd").val(MacDownloadType.AuthorizationManual);
+            return true;
+        });
+        $(document).ready(function () {
+            HideLoader();
+            setTimeout(chkFooter, 50);
+        });
+    </script>
+</body>
+</html>

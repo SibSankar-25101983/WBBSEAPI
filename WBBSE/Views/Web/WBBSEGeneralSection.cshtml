@@ -1,0 +1,269 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE General Section";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">WBBSE GENERAL SECTION</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                @*<a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a id="lnkCurrent" class="text-warning" href="#">General</a>*@
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Section / Department</span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> General</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="bd-example bd-example-tabs">
+            <div class="row">
+                <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                    <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-SpecialLeave-tab" data-toggle="pill" href="#v-pills-SpecialLeave" role="tab" aria-controls="v-pills-SpecialLeave" aria-selected="true">Special Leave</a>
+                        <a class="nav-link" id="v-pills-StudyLeave-tab" data-toggle="pill" href="#v-pills-StudyLeave" role="tab" aria-controls="v-pills-StudyLeave" aria-selected="false">Study Leave</a>
+                        <a class="nav-link" id="v-pills-Recognition-tab" data-toggle="pill" href="#v-pills-Recognition" role="tab" aria-controls="v-pills-Recognition" aria-selected="false">Extension of the Term of Recognition</a>
+                        <a class="nav-link" id="v-pills-AppointmentAdministrator-tab" data-toggle="pill" href="#v-pills-AppointmentAdministrator" role="tab" aria-controls="v-pills-AppointmentAdministrator" aria-selected="false">Appointment of Administrator</a>
+                        <a class="nav-link" id="v-pills-ExtensionAdministrator-tab" data-toggle="pill" href="#v-pills-ExtensionAdministrator" role="tab" aria-controls="v-pills-ExtensionAdministrator" aria-selected="false">Extension of the Term of the Administrator</a>
+                        <a class="nav-link" id="v-pills-Miscellaneous-tab" data-toggle="pill" href="#v-pills-Miscellaneous" role="tab" aria-controls="v-pills-Miscellaneous" aria-selected="false">Miscellaneous</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content border p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                        <div class="tab-pane fade" id="v-pills-StudyLeave" role="tabpanel" aria-labelledby="v-pills-StudyLeave-tab">
+                            <h6 class="text-center pb-3 custom-font-20 mt-2 font-weight-bold">Study Leave as per rule 5(2) of the leave rules of WBBSE</h6>
+                            <div class="p-2 text-justify">
+                                <span class="font-weight-bold">A. To approve the Study Leave as per rule 5(2) of the leave rules of WBBSE, the school has to submit the following documents-</span>
+                                <ul class="fa-ul mt-2">
+                                    <li class="mb-2">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        An attested copy of the application from the applicant to the Managing Committee of the school praying for leave with dates/periods of leave being mentioned.
+                                    </li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the letter of permanent approval of appointment of the applicant.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the examination program and Admit card / Mark Sheet / Certificate.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of prior permission from the concerned D.I of Schools (S.E) for appearing in the examination of non relevant subject and distance education / correspondence course, as applicable.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>Attested copies of documents reflecting the status of administration i.e., the Managing Committee [form4(M.C.)]/ Adhoc Committee/ Organizing Committee/ Administrator.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the last order received from the Board granting extension of the Term of Recognition (For Boys/Girls School).</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the last order received from the Board granting extension of the Term of Recognition with Co-Education (In case of Co- Educational School).</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the resolution of the managing Committee sanctioning study leave with full pay (As desired by the Managing Committee specifically mentioning the period/dates of Leave.</li>
+                                </ul>
+                                <span class="font-weight-bold">@*B.	The school will submit these documents and get the acknowledgement receipt for further communication*@</span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="v-pills-SpecialLeave" role="tabpanel" aria-labelledby="v-pills-SpecialLeave-tab">
+                            <h6 class="text-center pb-3 custom-font-20 mt-2 font-weight-bold">Special Leave as per rule 5(1) of the leave rules of WBBSE</h6>
+                            <div class="p-2 text-justify">
+                                <span class="font-weight-bold">A. To approve the Special Leave as per rule 5(1) of the leave rules of WBBSE, the school has to submit the following documents -</span>
+                                <ul class="fa-ul mt-2">
+                                    <li class="mb-2">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        An attested copy of the application from the applicant to the Managing Committee of the school praying for leave with dates/periods of leave being mentioned.
+                                    </li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the letter of permanent approval of appointment of the applicant.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested Copy of the Medical Certificate from a registered medical practitioner recommending specific period of leave on medical grounds/fit certificate, whereever applicable.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the year-wise comprehensive leave statement of the applicant from the date of joining to the date of proceeding on leave incorporating medical leave / half average pay leave accrued and enjoyed.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>Attested copies of documents reflecting status of the Administration i.e. Managing Committee [form4(M.C.)] / Adhoc Committee / Organizing Committee / Administrator.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the last order received from the Board granting extension of the Term of Recognition (For Boys/Girls School).</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the last order received from the Board granting extension of the Term of Recognition with Co-Education (In case of Co- Educational School).</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>An attested copy of the resolution of the managing Committee sanctioning special leave with full pay (As desired by the Managing Committee specifically mentioning the period/dates of Leave.)</li>
+                                </ul>
+                                <span class="font-weight-bold">@*B.	The school will submit these documents and get the acknowledgement receipt for further communication*@</span>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-Recognition" role="tabpanel" aria-labelledby="v-pills-Recognition-tab">
+                            <h6 class="text-center pb-3 custom-font-20 mt-2 font-weight-bold">Extension of the Term of Recognition with/without Co-Education</h6>
+                            <div class="p-2 text-justify">
+                            <span class="font-weight-bold">A. To extend the term of recognition of the school, the school has to submit the following documents:-</span>
+
+                                <ul class="fa-ul mt-2">
+                                    @*<li class="mb-2">
+                <i class="fa-li fa fa-genderless"></i>
+                Download the form for the extension of the term of recognition with/without Co-Education from the <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary" title="Click here to go to download section">DOWNLOAD SECTION</a>.
+            </li>*@
+                                    @*<li class="mb-2"><i class="fa-li fa fa-genderless"></i>Fill up the form accurately.</li>*@
+
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>Forwarding letter from the HM/TIC of the school.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>Attested copy of the resolution of the Managing Committee in support of the prayer.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>Attested copies of all recognition memos received from the Board, from the time of formal recognition / upgradation till the current date.</li>
+                                    <li class="mb-2"><i class="fa-li fa fa-genderless"></i>Statement of fulfillment of conditions (duly filled up as per the specific case) in the prescribed format (Specimen) of the Board.</li>
+                                    
+                                </ul>
+                                <div class="mb-2 pl-3">
+                                    <small><strong>Deadline for application-</strong> As per Board’s circular No. S/231 dated 13.01.2010.</small>
+                                </div>
+                                <div class="mb-2 pl-3">
+                                    <small><strong>Late fees-</strong> As per Board’s circular No. S/232 dated 13.01.2010.</small>
+                                </div>
+                                <span class="font-weight-bold">B. For the continuance of co-education , the same procedure as mentioned in Sl.no A is to be followed and attested copies of all memos received from the Board,granting permission for the continuance of co-education in the school,are to be submitted</span>
+                                
+                                <h6 class="text-center pb-3 custom-font-20 mt-2"><u>Introduction of Co-Education</u></h6>
+                                <span class="font-weight-bold">C. For the introduction of co-education in the school,the school has to submit the following documents:-</span>
+                                
+                               <ol>
+                                  <li style="text-indent:-0.1rem;"> Forwarding letter from the HM/TIC of the school praying for the introduction of co-education in the school.
+                                  </li>
+                                  <li style="text-indent:-0.1rem;"> Specific recommendation in favour of the prayer from the commissioner of school education, Govt of West Bengal along with
+                                   the detailed report of inquiry from the concerned D.I of Schools(SE).
+                                  </li>
+                                   <li style="text-indent:-0.1rem;"> Statement of fulfillment of conditions (duly filled up) in the prescribed format (specimen) of the Board.
+                                   </li>
+                                   <li style="text-indent:-0.1rem;"> Attested copies of all recognition memos received from the board from the time of formal recognition/upgradation till the event date.
+                                   </li>
+                                   <li style="text-indent:-0.1rem;"> Attested copy of the resolution of the managing commitee in support of the prayer.
+                                   </li>
+                                   <li style="text-indent:-0.1rem;"> Any other information regarding the infrastructure of the school, as may be necessary.
+                                   </li>
+                               </ol>
+                         </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-AppointmentAdministrator" role="tabpanel" aria-labelledby="v-pills-AppointmentAdministrator-tab">
+                            <h6 class="text-center pb-3 custom-font-20 font-weight-bold mt-2">Appointment of Administrator in the School</h6>
+                            <div class="p-2 text-justify">
+                                <span class="font-weight-bold">A. For the appointment of Administrator in the school, the school has to submit the following documents :-</span>
+                                <ol>
+                                    <li style="text-indent:-0.1rem;">
+                                         The prayer is to be routed through the concerned D.I of Schools (S.E) and the Commissioner of School Education, West Bengal.
+                                        <ul>
+                                            <li>Recommendation for the appointment of Administrator from the Commissioner of School Education, West Bengal.</li>
+                                            <li>Detailed enquiry report from the concerned D.I of Schools (S.E) mentioning clearly the reasons for the appointment of Administrator in the school.</li>
+                                        </ul>
+                                    </li>
+                                    @*<li style="text-indent:-0.1rem;">
+                                        When the prayer is sent directly to the Board.
+                                        <ul>
+                                            <li>Forwarding letter from the HM/TIC of the school mentioning clearly the reasons for the appointment of Administrator in the school.</li>
+                                            <li>All relevant documents in support of the prayer i.e. which clearly indicate that the managing Committee of the school is presently defunct/non-functioning.</li>
+                                            <li>WBBSE will process the request within the stipulated time and communicate to the respective school through the registered mail of the school.</li>
+                                        </ul>
+                                    </li>*@
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-ExtensionAdministrator" role="tabpanel" aria-labelledby="v-pills-ExtensionAdministrator-tab">
+                            <h6 class="text-center pb-3 custom-font-20 mt-2"><u>Extension of the term of the Managing Commitee of the School</u></h6>
+                            <span class="font-weight-bold">A. For the extension of the term of the Managing Commitee in Recognised Non-Government Institutions(Aided & Un-aided)
+                            , the school has to submit the following documents:-</span>
+
+                            <ol>
+                                <li style="text-indent:-0.1rem;">
+                                   Forwarding letter from the HM/TIC of the school mentioning the reasons for the extension of the term of the Managing Commitee.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                   A copy of the resolution of the Managing Commitee praying for extension of the term of the Managing Commitee.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                   A copy of the proposed election programme to the reconstitution of the Managing Commitee, if election has not been held.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                   A copy of the report of the Election Officer, if election has already been held and the reconstitution of the Managing Commitee 
+                                    has not been completed.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                   A copy of the last Form4(M.C.), duly filled up.
+                                </li>
+                            </ol>
+                            <h6 class="text-center pb-3 custom-font-20 font-weight-bold mt-2">Extension of the Term of the Administrator of School</h6>
+                            <div class="p-2 text-justify">
+                                <span class="font-weight-bold">B. For the  extension of the term of the Administrator in the school, the school has to submit the following documents :-</span>
+                                <ul class="fa-ul">
+                                    <li>
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Forwarding letter from the HM/TIC of the school mentioning the reasons for the extension of the term of the Administrator.
+                                    <li>
+                                    <li><i class="fa-li fa fa-genderless"></i>An attested copy of the letter of appointment of Administrator received from the Board and the date of assumption of charge of the Administrator.</li>
+                                    <li><i class="fa-li fa fa-genderless"></i>An attested copy of the letter of consent from the presently serving Administrator.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-Miscellaneous" role="tabpanel" aria-labelledby="v-pills-Miscellaneous-tab">
+                            <h6 class="text-center pb-3 custom-font-20 mt-2"><u>Termination of post/Declaration of post to be vacant</u></h6>
+                            <span class="font-weight-bold">
+                                A. For the termination of post/declaration of a post to be vacant as per Rule 11(1) OR 11(2) of the Leave Rules of
+                                 WBBSE, the school has to submit the following documents:-
+                            </span>
+
+                            <ol>
+                                <li style="text-indent:-0.1rem;">
+                                    Forwarding letter from the HM/TIC of the school in support of the prayer.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                    A copy of the resolution of the Managing Commitee, declaring the post to be vacant and forwarding it for approval to the Board.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                    Three letters of intimation sent by the school authority to the incumbent by registered post with acknowledgement due with 
+                                    a gap of atleast 15 days, after completion of five years of continuous absence.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                   Advertisements in atleast two leading daily newspapers giving a final notice to the incumbent, after completion of five years of continuous absence.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                    A copy of the permanent approval of appointment of the applicant.
+                                </li>
+                            </ol>
+                            
+                             <h6 class="text-center pb-3 custom-font-20 font-weight-bold mt-2"><u>Miscellaneous issues relating to the school</u></h6>
+                            <div class="p-2 text-justify">
+                                <span class="font-weight-bold">B. Extraordinary Leave without pay ( More than 2 years)</span>
+                                <ul class="fa-ul">
+                                    <li><i class="fa-li fa fa-genderless"></i>Forwarding letter from the HM/TIC of the school mentioning clearly the reasons for the said leave.</li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Attested copy of the resolution of the managing Committee forwarding the proposal to the Board.</li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Documents from the incumbent in support of the said period of leave.</li>     
+                                </ul>
+
+                                <span class="font-weight-bold">C. 'Spent on duty' leave</span>
+                                <ul class="fa-ul">
+                                    <li><i class="fa-li fa fa-genderless"></i>
+                                     Forwarding letter from the HM/TIC of the school mentioning clearly the reasons for the said leave.</li>
+                                    <li><i class="fa-li fa fa-genderless"></i> An attested copy of the order of acquittal from the Hon’ble Court.</li>
+                                    <li><i class="fa-li fa fa-genderless"></i> Attested copy of the resolution of the managing Committee in support of the said prayer.</li>
+                                </ul>
+                                   
+                                <span class="font-weight-bold">
+                                    D. Change of name of the school- As per the procedure outlined in Board’s Circular No. S/440 dated 16.06.1988.
+                                </span>
+                                <ol>      
+                                </ol>
+                                <span class="font-weight-bold">
+                                    E. Any other matter to be considered on a case to case basis.
+                                </span>
+                                <ol></ol>
+                                <span class="font-weight-bold">
+                                    Disclaimer :These Rules are subject to change as per circulars that may be issued by the WBBSE from time to time.
+                                </span>
+                                    @*<div class="ml-4 mb-2"><strong>Disclaimer :These Rules are subject to change as per circulars that may be issued by the WBBSE from time to time.</strong></div>*@
+       </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                //check whether to open particular tab or not
+                var a = '@ViewData[ViewDataNames.ActiveLinkTab]';
+                if (a != DefaultSetting.EmptyVal) {
+                    $('#v-pills-tab a[href="' + a + '"]').tab('show');
+                }
+
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+</script>
+}

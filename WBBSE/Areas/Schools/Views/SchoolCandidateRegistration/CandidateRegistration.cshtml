@@ -1,0 +1,1441 @@
+﻿@using Common;
+@model ViewModel.VMCandidateRegistration
+@Html.AntiForgeryToken()
+
+@{
+    ViewBag.Title = "CandidateRegistration";
+    Layout = "~/Areas/Schools/Views/Shared/_LayoutSchool.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Candidate Registration
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @Html.ValidationMessageFor(m => m.RegistrationYear)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.MadhyamikParikshaYear)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.SchoolIndex)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.FormNo)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.SchoolName)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.StudentName)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.FathersName)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.MothersName)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.GuardiansName)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.Address)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.Pin)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.ContactNo)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.NationalityCode)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.ReligionCode)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.CasteCode)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.PhysicallychallengedCode)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.SexCode)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.DateOfBirth)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.FirstLanguageId)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.FirstLanguageSymbol)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.FirstLanguageCode)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.SecondLanguageId)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.SecondLanguageSymbol)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.SecondLanguageCode)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.OptionalElectiveId)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.OptionalElectiveSymbol)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.OptionalElectiveCode)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.PupilAdmitted)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.DateOfAdmission)
+            </li>
+            <li>
+                @Html.Raw(ViewData[ViewDataNames.SaveInfo])
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+@section header
+{
+    <div class="row pb-2">
+        <div class="col-md-5">
+            <div class="input-group">
+                <input type="text" id="txtSearch" class="form-control" placeholder="Search..">
+                <div class="input-group-append">
+                    <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="btn-group float-right">
+                <button type="button" id="btnAdd" class="btn btn-outline-danger" accesskey="A">New Registration</button>
+            </div>
+        </div>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<table id="gridCandidateRegistration" class="gj-grid table table-light table-bordered table-striped"></table>
+
+<!-- Modal -->
+<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg" style="max-width: 75%; min-width: 75%">
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title" id="myModalLabel">CANDIDATE REGISTRATION FORM (FORM-R)</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="scrollDiv-custom">
+                @using (Html.BeginForm("CandidateRegistration", "SchoolCandidateRegistration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="modal-body" id="divPopupBody">
+                        <div class="alertBoxInner" id="AlertInfo">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            <ul style="font-size: small;" id="AlertInfoMsg"></ul>
+                        </div>
+
+
+                        <div class="col-sm-12">
+                            <h4 class="text-center text-info font-weight-bold">WEST BENGAL BOARD OF SECONDARY EDUCATION</h4>
+                            <br />
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="alert alert-info">
+                                <strong>Note!</strong> Marked with an astrix(<span style="color: red;"> * </span>) is mandatory data.
+                                <br />
+                                <span style="color: #e16161;">Wrong information may lead to cancellation of this registration process at any stage of processing & approval, so please provide the proper information best of your knowledge and check the data carefully before submission at your end. </span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label"><b>APPLICATION FORM FOR REGISTRATION OF THE STUDENT OF CLASS IX,<span style="color: red;"> * </span></b></label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(m => m.RegistrationYear, new { @class = "form-control text-lg-left", @placeholder = "YEAR *" })
+                            </div>
+                            <div class="col-sm-12">
+                                <hr />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label"><b>FOR ADMISSION TO THE MADHYAMIK PARIKSHA(S.E),<span style="color: red;"> * </span></b></label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(m => m.MadhyamikParikshaYear, new { @class = "form-control", @placeholder = "YEAR *" })
+                            </div>
+                            <div class="col-sm-12">
+                                <hr />
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>SCHOOL INDEX (Pre-filled)</b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.SchoolIndex, new { @class = "form-control", @Value = Session[SessionNames.OrganizationCode], @readonly = "readonly" })
+                            </div>
+                            <div class="col-md-3">
+                                <span><b>FORM NO <span style="color: red;">* </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.FormNo, new { @class = "form-control", @placeholder = "Form No *" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>NAME OF THE SCHOOL<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.SchoolName, new { @class = "form-control", @placeholder = "Name Of the School *" })
+                            </div>
+                            <div class="col-md-12">
+                                <hr />
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>STUDENT'S NAME <span style="color: red;">* </span></b></span>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.StudentName, new { @class = "form-control", @placeholder = "Student's Name *" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>FATHER'S NAME<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.FathersName, new { @class = "form-control", @placeholder = "Father's Name *" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>MOTHER'S NAME<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.MothersName, new { @class = "form-control", @placeholder = "Mother's Name *" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>GUARDIAN'S NAME<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.GuardiansName, new { @class = "form-control", @placeholder = "Guardian's Name *" })
+                            </div>
+                            <div class="col-md-12">
+                                <hr />
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>ADDRESS<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(m => m.Address, 4, 20, new { @class = "form-control", @placeholder = "Street No.or House No. or Locality, Village, PO etc. *" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>PIN CODE<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.Pin, new { @class = "form-control", @maxlength = "6", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @placeholder = "Pin *" })
+                            </div>
+                            <div class="col-md-3">
+                                <span><b>CANDIDATE CONTACT NO (IF ANY)</b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.ContactNo, new { @class = "form-control", @maxlength = "10", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @placeholder = "Candidate Contact No *" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>NATIONALITY<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(m => m.NationalityCode, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlNationality" })
+                            </div>
+                            <div class="col-md-3">
+                                <span><b>RELIGION<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(m => m.ReligionCode, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlReligion" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>CASTE<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(m => m.CasteCode, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlCaste" })
+                            </div>
+                            <div class="col-md-3">
+                                <span><b>PHYSICALLY CHALLENGED CODE<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(m => m.PhysicallychallengedCode, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlPhysicallyChallenged" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>SEX<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(m => m.SexCode, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlSex" })
+                            </div>
+                            <div class="col-md-3">
+                                <span><b>DATE OF BIRTH<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control datepicker", @placeholder = "DOB *" })
+                                @* @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", @placeholder = "Date of Birth *",@id = "datepicker1" })*@
+                            </div>
+                            <div class="col-md-12">
+                                <hr />
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-2">
+                                <u style="color: #ff6a00;">
+                                    <h5>SUBJECTS:</h5>
+                                </u>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>FIRST LANGUAGE:(IN SYMBOL)<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(m => m.FirstLanguageId, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlFirstLanguage" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.FirstLanguageSymbol, new { @readonly = "readonly", @class = "form-control", @placeholder = "in Symbol *" })
+                            </div>
+
+                            <div class="col-md-2">
+                                <span><b>(IN CODE)</b></span>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.FirstLanguageCode, new { @readonly = "readonly", @class = "form-control", @placeholder = "In Code *" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>SECOND LANGUAGE:(IN SYMBOL)<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(m => m.SecondLanguageId, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlSecondLanguage" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.SecondLanguageSymbol, new { @readonly = "readonly", @class = "form-control", @placeholder = "in Symbol *" })
+                            </div>
+                            <div class="col-md-2">
+                                <span><b>(IN CODE)</b></span>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.SecondLanguageCode, new { @readonly = "readonly", @class = "form-control", @placeholder = "In Code *" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <span><b>OPTIONAL ELECTIVE:(IN SYMBOL)<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(m => m.OptionalElectiveId, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlOptionalElective" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.OptionalElectiveSymbol, new { @readonly = "readonly", @class = "form-control", @placeholder = "in Symbol *" })
+                            </div>
+                            <div class="col-md-2">
+                                <span><b>(IN CODE)</b></span>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.OptionalElectiveCode, new { @readonly = "readonly", @class = "form-control", @placeholder = "In Code *" })
+                            </div>
+                            <div class="col-md-12">
+                                <hr />
+                            </div>
+                        </div>
+
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-4">
+                                <span><b>CLASS IN WHICH THE PUPIL ADMITTED<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.PupilAdmitted, new { @class = "form-control", @placeholder = "Class Admitted *" })
+                            </div>
+                            <div class="col-md-3">
+                                <span><b>DATE OF ADMISSION<span style="color: red;"> * </span></b></span>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.DateOfAdmission, new { @class = "form-control datepicker", @placeholder = "DATE OF ADMISSION *" })
+                                @*  @Html.TextBoxFor(m => m.DateOfAdmission, new { @class = "form-control", @placeholder = "Date Of Admission *",@id = "datepicker" })*@
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <hr />
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm-12">
+                                <span><b>SELECT CANDIDATE PHOTO</b><span style="color: red;"> * </span>(<span class="text-primary">MAX ALLOWED SIZE : 10KB TO 30KB, ACCEPTED FORMAT : JPG/JPEG</span>)</span>
+                            </div>
+                            <br />
+                            <br />
+
+                            <div class="col-sm-6">
+                                <input type="file" name="postedFiles" onchange="readURL1(this)" accept="application/jpg" />
+                                <img id="imgPhotograph" class="img-fluid" src="~/img/no-photo.png"
+                                    alt="This feature may not work with older browser" style="min-width: 90px; min-height: 90px; max-width: 90px; max-height: 90px; margin: auto;" />
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="alert alert-warning">
+                                    <strong>Warning!</strong> Please verify & upload only valid student photograph as per abovementioned instruction, WBBSE is not responsible for any discrepency related to student photograph.
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm-12">
+                                <div class="alert alert-danger">
+                                    <strong>Warning!</strong> This is one time process, Please Check all data carefully before final submission of the Student Registration data as this data will be locked after submit.
+                                </div>
+                            </div>
+                        </div>
+
+                        @* <div class="col-sm-12">
+                            <input type="file" name="postedFile" onchange="readURL1(this)" />
+                             <img id="imgPhotograph1"  src="~/Images/signature.png"
+                                  alt="This feature may not work with older browser" style="min-width: 300px; min-height: 35px;max-width: 300px; max-height: 35px; margin:auto;" />
+                            <hr />
+                        </div>*@
+
+                        @Html.HiddenFor(m => m.EntType, new { @id = "e" })
+                        @Html.HiddenFor(m => m.StudentId, new { @id = "b" })
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="btnSave" class="btn btn-primary">I Agree, Final Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel & Exit</button>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- View Modal -->
+<div class="modal fade" id="popupModalView" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-75">
+        <div id="divModalContentView" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title">Approval :: View</h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body text-center" id="divPopupBodyView">
+                <table class="table table-bordered table-striped table-hover">
+                    <tbody id="tblViewData">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts
+{
+    <script src="~/js/Message.js"></script>
+    <script src="~/js/BasicFunctions.js"></script>
+    <script type="text/javascript">
+
+        function ClearViewData() {
+            $("#tblViewData").empty();
+        }
+
+        function readURL1(input) {
+            var images = document.getElementsByName("postedFile");
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgPhotograph').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(function () {
+            $("#DateOfBirth").datepicker({
+                format: 'dd-mm-yyyy'
+                , changeMonth: true
+                , changeYear: true
+                , yearRange: "1970:2019"
+                //, buttonImage: "../../Images/calendar.gif"
+                //, showOn: "button"
+                //, buttonImageOnly: true
+            });
+        });
+
+        $(function () {
+            $("#DateOfAdmission").datepicker({
+                format: 'dd-mm-yyyy'
+                , changeMonth: true
+                , changeYear: true
+                , yearRange: "1970:2019"
+                //, buttonImage: "../../Images/calendar.gif"
+                //, showOn: "button"
+                //, buttonImageOnly: true
+            });
+        });
+
+        function clearData() {
+            $('#divPopupBody input').val('');
+            $('#divPopupBody select').val('');
+        }
+
+        function Search() {
+            $("#GridSchool").off('DOMSubtreeModified');
+        }
+
+        function View(e) {
+            ClearViewData();
+
+            try {
+                var s = e.data.record.StudentId;
+
+                $.ajax({
+                    url: "/SchoolCandidateRegistration/GetStudentRegistrationApprovalView",
+                    type: "GET",
+                    dataType: "json",
+                    data: { 's': '' + s + '' },
+                    contentType: "application/json",
+                    async: true,
+                    success: function (data) {
+                        $("#S").val(s);
+                        $("#tblViewData").append(data.View);
+                        $("#popupModalView").modal("show");
+                    },
+                    error: function (error) {
+                        alert(OperationError());
+                        console.log(error.responseText);
+                    }
+                });
+            }
+            catch (err) {
+                alert(OperationError());
+                console.log(err.message);
+            }
+        }
+
+        function save() {
+
+            try {
+                if ($("#e").val() != setET(3)) {
+                    $('#AlertInfoMsg').text("");
+
+                    if ($.trim($("#RegistrationYear").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.RegistrationYear);
+                        $("#RegistrationYear").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#MadhyamikParikshaYear").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.MadhyamikParikshaYear);
+                        $("#MadhyamikParikshaYear").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#SchoolIndex").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.SchoolIndex);
+                        $("#SchoolIndex").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#FormNo").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.FormNo);
+                        $("#FormNo").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#SchoolName").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.SchoolName);
+                        $("#SchoolName").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#StudentName").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.StudentName);
+                        $("#StudentName").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#FathersName").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.FathersName);
+                        $("#FathersName").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#MothersName").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.MothersName);
+                        $("#MothersName").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#GuardiansName").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.GuardiansName);
+                        $("#GuardiansName").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#Address").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.Address);
+                        $("#Address").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#Pin").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.Pin);
+                        $("#Pin").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#Pin").val()) != "") {
+                        var reg_pincode = /^([0-9]{6})$/;
+                        if (!reg_pincode.test($.trim($("#Pin").val()))) {
+                            $('#AlertInfo').show();
+                            $('#AlertInfoMsg').text(Invalid_Pincode());
+                            $("#Pin").focus();
+                            $('#popupModal').scrollTop(0);
+                            return false;
+                        }
+                    }
+
+                    //if ($.trim($("#ContactNo").val()) == DefaultSetting.EmptyVal) {
+                    //    $('#AlertInfo').show();
+                    //    $('#AlertInfoMsg').text(StudentRegistration.Required.ContactNo);
+                    //    $("#ContactNo").focus();
+                    //    $('#popupModal').scrollTop(0);
+                    //    return false;
+                    //}
+                    if ($.trim($("#ContactNo").val()) != "") {
+                        var reg_contact = /^([0-9]{10})$/;
+                        if (!reg_contact.test($.trim($("#ContactNo").val()))) {
+                            $('#AlertInfo').show();
+                            $('#AlertInfoMsg').text(Invalid_ContactNo());
+                            $("#ContactNo").focus();
+                            $('#popupModal').scrollTop(0);
+                            return false;
+                        }
+                    }
+
+                    if ($("#ddlNationality").val() == DefaultSetting.DefaultVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.NationalityCode);
+                        $("#ddlNationality").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($("#ddlReligion").val() == DefaultSetting.DefaultVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.ReligionCode);
+                        $("#ddlReligion").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($("#ddlCaste").val() == DefaultSetting.DefaultVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.CasteCode);
+                        $("#ddlCaste").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($("#ddlPhysicallyChallenged").val() == DefaultSetting.DefaultVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.PhysicallychallengedCode);
+                        $("#ddlPhysicallyChallenged").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($("#ddlSex").val() == DefaultSetting.DefaultVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.SexCode);
+                        $("#ddlSex").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#DateOfBirth").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.DateOfBirth);
+                        $("#DateOfBirth").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($("#ddlFirstLanguage").val() == DefaultSetting.DefaultVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.FirstLanguageId);
+                        $("#ddlFirstLanguage").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#FirstLanguageSymbol").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.FirstLanguageSymbol);
+                        $("#FirstLanguageSymbol").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#FirstLanguageCode").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.FirstLanguageCode);
+                        $("#FirstLanguageCode").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($("#ddlSecondLanguage").val() == DefaultSetting.DefaultVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.SecondLanguageId);
+                        $("#ddlSecondLanguage").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#SecondLanguageSymbol").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.SecondLanguageSymbol);
+                        $("#SecondLanguageSymbol").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#SecondLanguageCode").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.SecondLanguageCode);
+                        $("#SecondLanguageCode").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($("#ddlOptionalElective").val() == DefaultSetting.DefaultVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.OptionalElectiveId);
+                        $("#ddlOptionalElective").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#OptionalElectiveSymbol").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.OptionalElectiveSymbol);
+                        $("#OptionalElectiveSymbol").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#OptionalElectiveCode").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.OptionalElectiveCode);
+                        $("#OptionalElectiveCode").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    if ($.trim($("#PupilAdmitted").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.PupilAdmitted);
+                        $("#PupilAdmitted").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#DateOfAdmission").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.DateOfAdmission);
+                        $("#DateOfAdmission").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    var postedFiles = document.getElementsByName("postedFiles");
+                    if (postedFiles == null) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.StudentImage);
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if (postedFiles[0].value == null || postedFiles[0].value == "") {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(StudentRegistration.Required.StudentImage);
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+
+                    //var pExt = /[^.]+$/.exec(postedFiles[0].value);
+                    //for (i = 0; i < postedFiles.length; i++) {
+                    //    if (pExt[i].toLowerCase() != "pdf") {
+                    //        $('#AlertInfo').show();
+                    //        $('#AlertInfoMsg').text(Content.Validation.PdfFileExt);
+                    //        $('#popupModal').scrollTop(0);
+                    //        return false;
+                    //    }
+                    //}
+                    //if (postedFiles[0].files[0].size > Content.PdfAllowedSize) {
+                    //    $('#AlertInfo').show();
+                    //    $('#AlertInfoMsg').text(Content.Validation.PdfFileSize);
+                    //    $('#popupModal').scrollTop(0);
+                    //    return false;
+                    //}
+
+                    var x = confirm(StudentRegistration.Info.RegistrationFinalSubmit);
+                    if (x) {
+                        $("#popupModal").modal("hide");
+                        ShowLoader();
+                    }
+                    return x;
+
+                }
+                else {
+                    var x = confirm(Msg_Confirm());
+                    if (x) {
+                        $("#popupModal").modal("hide");
+                        ShowLoader();
+                    }
+                    return x;
+                }
+            }
+            catch (err) {
+                alert(OperationError());
+                console.log(err.message);
+                return false;
+            }
+        }
+
+        function add() {
+            try {
+                clearData();
+                $("#SchoolIndex").val("@Session[SessionNames.OrganizationCode]");
+                $('#AlertInfo').hide();
+                $("#e").val(setET(1));
+
+                $("#ddlNationality").empty();
+                $("#ddlNationality").append(new Option("SELECT NATIONALITY", "-1"));
+                $.ajax({
+                    url: "/SchoolCandidateRegistration/GetNationalityList",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+
+                    async: true,
+                    success: function (data) {
+                        $(data).each(function (index, item) {
+                            var opt = new Option(item.NationalityName, item.NationalityCode);
+                            $("#ddlNationality").append(opt);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error.responseText);
+                    }
+                });
+
+                $("#ddlReligion").empty();
+                $("#ddlReligion").append(new Option("SELECT RELIGION", "-1"));
+                $.ajax({
+                    url: "/SchoolCandidateRegistration/GetReligionList",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+
+                    async: true,
+                    success: function (data) {
+                        $(data).each(function (index, item) {
+                            var opt = new Option(item.ReligionName, item.ReligionCode);
+                            $("#ddlReligion").append(opt);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error.responseText);
+                    }
+                });
+
+                $("#ddlCaste").empty();
+                $("#ddlCaste").append(new Option("SELECT CASTE", "-1"));
+                $.ajax({
+                    url: "/SchoolCandidateRegistration/GetCasteList",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+
+                    async: true,
+                    success: function (data) {
+                        $(data).each(function (index, item) {
+                            var opt = new Option(item.CasteName, item.CasteCode);
+                            $("#ddlCaste").append(opt);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error.responseText);
+                    }
+                });
+
+                $("#ddlPhysicallyChallenged").empty();
+                $("#ddlPhysicallyChallenged").append(new Option("SELECT PHYSICALLY CHALLENGED", "-1"));
+                $.ajax({
+                    url: "/SchoolCandidateRegistration/GetPhysicallyChallengedList",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+
+                    async: true,
+                    success: function (data) {
+                        $(data).each(function (index, item) {
+                            var opt = new Option(item.PhysicallychallengedName, item.PhysicallychallengedCode);
+                            $("#ddlPhysicallyChallenged").append(opt);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error.responseText);
+                    }
+                });
+
+                $("#ddlSex").empty();
+                $("#ddlSex").append(new Option("SELECT SEX", "-1"));
+                $.ajax({
+                    url: "/SchoolCandidateRegistration/GetSexList",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+
+                    async: true,
+                    success: function (data) {
+                        $(data).each(function (index, item) {
+                            var opt = new Option(item.SexName, item.SexCode);
+                            $("#ddlSex").append(opt);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error.responseText);
+                    }
+                });
+
+                $("#ddlFirstLanguage").empty();
+                $("#ddlFirstLanguage").append(new Option("SELECT FIRST LANGUAGE", "-1"));
+                $.ajax({
+                    url: "/SchoolCandidateRegistration/GetSubjectListFilterFirstLanguage",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+
+                    async: true,
+                    success: function (data) {
+                        $(data).each(function (index, item) {
+                            var opt = new Option(item.SubjectName, item.SubjectId);
+                            $("#ddlFirstLanguage").append(opt);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error.responseText);
+                    }
+                });
+
+                $("#ddlSecondLanguage").empty();
+                $("#ddlSecondLanguage").append(new Option("SELECT SECOND LANGUAGE", "-1"));
+                $.ajax({
+                    url: "/SchoolCandidateRegistration/GetSubjectListFilterSecondLanguage",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+
+                    async: true,
+                    success: function (data) {
+                        $(data).each(function (index, item) {
+                            var opt = new Option(item.SubjectName, item.SubjectId);
+                            $("#ddlSecondLanguage").append(opt);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error.responseText);
+                    }
+                });
+
+                $("#ddlOptionalElective").empty();
+                $("#ddlOptionalElective").append(new Option("SELECT OPTIONAL ELECTIVE", "-1"));
+                $.ajax({
+                    url: "/SchoolCandidateRegistration/GetSubjectListFilterOptionalElective",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+
+                    async: true,
+                    success: function (data) {
+                        $(data).each(function (index, item) {
+                            var opt = new Option(item.SubjectName, item.SubjectId);
+                            $("#ddlOptionalElective").append(opt);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error.responseText);
+                    }
+                });
+                $("#popupModal").modal("show");
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+
+        function Edit(e) {
+            $('#AlertInfo').hide();
+            $("#e").val(setET(2));
+            $("#b").val(e.data.record.StudentId);
+
+            $("#ddlNationality").empty();
+            $("#ddlNationality").append(new Option("SELECT NATIONALITY", "-1"));
+            $.ajax({
+                url: "/SchoolCandidateRegistration/GetNationalityList",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                async: true,
+                success: function (data) {
+                    $(data).each(function (index, item) {
+                        var opt = new Option(item.NationalityName, item.NationalityCode);
+                        $("#ddlNationality").append(opt);
+                    });
+                    $("#ddlNationality").val(e.data.record.NationalityCode);
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+
+            $("#ddlReligion").empty();
+            $("#ddlReligion").append(new Option("SELECT RELIGION", "-1"));
+            $.ajax({
+                url: "/SchoolCandidateRegistration/GetReligionList",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                async: true,
+                success: function (data) {
+                    $(data).each(function (index, item) {
+                        var opt = new Option(item.ReligionName, item.ReligionCode);
+                        $("#ddlReligion").append(opt);
+                    });
+                    $("#ddlReligion").val(e.data.record.ReligionCode);
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+            $("#ddlCaste").empty();
+            $("#ddlCaste").append(new Option("SELECT CASTE", "-1"));
+            $.ajax({
+                url: "/SchoolCandidateRegistration/GetCasteList",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                async: true,
+                success: function (data) {
+                    $(data).each(function (index, item) {
+                        var opt = new Option(item.CasteName, item.CasteCode);
+                        $("#ddlCaste").append(opt);
+                    });
+                    $("#ddlCaste").val(e.data.record.CasteCode);
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+
+            $("#ddlPhysicallyChallenged").empty();
+            $("#ddlPhysicallyChallenged").append(new Option("SELECT PHYSICALLY CHALLENGED", "-1"));
+            $.ajax({
+                url: "/SchoolCandidateRegistration/GetPhysicallyChallengedList",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                async: true,
+                success: function (data) {
+                    $(data).each(function (index, item) {
+                        var opt = new Option(item.PhysicallychallengedName, item.PhysicallychallengedCode);
+                        $("#ddlPhysicallyChallenged").append(opt);
+                    });
+                    $("#ddlPhysicallyChallenged").val(e.data.record.PhysicallychallengedCode);
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+
+            $("#ddlSex").empty();
+            $("#ddlSex").append(new Option("SELECT SEX", "-1"));
+            $.ajax({
+                url: "/SchoolCandidateRegistration/GetSexList",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                async: true,
+                success: function (data) {
+                    $(data).each(function (index, item) {
+                        var opt = new Option(item.SexName, item.SexCode);
+                        $("#ddlSex").append(opt);
+                    });
+                    $("#ddlSex").val(e.data.record.SexCode);
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+
+            $("#ddlFirstLanguage").empty();
+            $("#ddlFirstLanguage").append(new Option("SELECT FIRST LANGUAGE", "-1"));
+            $.ajax({
+                url: "/SchoolCandidateRegistration/GetSubjectListFilterFirstLanguage",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                async: true,
+                success: function (data) {
+                    $(data).each(function (index, item) {
+                        var opt = new Option(item.SubjectName, item.SubjectId);
+                        $("#ddlFirstLanguage").append(opt);
+                    });
+                    $("#ddlFirstLanguage").val(e.data.record.FirstLanguageId);
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+
+            $("#ddlSecondLanguage").empty();
+            $("#ddlSecondLanguage").append(new Option("SELECT SECOND LANGUAGE", "-1"));
+            $.ajax({
+                url: "/SchoolCandidateRegistration/GetSubjectListFilterSecondLanguage",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                async: true,
+                success: function (data) {
+                    $(data).each(function (index, item) {
+                        var opt = new Option(item.SubjectName, item.SubjectId);
+                        $("#ddlSecondLanguage").append(opt);
+                    });
+                    $("#ddlSecondLanguage").val(e.data.record.SecondLanguageId);
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+            $("#ddlOptionalElective").empty();
+            $("#ddlOptionalElective").append(new Option("SELECT OPTIONAL ELECTIVE", "-1"));
+            $.ajax({
+                url: "/SchoolCandidateRegistration/GetSubjectListFilterOptionalElective",
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                async: true,
+                success: function (data) {
+                    $(data).each(function (index, item) {
+                        var opt = new Option(item.SubjectName, item.SubjectId);
+                        $("#ddlOptionalElective").append(opt);
+                    });
+                    $("#ddlOptionalElective").val(e.data.record.OptionalElectiveId);
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                }
+            });
+
+            $("#RegistrationYear").val(e.data.record.RegistrationYear);
+            $("#MadhyamikParikshaYear").val(e.data.record.MadhyamikParikshaYear);
+            $("#SchoolIndex").val(e.data.record.SchoolIndex);
+            $("#FormNo").val(e.data.record.FormNo);
+            $("#SchoolName").val(e.data.record.SchoolName);
+            $("#StudentName").val(e.data.record.StudentName);
+            $("#FathersName").val(e.data.record.FathersName);
+            $("#MothersName").val(e.data.record.MothersName);
+            $("#GuardiansName").val(e.data.record.GuardiansName);
+            $("#Address").val(e.data.record.Address);
+            $("#Pin").val(e.data.record.Pin);
+            $("#ContactNo").val(e.data.record.ContactNo);
+            $("#NationalityCode").val(e.data.record.NationalityCode);
+            $("#ReligionCode").val(e.data.record.ReligionCode);
+            $("#CasteCode").val(e.data.record.CasteCode);
+            $("#PhysicallychallengedCode").val(e.data.record.PhysicallychallengedCode);
+            $("#SexCode").val(e.data.record.SexCode);
+            $("#DateOfBirth").val(e.data.record.DateOfBirth);
+            $("#FirstLanguageId").val(e.data.record.FirstLanguageId);
+            $("#FirstLanguageSymbol").val(e.data.record.FirstLanguageSymbol);
+            $("#FirstLanguageCode").val(e.data.record.FirstLanguageCode);
+            $("#SecondLanguageId").val(e.data.record.SecondLanguageId);
+            $("#SecondLanguageSymbol").val(e.data.record.SecondLanguageSymbol);
+            $("#SecondLanguageCode").val(e.data.record.SecondLanguageCode);
+            $("#OptionalElectiveId").val(e.data.record.OptionalElectiveId);
+            $("#OptionalElectiveSymbol").val(e.data.record.OptionalElectiveSymbol);
+            $("#OptionalElectiveCode").val(e.data.record.OptionalElectiveCode);
+            $("#PupilAdmitted").val(e.data.record.PupilAdmitted);
+            $("#DateOfAdmission").val(e.data.record.DateOfAdmission);
+            $("#StudentImageName").val(e.data.record.StudentImageName);
+            $("#StudentImagePath").val(e.data.record.StudentImagePath);
+            $("#StudentSignatureName").val(e.data.record.StudentSignatureName);
+            $("#StudentSignaturePath").val(e.data.record.StudentSignaturePath);
+            $("#popupModal").modal("show");
+        }
+
+        function Remove() {
+        }
+
+        $("#ddlFirstLanguage").change(function () {
+            var s = $("#ddlFirstLanguage").val();
+            if (s != "-1") {
+                try {
+                    $.ajax({
+                        url: "/SchoolCandidateRegistration/GetSubjectSymbolCode",
+                        type: "GET",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: { 'subID': '' + s + '' },
+                        async: true,
+                        success: function (data) {
+                            $("#FirstLanguageSymbol").val(data.LanguageSymbol);
+                            $("#FirstLanguageCode").val(data.LanguageCode);
+
+                        },
+                        error: function (error) {
+                            $("#FirstLanguageSymbol").text("");
+                            $("#FirstLanguageCode").text("");
+                            console.log(error.responseText);
+                        }
+                    });
+                }
+                catch (err) {
+                    $("#FirstLanguageSymbol").text("");
+                    $("#FirstLanguageCode").text("");
+                    console.log(err.message);
+                }
+            }
+            else {
+                $("#FirstLanguageSymbol").text("");
+                $("#FirstLanguageCode").text("");
+
+            }
+        });
+
+        $("#ddlSecondLanguage").change(function () {
+            var s = $("#ddlSecondLanguage").val();
+            if (s != "-1") {
+                try {
+                    $.ajax({
+                        url: "/SchoolCandidateRegistration/GetSubjectSymbolCode",
+                        type: "GET",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: { 'subID': '' + s + '' },
+                        async: true,
+                        success: function (data) {
+                            $("#SecondLanguageSymbol").val(data.LanguageSymbol);
+                            $("#SecondLanguageCode").val(data.LanguageCode);
+
+                        },
+                        error: function (error) {
+                            $("#SecondLanguageSymbol").text("");
+                            $("#SecondLanguageCode").text("");
+                            console.log(error.responseText);
+                        }
+                    });
+                }
+                catch (err) {
+                    $("#SecondLanguageSymbol").text("");
+                    $("#SecondLanguageCode").text("");
+                    console.log(err.message);
+                }
+            }
+            else {
+                $("#SecondLanguageSymbol").text("");
+                $("#SecondLanguageCode").text("");
+
+            }
+        });
+
+        $("#ddlOptionalElective").change(function () {
+            var s = $("#ddlOptionalElective").val();
+            if (s != "-1") {
+                try {
+                    $.ajax({
+                        url: "/SchoolCandidateRegistration/GetSubjectSymbolCode",
+                        type: "GET",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: { 'subID': '' + s + '' },
+                        async: true,
+                        success: function (data) {
+                            $("#OptionalElectiveSymbol").val(data.LanguageSymbol);
+                            $("#OptionalElectiveCode").val(data.LanguageCode);
+
+                        },
+                        error: function (error) {
+                            $("#OptionalElectiveSymbol").text("");
+                            $("#OptionalElectiveCode").text("");
+                            console.log(error.responseText);
+                        }
+                    });
+                }
+                catch (err) {
+                    $("#OptionalElectiveSymbol").text("");
+                    $("#OptionalElectiveCode").text("");
+                    console.log(err.message);
+                }
+            }
+            else {
+                $("#OptionalElectiveSymbol").text("");
+                $("#OptionalElectiveCode").text("");
+
+            }
+        });
+
+        var chkMod = function (e) {
+            try {
+                if (e.target.parentElement.nodeName.toLowerCase() == "td") {
+                    console.log(e);
+                    window.location.href = "../../../../Error/Unexpected.html";
+                }
+            }
+            catch (err) {
+            }
+        };
+
+        window.onbeforeunload = DisableButtons;
+
+
+
+        $(document).ready(function () {
+
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                $("#gridCandidateRegistration").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+                EnableButtons();
+            };
+
+
+            grid = $("#gridCandidateRegistration").grid({
+                dataKey: "StudentId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../SchoolCandidateRegistration/StudentRegistrationList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 5, sizes: [1, 5, 10, 25, 50] }
+            });
+
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridSchool").off('DOMSubtreeModified');
+            });
+            $("#btnSearch").on("click", Search);
+            $("#btnAdd").on("click", add);
+            $("#btnSave").on("click", save);
+
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            //console.log(currentA);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            //console.log(currentDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            //console.log(currentLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+
+
+
+}

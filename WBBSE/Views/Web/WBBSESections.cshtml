@@ -1,0 +1,533 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Sections";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner">
+        <div class="row">
+            <div class="col-12 pt-5">
+                <span class="custom-heading-website">WBBSE SECTIONS</span>
+            </div>
+        </div>
+        <div class="row" style="font-size: 20px;">
+            <div class="col-12 pb-5 align-items-center">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a class="text-warning" href="/Web/WBBSESections?l=GmOMh4ieAsfBrSunLPBveA==">WBBSE Sections</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="bg-light">
+    <div class="container-fluid">
+        <div class="row mt-5 m-1">
+            <div class="col-12 p-2">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" id="ulTabs">
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary text-light active" data-toggle="tab" href="#record">RECORD SECTION</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#confidential">EXAMINATION SECTION</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#general">GENERAL SECTION</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content border">
+                    <div id="record" class="tab-pane active">
+                        <br>
+                        <ul class="pt-2 pl-5 pr-5 pb-2" style="list-style-type: decimal;">
+                            <li>
+                                <b><u>Record Correction</u></b>
+                                <p>
+                                    (Name of the student, name of the guardian, date of birth, address, name of the school)
+                                </p>
+                                <ul style="list-style-type: lower-alpha">
+                                    <li>The record correction form should be downloaded from the DOWNLOAD SECTION and then filled up accurately. 
+                                    </li>
+                                    <li>The documents that need to be attached are :-
+                                    <ul style="list-style-type: lower-roman;">
+                                        <li>Copy of the admit card/mark sheet / certificate, duly attested by the Head of the Institution.
+                                        </li>
+                                        <li>Birth certificate in case of correction of date of birth.
+                                        </li>
+                                    </ul>
+                                        In case of non availability of the original birth certificate of the candidate, the copy of the admission register duly attested 
+                                    by the A.I. (SE)/ A.D.I (SE)/ A.I.(SE) and Head of the Institution has to be submitted. In case of availability of the birth certificate, it has to be attested by any gazetted officer.
+                                    </li>
+                                    <li>Duly filled up correction form with signature of Head of the Institution along with all the relevant documents are to be verified by the concern official of the record section before submission of the same.
+                                    </li>
+                                    <li>On approval of the correction from the competent authority of WBBSE, the applicant will be requested to deposit requisite fees through challan to be filled 
+                                    up in triplicate to the cash section of Board at 77/2 Park Street, Kolkata-16.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pt-2">
+                                <b><u>Record verification</u></b>
+                                <ul style="list-style-type: lower-alpha">
+                                    <li>The record verification form should be downloaded from the DOWNLOAD SECTION and then filled up accurately. 
+                                    </li>
+                                    <li>Fill up the form providing all detailed information.
+                                    </li>
+                                    <li>The applicant will be requested to deposit requisite fees through challan to be filled up in triplicate to the cash section of Board at 77/2 Park Street, Kolkata-16. 
+                                    (Fees is waived for certain Govt. / undertakings /PSU. Depts. generating no revenue. )
+                                    </li>
+                                    <li>Once done, submit the filled up form along with the relevant documents to the concerned section.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pt-2">
+                                <b><u>Issuance of Duplicate Record</u></b>
+                                <ul style="list-style-type: lower-alpha">
+                                    <li>The form necessary to be filled up by the candidate for getting the duplicate record has to be downloaded from the DOWNLOAD SECTION.
+                                    </li>
+                                    <li>It has then to be filled up accurately.
+                                    </li>
+                                    <li>The relevant documents viz. admit card/ mark sheet, / pass certificate duly authenticated by the Head of the Institution has to be submitted, on the basis of which the duplicate document will be issued by WBBSE.
+                                    </li>                                    
+                                    <li>For duplicate certificate photocopy of the General diary made to the local P.S. has to be submitted mandatorily.
+                                    </li>
+                                    <li>The applicant will be requested to deposit requisite fees through challan to be filled up in triplicate to the cash section of Board at 77/2 Park Street, Kolkata-16.
+                                    </li>
+                                    <li>Once done, submit the filled up form along with the relevant documents to the concerned section.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pt-2">
+                                <b><u>Issuance of Migration Certificate</u></b>
+                                <ul style="list-style-type: lower-alpha">
+                                    <li>The candidate would download the Migration form from the download section. 
+                                    </li>
+                                    <li>The candidate has to fill up all the detailed information about her/his migration.
+                                    </li>
+                                    <li>The candidate has to append relevant documents viz. copy of Registration Certificate, Admit card, Mark sheet and Pass Certificate with the migration form.
+                                    </li>
+                                    <li>The applicant will be requested to deposit requisite fees through challan to be filled up in triplicate to the cash section of Board at 77/2 Park Street, Kolkata-16.
+                                    </li>
+                                    <li>Once done, submit the filled up form along with the relevant documents to the concerned section.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pt-2">
+                                <b><u>Issuance of Transcript Certificate</u></b>
+                                <ul style="list-style-type: decimal;">
+                                    <li>The candidate has to download the TRANSCRIPT form for issuance of transcript certificate by WBBSE.
+                                    <ul style="list-style-type: lower-alpha;">
+                                        <li>The candidate has to fill up all the detailed information about her/his transcription.
+                                        </li>
+                                        <li>The candidate has to append relevant documents viz. copy of Registration Certificate, Admit card, Mark sheet and Pass Certificate with the transcript form.
+                                        </li>
+                                        <li>The applicant will be requested to deposit requisite fees through challan to be filled up in triplicate to the cash section of Board at 77/2 Park Street, Kolkata-16.
+                                        </li>
+                                        <li>Once done, submit the filled up form along with the relevant documents to the concerned section.
+                                        </li>
+                                        <li>After verifying all the information and documents WBBSE will issue the Transcript to the concerned candidates through their registered mail id.
+                                            <p class="mt-2">
+                                                <b>H.E Section</b>
+                                            </p>
+                                            <ul style="list-style-type: lower-alpha;">
+                                                <li>At first all the recognized Schools under WBBSE will be required to download and fill up a form for their Registration in WBBSE website with details of School like Name of the School, 
+                                                    Address,The index No, Contact Number , email id of the school, Educational qualification of Head of the Institution & his/ her first joining in service and date of retirement.
+                                                </li>
+                                                <li>All the schools under WBBSE will be required to enter all the information related to the approved teachers of their schools into the Teacher Information Form, 
+                                                    pertaining to only those teachers who have either joined or have transferred from the institution after July 2018.
+                                                </li>
+                                                <li>On entering the Teacher information correctly schools will be required to save the data so that WBBSE could get a ready reference of all the information about the teachers.
+                                                </li>
+                                                <li>The candidates aspiring for the post of appointment as H.E. for the M.P. (SE)(Regular & External) must fulfil the following criteria- 15 years teaching experience, 
+                                                    working experience as examiner and/or scrutinizer for the last 5 years and academic qualification Master degree in relevant subject with B.Ed. 
+                                                    The form must be duly attested by the Head of the Institution and the Secretary of the particular Institution/ Administrator with office seal and to be submitted in the H.E section within due date.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul style="list-style-type: upper-alpha;">
+                                    <li>
+                                        <b><u>Recognition of unaided School (V-VIII) :</u></b>
+                                        <ul style="list-style-type: lower-alpha;">
+                                            <li>Prayer to DI.
+                                            </li>
+                                            <li>DI submits the prayer to the Commissioner of School Education with DLIT report.
+                                            </li>
+                                            <li>Commissioner of School Education will send the recommendation to School Education Department.
+                                            </li>
+                                            <li>School Education Department sends recommendation of the Govt. to WBBSE.
+                                            </li>
+                                            <li>Board will give the provisional NOC / permanent NOC (board’s form) to the school.
+                                            </li>
+                                            <li>Concern school will submit the form to the Board after signing from the concern DI (SE).
+                                            </li>
+                                            <li>Board will issue provisional / permanent recognition letter to the school.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b><u>Recognition of aided School (V-VIII) :</u></b>
+                                        <ul style="list-style-type: lower-alpha;">
+                                            <li>Prayer to DI.
+                                            </li>
+                                            <li>DI submits the prayer to the Commissioner of School Education with DLIT report.
+                                            </li>
+                                            <li>Commissioner of School Education will send the recommendation to School Education Department.
+                                            </li>
+                                            <li>School Education Department sends recommendation of the Govt. to WBBSE.
+                                            </li>
+                                            <li>Board will issue the provisional recognition to the school on the basis of the Govt. recommendation (New setup).
+                                            </li>
+                                            <li>Board will issue annexure X form (to be supplied by the Board) for formal recognition on the basis of the forwarding/ recommendation of the DI(SE).
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b><u>Upgradation to Secondary section of aided & unaided school:</u></b>
+                                        <ul style="list-style-type: lower-alpha;">
+                                            <li>Prayer to D.I. after fulfilling the below mentioned criteria.
+                                            <ul style="list-style-type: decimal;">
+                                                <li>Site & Accommodation
+                                                </li>
+                                                <li>Sanitary Arrangement
+                                                </li>
+                                                <li>No of Teaching staff
+                                                </li>
+                                                <li>Roll strength (have at least 40 effective enrolments in each class)
+                                                </li>
+                                                <li>B.Ed.certificate is mandatory for each teaching staff.
+                                                </li>
+                                                <li>Age of the staff
+                                                </li>
+                                                <li>Nature of the Institution
+                                                </li>
+                                                <li>Laboratory for elementary Science, Math, Language
+                                                </li>
+                                                <li>Facilities for CWSW / differently abled students.
+                                                </li>
+                                                <li>Fire Security Measures.
+                                                </li>
+                                                <li>Evacuation an amusement for disaster management
+                                                </li>
+                                                <li>Proper Drinking Water Facility
+                                                </li>
+                                                <li>Sick room
+                                                </li>
+                                                <li>Reserve fund
+                                                </li>
+                                                <li>Formation of school Management Committee
+                                                </li>
+                                                <li>School Development plan
+                                                </li>
+                                                <li>Library
+                                                </li>
+                                                <li>Adequate furniture
+                                                </li>
+                                                <li>Equipments for games and sports
+                                                </li>
+                                                <li>Girls’ common room, if it is a girls’ or co-educational school
+                                                </li>
+                                                <li>Congenial atmosphere for smooth running of the school
+                                                </li>
+                                            </ul>
+                                            </li>
+                                            <li>DLIT will inspect the school and will send the report to the Commissioner.
+                                            </li>
+                                            <li>Commissioner sends the recommendation of the Govt. to Board for issuing upgradation letter.
+                                            </li>
+                                            <li>Board will issue upgradation status and index no. to the school as per the recommendation of the Govt. of W.B.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="confidential" class="tab-pane fade">
+                        <br>
+                        <ul class="pt-2 pl-5 pr-5 pb-2" style="list-style-type: none;">
+                            <li>
+                                <b>PPS/PPR Module:</b>
+                                <ul style="list-style-type: lower-alpha;">
+                                    <li>The PPS/PPR form should be downloaded from the DOWNLOADED SECTION.
+                                    </li>
+                                    <li>It is mandatory to put the roll number along with registration number in the form.
+                                    </li>
+                                    <li>The subjects viz. Bengali, English, mathematics etc for which the candidate is eligible for doing PPS/PPR must be mentioned.
+                                    </li>
+                                    <li>The payment to board’s account through challan.
+                                    </li>
+                                    <li>Submit all the papers to D.S. of Examination.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Registration (for class IX students) Module:</b>
+                                <ul style="list-style-type: lower-alpha;">
+                                    <li>The school will download the application form for registration from the DOWNLOAD SECTION.
+                                    </li>
+                                    <li>The form will be filled up carefully and verified by school with school records, DOB, certificate etc.
+                                    </li>
+                                    <li>Two passport size black & white photos of the applicantare to be pasted- one on school copy, another on the board copy.
+                                    </li>
+                                    <li>Signatures of the applicant, the HM to be put on the form.
+                                    </li>
+                                    <li>Registration fees to be collected from students and deposited to board’s account through challan.
+                                    </li>
+                                    <li>Boards copy along with the challan to be submitted at the respective camp office on stipulated days.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Enrolment of students for MP (SE):</b>
+                                <ul style="list-style-type: lower-alpha;">
+                                    <li>The school will download the enrollment form from the DOWNLOAD SECTION.
+                                    </li>
+                                    <li>Fill- in the oral marks section of eligible candidates & put the candidates signature in proper column & row of the enrollment form.
+                                    </li>
+                                    <li>The entry of Candidates with registration number of earlier years to be done in blank enrollment forms.
+                                    </li>
+                                    <li>The enrollment forms to be checked and verified by the school and signed by the Head of the Institution.
+                                    </li>
+                                    <li>Exam fees to be collected & deposited to Board’s account through challan.
+                                    </li>
+                                    <li>Enrolment form along with the challan to be submitted at respective camp office on stipulated day.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Application for Amanuensis:</b>
+                                <ul style="list-style-type: lower-alpha;">
+                                    <li>Download the application form for the amanuensis from the DOWNLOAD SECTION.
+                                    </li>
+                                    <li>Fill up the form accurately with name, registration number, roll number, MP examination year, and name of 02 nos. of amanuensis within the stipulated time prescribed by the board.
+                                    </li>
+                                    <li>Attach the required documents viz. registration certificate, admit card, disability certificate from Head of the Institution of the school of which amanuensis is a student not higher than class IX, 
+                                    photograph of candidate and amanuensis with the form.
+                                    </li>
+                                    <li>Submit all the papers to the board.
+                                    </li>
+                                    <li>Board will send the approval through the registered mail of the school.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Application for Extra time:</b>
+                                <ul style="list-style-type: lower-alpha;">
+                                    <li>Download the application form for the extra time from the DOWNLOAD SECTION.
+                                    </li>
+                                    <li>Fill up the form with Name, Registration Number, Roll No., M.P Examination Year within the stipulated time prescribed by WBBSE.
+                                    </li>
+                                    <li>Attach the required documents viz. Registration Certificate/Admit Card, Disability Certificate of candidate, Photograph of Candidate. and save the same to submit it to WBBSE.
+                                    </li>
+                                    <li>Submit all the papers to the board.
+                                    </li>
+                                    <li>Board will send the approval through the registered mail of the school.
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="general" class="tab-pane fade">
+                        <br>
+                        <ul class="pt-2 pl-5 pr-5 pb-2" style="list-style-type: decimal;">
+                            <li>
+                                <b><u>Study Leave as per rule 5(2) of the leave rules of WBBSE</u></b>
+                                <ul style="list-style-type: upper-alpha;">
+                                    <li>To get the Study Leave as per rule 5(2) of the leave rules of WBBSE, the school has to submit the following documents-
+                                    <ul style="list-style-type: lower-roman;">
+                                        <li>An attested copy of the application from the teacher to the Managing Committee of the school praying for leave.
+                                        </li>
+                                        <li>An attested copy of the letter of approval of appointment of the Teacher.
+                                        </li>
+                                        <li>An attested copy of the examination program and Admit card / Mark Sheet / Certificate.
+                                        </li>
+                                        <li>An attested copy of prior permission from the concerned D.I of Schools (S.E) for appearing in the examination of non relevant subject and distance education / correspondence course, as applicable.
+                                        </li>
+                                        <li>Attested copy of documents reflecting the status of administration i.e., the Managing Committee/ Adhoc Committee/ Organizing Committee/ Administrator.
+                                        </li>
+                                        <li>An attested copy of the last order received from the Board granting extension of the Term of Recognition (For Boys/Girls School).
+                                        </li>
+                                        <li>An attested copy of the last order received from the Board granting extension of the Term of Recognition with Co-Education (In case of Co- Educational School).
+                                        </li>
+                                        <li>An attested copy of the resolution of the managing Committee sanctioning study leave with full pay (As desired by the Managing Committee specifically mentioning the period/dates of Leave.)
+                                        </li>
+                                    </ul>
+                                    </li>
+                                    <li>The school will submit these documents and get the acknowledgement receipt for further communication.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b><u>Special Leave as per rule 5(1) of the leave rules of WBBSE</u></b>
+                                <ul style="list-style-type: upper-alpha;">
+                                    <li>To get the Study Leave as per rule 5(1) of the leave rules of WBBSE, sanctioned the school has to submit the following documents-
+                                    <ul style="list-style-type: lower-roman;">
+                                        <li>An attested copy of the application from the teacher to the Managing Committee of the school praying for leave.
+                                        </li>
+                                        <li>An attested copy of the letter of approval of appointment of the Teacher.
+                                        </li>
+                                        <li>Attested Copy of the Medical Certificate from a registered medical practitioner recommending specific period of leave on medical grounds.
+                                        </li>
+                                        <li>An attested copy of the year-wise comprehensive leave statement of the teacher from the date of joining to the date of proceeding on leave 
+                                            incorporating medical leave / half average pay leave accrued and enjoyed.
+                                        </li>
+                                        <li>Validity certificate reflecting status of the Administration i.e. Managing Committee / Adhoc Committee / Organizing Committee / Administrator.
+                                        </li>
+                                        <li>An attested copy of the last order received from the Board granting extension of the Term of Recognition (For Boys/Girls School).
+                                        </li>
+                                        <li>An attested copy of the last order received from the Board granting extension of the Term of Recognition with Co-Education (In case of Co- Educational School).
+                                        </li>
+                                        <li>An attested copy of the resolution of the managing Committee sanctioning special leave with full pay (As desired by the Managing Committee specifically mentioning the period/dates of Leave.)
+                                        </li>
+                                    </ul>
+                                    </li>
+                                    <li>The school will submit these documents and get the acknowledgement receipt for further communication.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b><u>Extension of the Term of Recognition with/without Co-Education</u></b>
+                                <ul style="list-style-type: lower-alpha;">
+                                    <li>Download the form for the extension of the term of recognition with/without Co-Education for the DOWNLOAD SECTION.
+                                    </li>
+                                    <li>Fill up the form accurately.
+                                    </li>
+                                    <li>Submit the Attested copy of the resolution of the managing Committee in support of the prayer.
+                                    </li>
+                                    <li>Submit the Attested copies of all recognition memos received from the Board , from the time of formal recognition / upgradation till the current date.
+                                    </li>
+                                    <li>Statement of fulfillment of conditions (duly filled up as per the specific case) in the prescribed format (Specimen) of the Board.
+                                    </li>
+                                    <li>Forwarding letter from the HM/TIC of the school.
+                                    <p class="m-0">
+                                        <b>Deadline for application-</b>
+                                        As per Board’s circular No. S/231 dated 13.01.2010.
+                                    </p>
+                                        <p class="m-0">
+                                            <b>Late fees-</b>
+                                            As per Board’s circular No. S/232 dated 13.01.2010.
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b><u>Extension of the Term of the Administrator</u></b>
+                                <p>
+                                    To seek extension of the term of the Administrator in aided & unaided private schools the procedure to be followed :
+                                </p>
+                                <ul style="list-style-type: lower-roman;">
+                                    <li>Forwarding letter from the HM/TIC of the school mentioning the reasons for the extension of the Term of the Administrator.
+                                    </li>
+                                    <li>An attested copy of letter of appointment of Administrator received from the Board.
+                                    </li>
+                                    <li>An attested copy of the letter of consent from the presently serving Administrator.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b><u>Appointment of Administrator</u></b>
+                                <p>
+                                    <b>The school will be required to send the following documents.
+                                    </b>
+                                </p>
+                                <ul style="list-style-type: decimal;">
+                                    <li>
+                                        <i>When the prayer is routed through the concerned D.I of Schools (S.E) and the Commissioner of School Education, West Bengal:</i>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Recommendation for the appointment of Administrator from the Commissioner of School Education.
+                                            </li>
+                                            <li>Detailed enquiry report from the concerned D.I of Schools (S.E) mentioning clearly the reasons for the appointment of Administrator in the school.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <i>When the prayer is sent directly to the Board.</i>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Forwarding letter from the HM/TIC of the school mentioning clearly the reasons for the appointment of Administrator in the school.
+                                            </li>
+                                            <li>All relevant documents in support of the prayer i.e. which clearly indicate that the managing Committee of the school is presently defunct/non-functioning.
+                                            </li>
+                                            <li>WBBSE will process the request within the stipulated time and communicate to the respective school through the registered mail of the school.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b><u>Miscellaneous issues relating to school</u></b>
+                                <ul style="list-style-type: decimal;">
+                                    <li>
+                                        <b>Extraordinary Leave without pay ( More than 02 years)</b>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Forwarding letter from the HM/TIC of the school mentioning clearly the reasons for the said leave.
+                                            </li>
+                                            <li>Attested copy of the resolution of the managing Committee forwarding the proposal to the Board.
+                                            </li>
+                                            <li>Documents from the incumbent in support of the said period of leave.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Spent on duty leave</b>
+                                        <ul style="list-style-type: lower-roman;">
+                                            <li>Forwarding letter from the HM/TIC of the school mentioning clearly the reasons for the said leave.
+                                            </li>
+                                            <li>An attested copy of the order of acquittal from the Hon’ble court.
+                                            </li>
+                                            <li>Attested copy of the resolution of the managing Committee in support of the said prayer.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Change of name of the school-</b>
+                                        As per the procedure outlined in Board’s Circular No. S/440 dated ______.
+                                    <p class="m-0">
+                                        Any other matter to be considered on a case to case basis.
+                                    </p>
+                                        <p class="m-0">
+                                            <b>the school will submit required documents for the said purpose.</b>
+                                        </p>
+                                        <p class="m-0">
+                                            The Board will process the request within the stipulated period of time and communicate  to the school through the registered mail 
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) {
+
+            }
+        });
+
+        $("#ulTabs a").click(function (e) {
+            $("#ulTabs a").removeClass("bg-primary text-light");
+            //$("#ulTabs a").css("color", "#0056b3");
+            $(this).addClass("bg-primary text-light");
+            //$(this).css("color", "");
+        });
+    </script>
+}

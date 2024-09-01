@@ -1,0 +1,256 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE Examination Section";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">WBBSE EXAMINATION SECTION</span>
+            </div>
+            <div class="col-md-12 align-items-center custom-font-20">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Section / Department</span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Examination</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="bd-example bd-example-tabs">
+            <div class="row">
+                <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                    <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-Registration-tab" data-toggle="pill" href="#v-pills-Registration" role="tab" aria-controls="v-pills-Registration" aria-selected="true">Registration</a>
+                        <a class="nav-link" id="v-pills-Enrollment-tab" data-toggle="pill" href="#v-pills-Enrollment" role="tab" aria-controls="v-pills-Enrollment" aria-selected="false">Enrolment</a>
+                        <a class="nav-link" id="v-pills-Amanuensis-tab" data-toggle="pill" href="#v-pills-Amanuensis" role="tab" aria-controls="v-pills-Amanuensis" aria-selected="false">Application for Amanuensis</a>
+                        <a class="nav-link" id="v-pills-ExtraTime-tab" data-toggle="pill" href="#v-pills-ExtraTime" role="tab" aria-controls="v-pills-ExtraTime" aria-selected="false">Application for Extra Time</a>
+                        <a class="nav-link" id="v-pills-ExamRoutine-tab" data-toggle="pill" href="#v-pills-ExamRoutine" role="tab" aria-controls="v-pills-ExamRoutine" aria-selected="false">MP(S.E.) Examination Routine</a>
+                        <a class="nav-link" id="v-pills-Result-tab" data-toggle="pill" href="#v-pills-Result" role="tab" aria-controls="v-pills-Result" aria-selected="false">MP(S.E.) Result</a>
+                        <a class="nav-link" id="v-pills-PPRPPS-tab" data-toggle="pill" href="#v-pills-PPRPPS" role="tab" aria-controls="v-pills-PPRPPS" aria-selected="false">PPR/PPS</a>
+                        <a class="nav-link" id="v-pills-CampSchedule-tab" data-toggle="pill" href="#v-pills-CampSchedule" role="tab" aria-controls="v-pills-CampSchedule" aria-selected="false">Camp Schedule (EMU/C/34)</a>
+                        @*<a class="nav-link" id="v-pills-ExaminationSystem-tab" data-toggle="pill" href="#v-pills-ExaminationSystem" role="tab" aria-controls="v-pills-ExaminationSystem" aria-selected="false">Examination System</a>*@
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content border p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-Registration" role="tabpanel" aria-labelledby="v-pills-Registration-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Registration (for class IX students)</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="fa-ul">
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Registration form <span class="font-weight-bold">(Form - R)</span> will be distributed through camp office in the month of July - August every year.
+                                    </li>
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        The form will be filled up carefully, as per instruction and verified by school with School Admission Registor and Birth Registration certificate.
+                                    </li>
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Two passport size black & white photos of the applicant are to be pasted- one on school’s copy, another on the Board’s copy.
+                                    </li>
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Signatures of the applicant and the HM to be put on the form.
+                                    </li>
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Registration fees to be collected from students and deposited to the Board’s account through challan.
+                                    </li>
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Board’s copy of the form along with the challan to be submitted at the respective camp office on stipulated day.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-Enrollment" role="tabpanel" aria-labelledby="v-pills-Enrollment-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Enrolment of students for MP (SE)</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="fa-ul">
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Enrolment form <span class="font-weight-bold">(Form - A)</span> for regular and <span class="font-weight-bold">(Form - B)</span> for C.C. & Comp. candidate will be distributed through respective camp office.
+                                    </li>
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Fill- in the IFE (Internal Formative Evaluation) marks section of eligible candidates & put the candidate’s signature in proper column & row of the enrolment form.
+                                    </li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>The entry of Candidates with registration number of earlier years to be done in blank enrolment forms.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>The enrolment forms to be checked and verified by the school and signed by the Head of the institution.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Exam fees to be collected & deposited to Board’s account through challan.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Enrolment form along with the challan to be submitted at respective camp office on the stipulated day.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-Amanuensis" role="tabpanel" aria-labelledby="v-pills-Amanuensis-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Application for Amanuensis</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="fa-ul">
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Download the application form for the amanuensis from the <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary font-weight-bold" title="Click here to go to download section">DOWNLOAD SECTION</a>.
+                                    </li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Fill up the form accurately with name, registration number, roll number, MP examination year, and name of 02 nos. of amanuensis within the time stipulated by the board.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Attach the required documents viz. registration certificate, admit card, disability certificate from Head of the Institution of the school of which amanuensis is a student, not higher than class IX, photograph of candidate and amanuensis with the form.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Submit all the papers to the Board.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Board will send the approval through the registered mail of the school.</li>
+                                </ul>
+                                <h6 class="font-weight-bold mt-5 pl-2">
+                                    ## Application Form - 
+                                    <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-ExtraTime" role="tabpanel" aria-labelledby="v-pills-ExtraTime-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Application for Extra time</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="fa-ul">
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        Download the application form for extra time from the <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary font-weight-bold" title="Click here to go to download section">DOWNLOAD SECTION</a>.
+                                    </li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Fill up the form with Name, Registration Number, Roll No., M.P Examination Year within the time stipulated by WBBSE.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Attach the required documents viz. Registration Certificate/Admit Card, Disability Certificate of the candidate, Photograph of the candidate and save the same to submit it to the Board.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Submit all the papers to the Board.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Board will send the approval letter through the registered mail of the school.</li>
+                                </ul>
+                                <h6 class="font-weight-bold mt-5 pl-2">
+                                    ## Application Form -
+                                    <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary">Click Here</a>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-ExamRoutine" role="tabpanel" aria-labelledby="v-pills-ExamRoutine-tab">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                @*<embed id="viewDataExam" src="" class="w-100" type="application/pdf" />*@
+                                <object id="viewDataExam" data="" class="w-100" type="application/pdf">
+                                    <a id="responsiveViewExam" href="" target="_blank">
+                                        Click here to
+                                        download the PDF file.
+                                    </a>
+                                </object>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-PPRPPS" role="tabpanel" aria-labelledby="v-pills-PPRPPS-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Post Publication Scrutiny / Post Publication Review</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="fa-ul">
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>
+                                        The Post Publication Scrutiny / Post Publication Review form shall be downloaded from the <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary font-weight-bold" title="Click here to go to download section">DOWNLOAD SECTION</a>.
+                                    </li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>It is mandatory to put the roll number along with registration number in the form.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>The subjects viz. Bengali, English, mathematics etc for which the candidate is eligible for  Post Publication Scrutiny / Post Publication Review must be mentioned.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>Payment to be made to the Board’s account through challan.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>All the papers are to be submitted to the respective Regional council Office.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-CampSchedule" role="tabpanel" aria-labelledby="v-pills-CampSchedule-tab">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                @*<embed id="viewDataCamp" src="" class="w-100" type="application/pdf" />*@
+                                <object id="viewDataCamp" data="" class="w-100" type="application/pdf">
+                                    <a id="responsiveViewCamp" href="" target="_blank">
+                                        Click here to
+                                        download the PDF file.
+                                    </a>
+                                </object>
+                            </div>
+                        </div>
+                        @*<div class="tab-pane fade" id="v-pills-ExaminationSystem" role="tabpanel" aria-labelledby="v-pills-ExaminationSystem-tab">
+                            <div>
+                                <object id="viewData" data="@(FilePath.ExaminationSystem)" class="w-100" type="application/pdf">
+                                    <a href="@(FilePath.ExaminationSystem)" target="_blank">
+                                        Click here to
+                                        download the PDF file.
+                                    </a>
+                                </object>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/Message.js"></script>
+    <script src="~/js/BasicFunctions.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/js/client/es.js?v=@DateTime.Now.ToFileTime()"></script>
+    <script type="text/javascript">
+        $("#v-pills-tab").click(function () {
+            setTimeout(chkFooter, 200);
+        });
+        $("#v-pills-ExamRoutine-tab").click(function () {
+            ShowLoaderNew();
+            var m = '@(GblFunctions.encryptPassword(MenuCode.ExaminationRoutine))';
+            pdfCall(m);
+        });
+
+        $("#v-pills-CampSchedule-tab").click(function () {
+            ShowLoaderNew();
+            var m = '@(GblFunctions.encryptPassword(MenuCode.CampSchedule))';
+            pdfCall(m);
+        });
+
+        function pdfCall(m) {
+            try {
+                $.ajax({
+                    url: "/Web/PdfViewerDynamic",
+                    type: "GET",
+                    dataType: "json",
+                    data: { 'm': '' + m + '' },
+                    contentType: "application/json",
+                    async: true,
+                    success: function (data) {
+                        var p = data.View;
+                        if (m == '@(GblFunctions.encryptPassword(MenuCode.ExaminationRoutine))') {
+                            $("#viewDataExam").prop('data', p);
+                            $("#responsiveViewExam").prop('href', p);
+                        }
+                        else if (m == '@(GblFunctions.encryptPassword(MenuCode.CampSchedule))') {
+                            $("#viewDataCamp").prop('data', p);
+                            $("#responsiveViewCamp").prop('href', p);
+                        }
+                        else { }
+                        HideLoaderNew();
+                    },
+                    error: function (error) {
+                        alert(OperationError());
+                        console.log(error.responseText);
+                        HideLoaderNew();
+                    }
+                });
+            }
+            catch (err) {
+                console.log(err);
+                alert(OperationError());
+                HideLoaderNew();
+            }
+        }
+        $(document).ready(function () {
+            try {
+                //check whether to open particular tab or not
+                var a = '@ViewData[ViewDataNames.ActiveLinkTab]';
+                if (a != DefaultSetting.EmptyVal) {
+                    $('#v-pills-tab a[href="' + a + '"]').tab('show');
+                }
+                $("#viewData").css('height', screen.availHeight + 'px');
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

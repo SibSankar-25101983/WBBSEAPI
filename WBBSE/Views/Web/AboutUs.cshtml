@@ -1,0 +1,182 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "About Us";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">ABOUT US</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> About Us</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="my-5">
+    <div class="container-fluid">
+        <div class="card-group mt-2 ml-1 mr-1">
+            <div class="card mb-3 mx-auto custom-max-width shadow-sm bg-light">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        <i class="far fa-id-card fa-3x custom-section1-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Profile</h5>
+                            <p class="card-text" style="font-size:13px;">The West Bengal Board of Secondary Education came into being way back in 1951....</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.History)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width shadow-sm bg-light">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/school-icon.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-eye fa-3x custom-section1-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Vision & Mission</h5>
+                            <p class="card-text" style="font-size:13px;">
+                                To Bridge the gap between elementary & higher education through a scientific, systematic, comprehensive and free of cost education for all children across the State
+                            </p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.VisionMission)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width shadow-sm bg-light">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/school-icon.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-paste fa-3x custom-section1-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Main Objectives</h5>
+                            <p class="card-text" style="font-size:13px;">
+                                Preparing students for Board exam through a seamless comprehensive curriculum
+                            </p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.MainObjectives)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width shadow-sm bg-light">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/school-icon.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-user-friends fa-3x custom-section1-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Authorities</h5>
+                            <p class="card-text" style="font-size:13px;">At the helm of the Organization: The President, the Secretary, the Administration, the Academic and others</p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.Authorities)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-group mt-1 ml-1 mr-1">
+            <div class="card mb-3 mx-auto custom-max-width shadow-sm bg-light">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/school-icon.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-user-tag fa-3x custom-section1-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Past Authorities</h5>
+                            <p class="card-text" style="font-size:13px;">
+                                Eminent luminaries & educationists have ordained the chair of Board President &Secretariy since 1951….
+                            </p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.PastAuthorities)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width shadow-sm bg-light">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/school-icon.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-university fa-3x custom-section1-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Regional Council Office</h5>
+                            <p class="card-text" style="font-size:13px;">Details of Regional Council Offices indicating district-wide reach </p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.RegionalOffice)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width shadow-sm bg-light">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/school-icon.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-users fa-3x custom-section1-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Organization Structure</h5>
+                            <p class="card-text" style="font-size:13px;">Hierarchical  structure of the Organization</p>
+                            <a href="/Web/PdfViewerStatic?m=@(GblFunctions.encryptPassword(MenuCode.OrganizationStructure))" class="card-text text-primary" target="_blank" rel="noopener">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mx-auto custom-max-width shadow-sm bg-light">
+                <div class="row no-gutters">
+                    <div class="col-md-4 text-center">
+                        @*<img src="~/ReadWriteData/Section/school-icon.png" class="card-img img-fluid" alt="...">*@
+                        <i class="fas fa-camera-retro fa-3x custom-section1-icon-color pt-4"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Gallery</h5>
+                            <p class="card-text" style="font-size:13px;">
+                                A place that has permanent display of activity of this Board & various offices & institutions under it
+                            </p>
+                            <a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.PhotoGallery)" class="card-text text-primary">Know More <i class="fa fa-plus" style="font-size:10px" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(".card").on("mouseenter", function () {
+            $(this).removeClass("shadow-sm");
+            $(this).addClass("shadow-lg");
+        });
+        $(".card").on("mouseleave", function () {
+            $(this).removeClass("shadow-lg");
+            $(this).addClass("shadow-sm");
+        });
+        $(document).ready(function () {
+            try {
+                //$("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

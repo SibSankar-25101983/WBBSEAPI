@@ -1,0 +1,54 @@
+﻿@using Common;
+
+@{
+    ViewBag.Title = "School :: Home";
+    Layout = "~/Areas/Schools/Views/Shared/_LayoutSchool.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Dashboard</h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none; text-align: center;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+<div id="divProfile" class="row"></div>
+
+<div id="divStat" class="row d-none">
+    <div class="col-xl-6 col-md-12 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div id="canvas-holder" class="col-12">
+                    <canvas id="chartArea"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-12 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div id="canvas-holder1" class="col-12">
+                    <canvas id="chartArea1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/js/Chart.min.js"></script>
+    <script src="~/js/utils.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/Areas/Schools/js/school-home.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+}

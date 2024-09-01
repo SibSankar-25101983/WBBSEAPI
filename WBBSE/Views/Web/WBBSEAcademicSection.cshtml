@@ -1,0 +1,384 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE Academic Section";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">WBBSE ACADEMIC SECTION</span>
+            </div>
+            <div class="col-md-12 align-items-center custom-font-20">
+                @*<a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a id="lnkCurrent" class="text-warning" href="#">Academic</a>*@
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Section / Department</span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Academic</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="bd-example bd-example-tabs">
+            <div class="row">
+                <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                    <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-DisciplinaryProceedings-tab" data-toggle="pill" href="#v-pills-DisciplinaryProceedings" role="tab" aria-controls="v-pills-DisciplinaryProceedings" aria-selected="true">Disciplinary Proceedings</a>
+                        <a class="nav-link" id="v-pills-Lien-tab" data-toggle="pill" href="#v-pills-Lien" role="tab" aria-controls="v-pills-Lien" aria-selected="false">Lien/ Extension/ Resignation</a>
+                        <a class="nav-link" id="v-pills-MediumInstruction-tab" data-toggle="pill" href="#v-pills-MediumInstruction" role="tab" aria-controls="v-pills-MediumInstruction" aria-selected="false">Change of Medium of Instruction</a>
+                        <a class="nav-link" id="v-pills-ComputerApplication-tab" data-toggle="pill" href="#v-pills-ComputerApplication" role="tab" aria-controls="v-pills-ComputerApplication" aria-selected="false">Introduction of Computer Application</a>
+                        <a class="nav-link" id="v-pills-AcademicCalendar-tab" data-toggle="pill" href="#v-pills-AcademicCalendar" role="tab" aria-controls="v-pills-AcademicCalendar" aria-selected="false">Academic Calendar</a>
+                        <a class="nav-link" id="v-pills-Syllabus-tab" data-toggle="pill" href="#v-pills-Syllabus" role="tab" aria-controls="v-pills-Syllabus" aria-selected="false">Syllabus</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content border p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-DisciplinaryProceedings" role="tabpanel" aria-labelledby="v-pills-DisciplinaryProceedings-tab">
+                            <h6 class="text-center pb-3 custom-font-20 font-weight-bold mt-2 mb-3">Steps of Disciplinary Proceedings</h6>
+                            <div class="p-2 text-justify">
+                                <ul class="list-unstyled pl-4 custom-text-indent">
+                                    <li class="mb-2 font-weight-bold">
+                                        A. Request to the Disciplinary Authority, WBBSE for taking action against teaching and non-teaching staff of the institution Paper to be enclosed:
+                                    </li>
+                                    <li class="mb-2">
+                                        <ol class="pl-3">
+                                            <li class="pb-0"> Letter from the President of the SMC /Administrator /Head of the institution.</li>
+                                            <li class="pb-0"> All relevant documents in respect of the complaint against the alleged staff.</li>
+                                            <li class="pb-0"> Resolution of Managing Committee/Administrator preferable.</li>
+                                        </ol>
+                                    </li>
+                                    <li class="pl-3">
+                                        Two sets of all the relevant papers should be submitted to the following address :
+                                    </li>
+                                    <li class="mb-2 pl-3 font-weight-bold">
+                                        Disciplinary Authority, WBBSE, Nivedita Bhawan, DJ 8, Sector 2, Salt Lake City, Kolkata-700091
+                                    </li>
+                                    <li class="mb-3 pl-3">
+                                        <b>N.B.</b> It's suggested not to apply to the board except important issues.
+                                    </li>
+                                    <li class="mb-2 custom-text-indent1 pl-3">
+                                        <b>B-1</b> After receiving the Prayer of the Disciplinary Authority, WBBSE may authorise any officer not below the rank of SI of schools to conduct preliminary investigation against teaching or non-teaching staff.
+                                    </li>
+                                    <li class="mb-2 custom-text-indent1 pl-3">
+                                        <b>B-2</b> SI of Schools shall enquire the matter and submit the report of preliminary investications to the Disciplinary Authority of the Board.
+                                    </li>
+                                    <li class="mb-2 custom-text-indent1 pl-3">
+                                        <b>B-3</b> If the preliminary investigation report reveals prima facie a case of misconduct, the Disciplinary Authority will issue Show cause notice to the concerned teaching or non-teaching staff.
+                                    </li>
+                                    <li class="mb-2 custom-text-indent1 pl-3">
+                                        <b>B-4</b> If the explanation in the reply of the show cause notice is not satisfactory, the Disciplinary Authority shall initiate disciplinary proceedings against the concerned teaching or non-teaching staff.
+                                        <div></div>
+                                        Provided further that in case of retired teaching or non-teaching staff, disciplinary proceedings may, with the approval of the State Government, be initiated within three years from the date of retirement, if the misconduct becomes known to the Board after retirement.
+                                    </li>
+                                    <li class="mb-2 custom-text-indent1 pl-3">
+                                        <b>B-5</b> The Disciplinary Authority shall frame a charge sheet consisting of charges and will serve the charge sheet upon  the alleged  teaching or non-teaching staff seeking her/ his reply within a fortnight from the date of receipt of the charge sheet.
+                                    </li>
+                                    <li class="mb-2 custom-text-indent1 pl-3">
+                                        <b>B-6</b> If the reply of the charge sheet is not satisfactory, the Disciplinary Authority shall appoint an officer, not below the rank of DI of schools (SE) or ADI of school (SE) as Inquiry Authority.
+                                        <div></div>
+                                        The Disciplinary Authority may also appoint a Presenting officer to present the case before the Inquiry Authority.
+                                    </li>
+                                    <li class="mb-2 custom-text-indent1 pl-3">
+                                        <b>B-7</b> After completion of the enquiry, the Inquiry authority will submit the final enquiry report to the Disciplinary Authority.
+                                    </li>
+                                    <li class="mb-2 custom-text-indent1 pl-3">
+                                        <b>B-8</b> The Disciplinary Authority will consider the enquiry report submitted by the Inquiry Authority.
+                                    </li>
+                                    <li class="mb-2 custom-text-indent1 pl-3">
+                                        <b>B-9</b> If the enquiry report substantiates the charges levelled against the alleged teaching or non-teaching staff,Board can issue a Show Cause Notice as to why the following penalties would not be inflicted against the alleged teaching or non-teaching staff:
+                                        <ul class="list-unstyled pl-4 custom-text-indent">
+                                            <li>
+                                                <b>i)</b> Censure
+                                            </li>
+                                            <li>
+                                                <b>ii)</b> Withholding one or more (not exceeding three) annual increment
+                                            </li>
+                                            <li>
+                                                <b>iii)</b> Stoppage of career advancement scheme benefit
+                                            </li>
+                                            <li>
+                                                <b>iv)</b> Deduction of pension amount or gratuity amount
+                                            </li>
+                                            <li>
+                                                <b>v)</b> Compulsory retirement with an appropriate rate of pensionary benefits
+                                            </li>
+                                            <li>
+                                                <b>vi)</b> Removal from service
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-Lien" role="tabpanel" aria-labelledby="v-pills-Lien-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-2">Approval of Lien</h6>
+                            <div class="p-2 text-justify">
+                                <div class="mb-3">
+                                    MC being the Leave-Sanctioning authority, Approval of Lien of Teaching/Non-Teaching staff by WBBSE is NOT required. MC is the competent authority in this regard.
+                                </div>
+                                <h6 class="mb-2 custom-font-20 font-weight-bold text-center">Prayer for Extension of Joining Period</h6>
+                                <div class="mb-3">
+                                    As WBBSE is now the appointing authority of teachers (including H M) and non-teaching staff of the secondary section, it is the sole authority of the Board to extend the Joining Period on valid grounds.
+                                    The prayer/application should be supported with the following documents.
+                                    <ul class="custom-ul-dice">
+                                        <li>
+                                            Application/Prayer by the concerned candidate explaining valid ground(s) for such extension with proof (if any).
+                                        </li>
+                                        <li>Supporting documents/Medical certificate (in case of seeking extension on Medical Ground).</li>
+                                        <li>Photocopy of Recommendation letter issued by WBCSSC.</li>
+                                        <li>Photocopy of Appointment letter issued by WBBSE.</li>
+                                    </ul>
+                                </div>
+                                <h6 class="mb-2 custom-font-20 font-weight-bold text-center">Resignation by Teaching/Non-Teaching staff</h6>
+                                <div class="mb-3">
+                                    If a teacher (including the H M) or a Non-teaching staff resigns from his post in order to join a new service, the Resignation must be approved by the Board. The prayer to the board is to be supported with the following documents:
+                                    <ul class="custom-ul-dice">
+                                        <li>
+                                            Forwarding Letter from the Head of the Institution (in case of HM, from the President of SMC/Administrator).
+                                        </li>
+                                        <li> Copy of the Resignation Letter of the candidate.</li>
+                                        <li> Copy of SMC Resolution accepting the Resignation of the concerned Teaching (including HM)/Non-Teaching staff.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-MediumInstruction" role="tabpanel" aria-labelledby="v-pills-MediumInstruction-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Change of Medium of Instruction/Introduction of a new Medium of Instruction</h6>
+                            <div class="p-2 text-justify">
+                                <div class="mb-2">School authority under WBBSE may apply to the Board for change of medium of Instruction or for introducing a new medium of instruction side by side with the existing medium of instruction. To do this the concerned school is required to submit the following documents along with the Forwarding Letter of the Head of the Institution: </div>
+                                <ul class="fa-ul">
+                                    <li>
+                                        <i class="fa-li fa fa-genderless"></i>Attested copies of SMC resolution in this regard
+                                    </li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Attested copy of Memo of Recognition and Memo  of Up-gradation issued by the Board</li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Validity of School  Management  Committee</li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Consent letter from approved qualified teacher(s) eligible and  willing to take classes in the new medium </li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Academic documents in support of the qualification of such teachers </li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Staff Pattern of the school in respect of teachers</li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Inspection Report of the concerned DIS (SE)/ADIS (SE) containing his/her opinion/views in this matter</li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Existing infrastructure of the school (copy of UDISE/School Report Card)</li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Statement of Student Enrolment for the last three years (Class-wise) with Teacher-Student ratio</li>
+                                    <li><i class="fa-li fa fa-genderless"></i>Number/List of students expressing willingness to study in the proposed medium</li>
+                                </ul>
+                            </div>
+                            <h6 class="text-center pb-3 custom-font-20 mt-2"><u>INTRODUCTION OF FIRST LANGUAGE</u></h6>
+                           
+                            <ol>
+                                <li style="text-indent:-0.1rem;">
+                                    Attested copies of SMC Resolution in this regard.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                   Attested copies of Memo of Recognition and Memo of Upgradation issued by the Board.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                    Validity of the School Managing Commitee.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                  Consent letter from approved qualified Teacher(s) who would be eligible in imparting lesson in Bengali / English / Hindi / Urdu / Nepali / Odia / 
+                                  Santali(Alchiki Script) / Gurmukhi(Punjabi) / Gujrati / Telugu / Tamil & Modern Tibetan as first languages approved by the WBBSE.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                  Academic qualification in support of the qualification of such teachers.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                   Staff Pattern of the Institution in respect of Teachers.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                   Inspection Report of concerned D.I of Schools(S.E.)/ADIS(S.E.) containing his/her
+                                    opinion/views this matter.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                   Present infrastructure of the School (copy of UDISE/School Report Card).
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                  Statement of student Enrolment for the last three(3) years (class wise) with Teacher-Student ratio.
+                                </li>
+                                <li style="text-indent:-0.1rem;">
+                                    Number/list of students expressing willingness to study in Bengali / English /
+                                    Hindi / Urdu / Nepali / Odia / Santali(Alchiki Script) / Gurmukhi(Punjabi) / Gujrati / Telugu / Tamil & Modern Tibetan as first language.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-ComputerApplication" role="tabpanel" aria-labelledby="v-pills-ComputerApplication-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">Introduction of Computer Application as an Optional Elective subject in Class-IX & Class-X</h6>
+                            <div class="p-2 text-justify">
+                                <div class="mb-1">WBBSE has introduced Computer Application as an Optional Elective subject in Class-IX & Class-X. A school may apply to the board for introducing the same in the interest of its students. The steps to be followed are given below:</div>
+                                <ul class="fa-ul">
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>The Head of the Institution of the concerned school shall apply to the Board [addressed to the Deputy Secretary (Academic)] in his/her letter head expressing willingness to introduce Computer Application as an Optional Elective subject in Class-IX & Class-X in his/her school.
+                                    </li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>On receiving the prayer, the Head of the Institution or representative of the school will be asked to deposit <i class="fas fa-rupee-sign d-inline pl-2"></i><b>20</b> in cash challan in the Board’s cash counter.</li>
+                                    <li class="mb-1"><i class="fa-li fa fa-genderless"></i>On production of such copy of the challan, the application form will be supplied by the Board.</li>
+                                    <li class="mb-1">
+                                        <i class="fa-li fa fa-genderless"></i>Submit the filled-in application along with necessary documents. The documents are—
+                                        <ul class="list-unstyled custom-text-indent pl-3 mt-1">
+                                            <li><b>a)</b> Resolution of the SMC for introduction of CA as an optional elective subject in Class-IX and Class-X</li>
+                                            <li><b>b)</b> Mark sheets and Certificates of Academic, Technical qualification and other related papers of the willing teacher(s)/instructor(s)* who will impart the lessons of Computer Application as an Optional Elective subject voluntarily.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="mb-2">
+                                    <b>**</b> Necessary Qualification of the Teacher/Instructor agreed to teach Computer Application
+                                </div>
+                                <div class="ml-3 mr-3">
+                                    <ul class="list-unstyled pl-4 custom-text-indent">
+                                        <li class="mb-2">
+                                            <b>a)</b> B. Tech. or equivalent/M. Tech or equivalent in-
+                                            <ul class="list-unstyled pl-4 custom-text-indent">
+                                                <li>
+                                                    <b>i)</b> Computer Sc. or,  <b>ii)</b> Computer Engineering,  or  <b>iii)</b> Computer Sc. & Engineering  or  <b>iv)</b> Computer Sc. & Technology
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="mb-1 font-weight-bold pl-5">
+                                            Or,
+                                        </li>
+                                        <li class="mb-1">
+                                            <b>b)</b> B. Sc. (Hons)/ M. Sc. In Computer Science or MCA from a recognized University/Institution
+                                        </li>
+                                        <li class="mb-1 font-weight-bold pl-5">
+                                            Or,
+                                        </li>
+                                        <li class="mb-1">
+                                            <b>c)</b> B Sc (Hons) in Physics/Math with Computer Sc. as a Pass subject or P.G. Dip. In Computer Sc. from a recognized University/Institution
+                                        </li>
+                                        <li class="mb-1 font-weight-bold pl-5">
+                                            Or,
+                                        </li>
+                                        <li class="mb-1">
+                                            <b>d)</b> M. Sc. In Physics/Math with P.G. Diploma in Computer Sc. from a recognized University/Institution
+                                        </li>
+                                        <li class="mb-1 font-weight-bold pl-5">
+                                            Or,
+                                        </li>
+                                        <li class="mb-1">
+                                            <b>e)</b> Ph. D. in Computer Sc.  from a recognized University/Institution
+                                        </li>
+                                        <li class="mb-1 font-weight-bold pl-5">
+                                            Or,
+                                        </li>
+                                        <li class="mb-1">
+                                            <b>f)</b> B. C. A. from a recognized University/Institution
+                                        </li>
+                                        <li class="mb-1 font-weight-bold pl-5">
+                                            Or,
+                                        </li>
+                                        <li class="mb-2">
+                                            <b>g)</b> B. Sc. (Pure) with diploma in Computer Science recognized by any Govt.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-AcademicCalendar" role="tabpanel" aria-labelledby="v-pills-AcademicCalendar-tab">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <object id="viewData" data="" class="w-100" type="application/pdf">
+                                    <a id="responsiveView" href="" target="_blank">
+                                        Click here to
+                                        download the PDF file.
+                                    </a>
+                                </object>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-Syllabus" role="tabpanel" aria-labelledby="v-pills-Syllabus-tab">
+                            <div class="row mx-auto">
+                                <div class="col-12">
+                                    <div class="table-responsive p-0">
+                                        <table id="GridSyllabus" class="gj-grid table table-light table-bordered table-striped table-responsive-md"></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/Message.js"></script>
+    <script src="~/js/BasicFunctions.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/js/client/sy.js"></script>
+    <script type="text/javascript">
+        var grid;
+        $("#v-pills-tab").click(function () {
+            setTimeout(chkFooter, 200);
+        });
+        $("#v-pills-AcademicCalendar-tab").click(function () {
+            try {
+                ShowLoaderNew();
+                var m = '@(GblFunctions.encryptPassword(MenuCode.AcademicCalender))';
+
+                $.ajax({
+                    url: "/Web/PdfViewerDynamic",
+                    type: "GET",
+                    dataType: "json",
+                    data: { 'm': '' + m + '' },
+                    contentType: "application/json",
+                    async: true,
+                    success: function (data) {
+                        var p = data.View;
+                        $("#viewData").prop('data', p);
+                        $("#responsiveView").prop('href', p);
+                        HideLoaderNew();
+                    },
+                    error: function (error) {
+                        alert(OperationError());
+                        console.log(error.responseText);
+                        HideLoaderNew();
+                    }
+                });
+            }
+            catch (err) {
+                console.log(err);
+                alert(OperationError());
+                HideLoaderNew();
+            }
+        });
+
+        $("#v-pills-Syllabus-tab").click(function () {
+            ShowLoaderNew();
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                HideLoaderNew();
+                try {
+                    $("#GridSyllabus div").removeAttr("title");
+                    $(".custom-view").prop("title", "View Syllabus");
+                    $("#GridSyllabus").find("th").find("div").css("font-size", "13.5px");
+                    setTimeout(chkFooter, 100);
+                }
+                catch (err) {
+                    console.log(err);
+                }
+            };
+            grid = $("#GridSyllabus").grid({
+                dataKey: "ContentId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../Web/GetSyllabusList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.reload({ searchString: '' });
+        });
+
+        $(document).ready(function () {
+            try {
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

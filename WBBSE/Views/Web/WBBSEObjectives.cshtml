@@ -1,0 +1,119 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Main Objectives";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">MAIN OBJECTIVES</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">About Us </span>  <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning">Main Objectives</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="bg-light my-5">
+    <div class="container-fluid">
+        <div class="row border rounded m-1 shadow">
+            <div class="col-12 p-4 text-justify">
+                <p class="font-weight-bold">
+                    To make our Vision and mission a reality the WBBSE has set some objectives:-
+                </p>
+                <ul>
+                    <li>
+                        To provide secondary education to all, both boys and girls, with a focus on quality education that assumes
+                        greater meaning today, when we consider the emerging challenges in our society.
+                    </li>
+                    <li>
+                        To promote and develop the aspects of secondary education in the state of West Bengal and to fulfill the educational aspirations of the students of the state.
+                    </li>
+                    <li>
+                        To act as an advisory organ to state government on the matter of scientific advancement of secondary education consistent with the National goals.
+                    </li>
+                    <li>
+                        To define appropriate approaches of academic activities to ensure joyful, child centric and holistic quality education to all children.
+                    </li>
+                    <li>
+                        To frame norms for implementation of various academic activities including quality issues; to control and coordinate various academic and training programmes of the board.
+                    </li>
+                    <li>
+                        To take steps to recognize High Schools, especially girls high schools so that girls and those from far flung areas get access to secondary
+                        education after completion of primary education.
+                    </li>
+                    <li>
+                        To frame curricula and syllabi in consonance with the rapid changes in the socio economic milieu of the country and in conformity with psychological
+                        , pedagogical and social principles.
+                    </li>
+                    <li>
+                        To organize capacity building and empowerment programmes to update and upgrade the professional competency of the teaching community.
+                    </li>
+                    <li>
+                        To collect feedback from different stakeholders with a view to monitoring the quality of education imparted in schools.
+                    </li>
+                    <li>
+                        To encourage schools to document the progress of students in a teacher and student friendly way.
+                    </li>
+                    <li>
+                        To prescribe and update conditions of examinations and conduct secondary examination, better known as Madhyamik Pariksha
+                        , after the completion of class X, which is the first public examination in a student’s life.
+                    </li>
+                    <li>
+                        To frame rules in order to ensure smooth transparent democratic and disciplined management of the schools recognized by the board.
+                    </li>
+                    <li>
+                        By virtue of its position in the middle tier, WBBSE strives to harmonise, coordinate and link up the activities of WBBPE and WBCHSE
+                        as Secondary education serves as a link between the elementary and higher education, and plays a very important role in this respect.
+                    </li>
+                    <li>
+                        To make it people-friendly and to easily reach out to every stakeholder through maximum digitization of records and services;
+                        the day is not far away when the services of the board will only be a click away. The day has come when the board is only a click away.
+                    </li>
+                </ul>
+                <p class="p-1">
+                    <b>Prime Focus of the Board</b>
+                </p>
+                <ul>
+                    <li>
+                        Innovation of teaching learning methodologies by devising student friendly and student centric paradigms, keeping in mind the socio-cultural and economic background of the students.
+                    </li>
+                    <li>
+                        Giving freedom to new experiment with new ideas and practices.
+                    </li>
+                    <li>
+                        Regularly updating and upgrading the pedagogical and professional skills of the teachers by conducting in-service training programmes and workshops, etc.
+                    </li>
+                    <li>
+                        Time to time reforms in examination and evaluation systems.
+                    </li>
+                    <li>
+                        To ensure 100% enrollment and retention of students till they pass out MP(S E) with desired learning outcomes.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) {
+
+            }
+        });
+    </script>
+}

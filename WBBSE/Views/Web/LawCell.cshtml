@@ -1,0 +1,69 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Law Cell";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">Law</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Sections / Department </span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Law</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-Law-tab" data-toggle="pill" href="#v-pills-Law" role="tab" aria-controls="v-pills-Law" aria-selected="true">Law Cell</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content border p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-Law" role="tabpanel" aria-labelledby="v-pills-Law-tab">
+                        <div class="p-2 my-2 text-justify">
+                            <div class="mb-2">
+                                The Law cell of the Board is at <b>77/2, Park Street, Kolkata - 700016</b> and is one of the most sensitive sections of WBBSE. The cell is headed by Special Officer (Law), Assistant Secretary (Law). There are 4 dealing assistants, 1 typist and 1 daily wage worker. The Cell deals with the following matters.
+                            </div>
+                            <ul class="list-unstyled pl-4 custom-text-indent">
+                                <li class="mb-2">
+                                    <b>1.</b> Volume of court cases are increasing day by day.
+                                </li>
+                                <li class="mb-2">
+                                    <b>2.</b> Most of the cases are mainly related to the management of the school, election of managing Committee, Appointment of Administrator, Adhoc Committee, D.D.O, decision of the Disciplinary Committee, relating to the allegations against teaching and non-teaching staff of WBBSE affiliated schools. There are many cases related to recognition of school, de-recognition, upgradation, amalgamation. Numerous cases are also related to examination related matter and also related to age correction. In recent times cases related to appoint of teaching and non-teaching staffs recommended by School Service Commission have also been increased.
+                                </li>
+                                <li>
+                                    <b>3.</b> Complying with the direction of the Hon’ble Court many cases are disposed of by the President, Secretary of the Board. Adhoc Committee of the Board also hold hearings on regular basis as per court orders.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { console.log(err); }
+        });
+    </script>
+}

@@ -1,0 +1,111 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Notification";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/css/CustomStyle.css" rel="stylesheet" />
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">NOTIFICATION</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning">Tender / Notification</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="row border rounded m-1 bg-light shadow">
+            <div class="col-md-6 p-4 pb-0 mb-2">
+                <select id="ddlNotificationType" class="form-control"></select>
+            </div>
+            <div class="col-md-6 p-4 pb-0 mb-2">
+                <div class="input-group text-right">
+                    <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search Notification" />
+                    <div class="input-group-append">
+                        <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-12 p-4 pt-0">
+                <div class="p-0 table-responsive">
+                    <table id="GridNotification" class="gj-grid table table-light table-bordered table-striped"></table>
+                </div>
+            </div>*@
+            <div class="col-md-12 mb-2" id="divGrid">
+                <div class="table-responsive">
+                    <table id="GridNotification" class="gj-grid table table-light table-bordered table-striped table-responsive-lg"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/client/nt.js"></script>
+    <script type="text/javascript">
+    var grid;
+    var d;
+    $(document).ready(function () {
+        $("#lnkCurrent").prop("href", window.location.href);
+        d = '@(Session[SessionNames.NotificationType] == null ? DefaultSetting.DefaultValEnc : Session[SessionNames.NotificationType].ToString())';
+        GetNotificationTypeList(d);
+        var onSuccessFunc = function (response) {
+            grid.render(response);
+            HideLoader();
+            try {
+                $("#GridNotification div").removeAttr("title");
+                $("#GridCircular div").removeAttr("title");
+                $(".custom-pdf").prop("title", Content.LinkType.PDF);
+                $(".custom-url").prop("title", Content.LinkType.URL);
+                $(".custom-view").prop("title", "View Notification");
+                chkFooter();
+            }
+            catch (err) {
+                console.log(err);
+            }
+            $("#GridNotification").on('DOMSubtreeModified', chkMod);
+        };
+
+        grid = $("#GridNotification").grid({
+            dataKey: "ContentId",
+            uiLibrary: "fontawesome",
+            iconsLibrary: 'fontawesome',
+            dataSource: { url: "../../Web/GetNotificationList", success: onSuccessFunc },
+            columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridNotification").off('DOMSubtreeModified');
+            });
+
+            try {
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+</script>
+}

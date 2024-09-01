@@ -1,0 +1,289 @@
+﻿@using Common;
+@model ViewModel.VMProfileVerification
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>WBBSE School :: Profile Verification</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/img/Favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="~/img/Favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/img/Favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/Favicons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/img/Favicons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/Favicons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/img/Favicons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/Favicons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/Favicons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/Favicons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/Favicons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/Favicons/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="~/img/Favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Custom fonts for this template-->
+    <link href="~/css/GoogleFonts.css" rel="stylesheet" />
+    <link href="~/css/gijgo.css" rel="stylesheet" />
+    <!-- Custom styles for this template-->
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+</head>
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav id="navTop" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="input-group">
+                        <div>
+                            <span>Logged in as : <span class="text-center text-success"><strong><u>@Session[SessionNames.GroupName]</u></strong></span></span>
+                        </div>
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <div>
+                            Server Time : <span id="time" class="text-center text-success"></span>
+                        </div>
+                    </div>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Session[SessionNames.Name]</span>
+                                <img class="img-profile rounded-circle" src="@Session[SessionNames.ProfileImage]" style="background-color: lightcoral;">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid pb-5" id="divMainBody">
+                    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Profile Verification :: <span class="text-warning">@Session[SessionNames.OrganizationName]</span></h1>
+                    <hr class="pb-2" />
+                    <div class="row pb-1">
+                        <div class="col-md-12">
+                            @if (ViewData[ViewDataNames.ErrorVisibility] == "")
+                            {
+                                <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <ul style="list-style-type: none; text-align: center;">
+                                        <li>
+                                            @ViewData[ViewDataNames.SaveInfo]
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                            @if (ViewData[ViewDataNames.SucessVisibility] == "")
+                            {
+                                <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <ul style="list-style-type: none; text-align: center;">
+                                        <li>
+                                            @ViewData[ViewDataNames.SaveInfo]
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @if (Session[SessionNames.NewPasswordChangedYN] != null && Session[SessionNames.NewPasswordChangedYN].ToString() == "N")
+                    {
+                        <div id="divProfile" class="custom-div-center">
+                            @using (Html.BeginForm("SchoolProfileVerification", "SchoolProfileVerification", FormMethod.Post, new { @autocomplete = "off" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <h2>Edit Profile</h2>
+                                    </div>
+                                </div>
+                                <b class="w-auto">School Head Basic Details
+                                        <hr />
+                                </b>
+                                <div class="row mb-2">
+                                    <div class="col-sm-3" style="text-align: right;">Salutation<span style="color: red;"> *</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.DropDownListFor(m => m.SalutationId, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlSalutation" })
+                                        @Html.HiddenFor(m => m.SalutationId, new { @id = "S" })
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-sm-3" style="text-align: right;">First Name<span style="color: red;"> *</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control OnlyAlpha", @placeholder = "First Name *", @id = "txtFirstName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-sm-3" style="text-align: right;">Middle Name</div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control OnlyAlpha", @placeholder = "Middle Name", @id = "txtMiddleName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-sm-3" style="text-align: right;">Last Name<span style="color: red;"> *</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control OnlyAlpha", @placeholder = "Last Name *", @id = "txtLastName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                    </div>
+                                </div>
+                                <b class="w-auto">School Contact Details
+                                        <hr />
+                                </b>
+                                <div class="row mb-2">
+                                    <div class="col-sm-3" style="text-align: right;">Email Id<span style="color: red;"> *</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(m => m.EMailId, new { @class = "form-control allowCharForEmailId", @placeholder = "Email Id *", @id = "txtEmailId", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                    </div>
+                                </div>
+                                
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Mobile No.<span style="color: red;">*</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.TextBoxFor(m => m.ContactNo, new { @class = "form-control checkContactNo", @placeholder = "Mobile No *", @id = "txtContactNo", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Phone No.</div>
+                                    <div class="col-sm-2">
+                                        @Html.TextBoxFor(m => m.StdCode, new { @class = "form-control checkContactNo", @placeholder = "Std Code", @id = "txtStdCode", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                    </div>
+                                    <div class="col-sm-4">
+                                        @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control checkContactNo", @placeholder = "Phone No", @id = "txtPhoneNo", @maxlength = 8, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                                    </div>
+                                </div>
+                               
+                                <b class="w-auto">School Password Settings
+                                        <hr />
+                                </b>
+
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Old Password<span style="color: red;">*</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.PasswordFor(m => m.OldPassword, new { @class = "form-control", @placeholder = "Old Password *" })
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">New Password<span style="color: red;">*</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control", @placeholder = "New Password *" })
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a data-toggle="popover" data-placement="right" style="font-size: large; cursor: pointer;">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-sm-3" style="text-align: right;">Confirm Password<span style="color: red;">*</span></div>
+                                    <div class="col-sm-6">
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password *" })
+                                    </div>
+                                </div>
+                                
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-md-12 text-center" style="align-items: center;">
+                                        <button type="submit" id="btnSavePassword" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                                <div class="row" id="divPInfo" style="display: none;">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-6 text-center">
+                                        <div class="alert alert-danger" style="padding: 10px;">
+                                            <button type="button" class="close" id="btnPClose">×</button>
+                                            <span id="InfoP"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(m => m.OperationType, new { @id = "hp" })
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            @*style="padding: 10px; position: fixed; right: 0; bottom: 0; left: 0;"*@
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span><strong>Disclaimer: This site is designed and develped by <a href="https://www.nic.in/" target="_blank">National Informatics Center</a> and the contents are provided by the respective Department.</strong></span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Logout</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/Web/LogOut">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Logout Modal-->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/gijgo.js"></script>
+    <script src="~/vendor/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="~/js/Message.js"></script>
+    <script src="~/js/ErrorCodes.js"></script>
+    <script src="~/js/BasicFunctions.js"></script>
+    <script src="~/js/SHA256.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.js"></script>
+    <script src="~/js/sb-admin-2.min.js"></script>
+    <script src="~/js/Duplicate.js"></script>
+    <script src="~/js/jquery-required.js"></script>
+    <script src="~/Areas/Schools/js/profile-verification.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+</body>
+</html>

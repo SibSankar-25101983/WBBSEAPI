@@ -1,0 +1,400 @@
+﻿@using Common;
+@model ViewModel.VMMstBooks
+
+@{
+    ViewBag.Title = "WBBSE Admin :: List of Books";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Book List</h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.BookId)
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+@section header
+{
+    <div class="row pb-2">
+        <div class="col-md-7 mb-2">
+            <div class="input-group">
+                <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search by Book Name" />
+                <div class="input-group-append">
+                    <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 mb-2">
+            @if (ViewData[ViewDataNames.AddYN] == "visible")
+            {
+                <div class="btn-group float-right">
+                    <button type="button" id="btnAdd" class="btn btn-outline-secondary" accesskey="A">Add New</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<div class="table-responsive">
+    <table id="GridData" class="gj-grid table table-light table-bordered table-striped"></table>
+</div>
+
+@*Main Modal*@
+<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-50">
+        <div id="divModalContent" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title"><span id="lblModalHeader"></span></h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm("BookList", "AdminBooks", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-body" id="divPopupBody">
+                    <div class="alert alert-danger alert-dismissible" id="AlertInfo">
+                        <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                        <strong><span id="AlertInfoMsg"></span></strong>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Note:</strong> Marked with an astrix(<span style="color: red;"> * </span>) is mandatory data.
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Book Name<span style="color: red;"> * </span></span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(m => m.BookName, new { @class = "form-control alpha", @placeholder = "Book Name *", @id = "txtBookName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Book Code<span style="color: red;"> * </span></span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(m => m.BookCode, new { @class = "form-control alphaWithoutSpace", @placeholder = "Book Code *", @id = "txtBookCode", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Class<span style="color: red;"> * </span></span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.Class, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlClass" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Medium<span style="color: red;"> * </span></span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.SchoolMediumId, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlSchoolMedium" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Price<span style="color: red;"> * </span></span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(m => m.BookPrice, new { @class = "form-control checkPrice", @placeholder = "Book Price *", @id = "txtBookPrice", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.EntType, new { @id = "e" })
+                    @Html.HiddenFor(m => m.BookId, new { @id = "B" })
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- View Modal -->
+<div class="modal fade" id="popupModalView" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-50">
+        <div id="divModalContentView" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title">Book :: View Record</h4>
+                <button type="button" class="close text-light" data-dismiss="modal" onclick="ClearViewData()">&times;</button>
+            </div>
+            <div class="modal-body" id="divPopupBodyView">
+                <table class="table table-bordered table-striped table-hover">
+                    <tbody id="tblViewData"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ClearViewData()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/js/BasicFunctions.js"></script>
+    <script src="~/js/Message.js"></script>
+    <script type="text/javascript">
+        var grid;
+        $(".alpha").keypress(function (e) { return alpha(e); });
+        $(".alphaWithoutSpace").keypress(function (e) { return alphaWithoutSpace(e); });
+        $(".checkPrice").keypress(function (e) { return checkPrice(e); });
+        $("#btnSearch").on("click", Search);
+        $("#btnAdd").on("click", Add);
+        $("#btnSave").on("click", Save);
+        function ClearData() {
+            $('#divPopupBody input').val('');
+            $('#divPopupBody select').val(DefaultSetting.DefaultValEnc);
+        }
+        function ClearViewData() {
+            $("#tblViewData").empty();
+        }
+        function GetClassList(d) {
+            $("#ddlClass").empty();
+            $("#ddlClass").append(new Option("Select Class", DefaultSetting.DefaultValEnc));
+            $("#ddlClass").append(new Option("V", "V"));
+            $("#ddlClass").append(new Option("VI", "VI"));
+            $("#ddlClass").append(new Option("VII", "VII"));
+            $("#ddlClass").append(new Option("VIII", "VIII"));
+            $("#ddlClass").append(new Option("IX", "IX"));
+            $("#ddlClass").append(new Option("X", "X"));
+            $("#ddlClass").val(d);
+        }
+        function GetSchoolMediumList(d) {
+            $("#ddlSchoolMedium").empty();
+            $("#ddlSchoolMedium").append(new Option("Select Medium", DefaultSetting.DefaultValEnc));
+            try {
+                $.ajax({
+                    url: "/AdminBooks/GetSchoolMediumList",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json",
+                    async: true,
+                    success: function (data) {
+                        $(data).each(function (index, item) {
+                            var opt = new Option(item.SchoolMediumName, item.SchoolMediumId);
+                            $("#ddlSchoolMedium").append(opt);
+                        });
+                        $("#ddlSchoolMedium").val(d);
+                    },
+                    error: function (error) {
+                        console.log(error.responseText);
+                    }
+                });
+            }
+            catch (err) {
+                console.log(err.message);
+            }
+        }
+        function Add() {
+            ClearData();
+            $('#AlertInfo').hide();
+            $("#e").val(setET(1));
+            $("#B").val(DefaultSetting.DefaultValEnc);
+            $("#lblModalHeader").text("Book List :: Add Record");
+            GetClassList(DefaultSetting.DefaultValEnc);
+            GetSchoolMediumList(DefaultSetting.DefaultValEnc);
+            $("#popupModal").modal("show");
+        }
+        function Save() {
+            try {
+                if ($("#e").val() != setET(3)) {
+                    if ($.trim($("#txtBookName").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(Books.Required.BookName);
+                        $("#txtBookName").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if (!chkDataFormat(RegexType.Alpha, $.trim($("#txtBookName").val()))) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(Books.Validation.InvalidBookName);
+                        $("#txtBookName").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#txtBookCode").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(Books.Required.BookCode);
+                        $("#txtBookCode").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if (!chkDataFormat(RegexType.AlphaWithoutSpace, $.trim($("#txtBookCode").val()))) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(Books.Validation.InvalidBookCode);
+                        $("#txtBookCode").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($("#ddlClass").val() == DefaultSetting.DefaultValEnc) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(Books.Required.SubjectClass);
+                        $("#ddlClass").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($("#ddlSchoolMedium").val() == DefaultSetting.DefaultValEnc) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(Books.Required.SchoolMedium);
+                        $("#ddlSchoolMedium").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if ($.trim($("#txtBookPrice").val()) == DefaultSetting.EmptyVal) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(Books.Required.BookPrice);
+                        $("#txtBookPrice").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                    if (parseFloat($.trim($("#txtBookPrice").val())) <= 0) {
+                        $('#AlertInfo').show();
+                        $('#AlertInfoMsg').text(Books.Required.BookPrice);
+                        $("#txtBookPrice").focus();
+                        $('#popupModal').scrollTop(0);
+                        return false;
+                    }
+                }
+                var x = confirm(Msg_Confirm());
+                if (x) {
+                    $("#popupModal").modal("hide");
+                    ShowLoader();
+                }
+                return x;
+            }
+            catch (err) {
+                alert(OperationError());
+                console.log(err.message);
+                return false;
+            }
+        }
+        function Edit(e) {
+            try {
+                $('#AlertInfo').hide();
+                $("#e").val(setET(2));
+                $("#lblModalHeader").text("Book List :: Edit Record");
+                $("#B").val(e.data.record.BookId);
+                $("#txtBookName").val(e.data.record.BookName);
+                $("#txtBookCode").val(e.data.record.BookCode);
+                GetClassList(e.data.record.Class);
+                GetSchoolMediumList(e.data.record.SchoolMediumId);
+                $("#txtBookPrice").val(e.data.record.BookPrice);
+                $("#popupModal").modal("show");
+            }
+            catch (err) {
+                alert(OperationError());
+                return false;
+            }
+        }
+        function View(e) {
+            ClearViewData();
+            try {
+                $("#tblViewData").append("<tr><td class='w-25'>Book Name</td><td class='w-75'>" + e.data.record.BookName + "</td></tr>");
+                $("#tblViewData").append("<tr><td class='w-25'>Book Code</td><td class='w-75'>" + e.data.record.BookCode + "</td></tr>");
+                $("#tblViewData").append("<tr><td class='w-25'>Class</td><td class='w-75'>" + e.data.record.Class + "</td></tr>");
+                $("#tblViewData").append("<tr><td class='w-25'>Medium</td><td class='w-75'>" + e.data.record.SchoolMediumName + "</td></tr>");
+                $("#tblViewData").append("<tr><td class='w-25'>Price</td><td class='w-75'>" + e.data.record.BookPrice + "</td></tr>");
+                $("#popupModalView").modal("show");
+            }
+            catch (err) {
+                alert(OperationError());
+                console.log(err.message);
+            }
+        }
+        function Remove(e) {
+            $("#e").val(setET(3));
+            $("#B").val(e.data.record.BookId);
+            $("#btnSave").click();
+        }
+        function Search() {
+            $("#GridData").off('DOMSubtreeModified', chkMod);
+            grid.reload({ searchString: $.trim($("#txtSearch").val()) });
+        }
+        var chkMod = function (e) {
+            try {
+                if (e.target.parentElement.nodeName.toLowerCase() == "td") {
+                    console.log(e);
+                    window.location.href = "../../../../Error/Unexpected.html";
+                }
+            }
+            catch (err) {
+            }
+        };
+        window.onbeforeunload = DisableButtons;
+        $(document).ready(function () {
+            DisableButtons();
+            ShowLoader();
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                $("#GridData").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+                EnableButtons();
+            };
+            grid = $("#GridData").grid({
+                dataKey: "BookId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../AdminBooks/GetBookList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridData").off('DOMSubtreeModified');
+            });
+
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

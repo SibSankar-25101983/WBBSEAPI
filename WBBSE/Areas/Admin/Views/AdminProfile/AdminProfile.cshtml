@@ -1,0 +1,313 @@
+﻿@using Common;
+@model ViewModel.VMProfileData
+
+@{
+    ViewBag.Title = "WBBSE Admin :: Profile Management";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Profile Management
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none; text-align: center;">
+            <li>
+                @Html.ValidationMessageFor(m => m.NewPassword)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.OldPassword)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </li>
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none; text-align: center;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<div class="row">
+    <div class="mx-auto col-sm-8 col-md-8 col-lg-8 col-xl-8">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-primary">
+                <h6 class="m-0 font-weight-bold text-light">Profile</h6>
+                <div class="dropdown no-arrow">
+                    @*<span class="text-right text-light">Edit <i class='fas fa-long-arrow-alt-right'></i></span>*@
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#divEditProfile">Edit Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#divPassword">Change Password</a>
+                        @*<div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#divImage">Change Profile Image</a>*@
+                    </div>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="row pb-3">
+                    <div class="mx-auto col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <div class="rounded-circle border-dark bg-primary" style="min-width: 150px; max-width: 150px; min-height: 150px; max-height: 150px; margin: auto;">
+                            <img src="@Session[SessionNames.ProfileImage]" class="rounded-circle" style="min-width: 150px; max-width: 150px; min-height: 150px; max-height: 150px;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <div class="mx-auto col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                        <table class="gj-grid table table-responsive-sm table-light table-bordered table-striped text-dark">
+                            <tbody style="font-size: small;">
+                                @Html.Raw(Model.ProfileData)
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*PASSWORD CHANGE MODAL*@
+<div class="modal fade" id="divPassword" tabindex="-1" role="dialog" aria-labelledby="PasswordModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-width-50" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("AdminProfile", "AdminProfile", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-header bg-primary text-gray-100">
+                    <h5 class="modal-title">Change Password</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-gray-100">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="divPInfo" style="display: none;">
+                        <div class="col-md-12 text-center">
+                            <div class="alert alert-danger" style="padding: 10px;">
+                                <button type="button" class="close" id="btnPClose">×</button>
+                                <span id="InfoP"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>Current Password<span style="color: red;"> *</span></span>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            @Html.PasswordFor(m => m.OldPassword, new { @class = "form-control", @placeholder = "Current Password *" })
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>New Password<span style="color: red;"> *</span></span>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <div class="input-group mb-3">
+                                @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control", @placeholder = "New Password *" })
+                                <div class="input-group-append">
+                                    <a data-toggle="popover" data-placement="right" class="text-danger input-group-text" style="font-size: large; cursor: pointer;">
+                                        <span class="fa fa-exclamation-circle"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>Confirm Password<span style="color: red;"> *</span></span>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password *" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnSavePassword">Update Password</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@*EDIT PROFILE MODAL*@
+<div class="modal fade" id="divEditProfile" tabindex="-1" role="dialog" aria-labelledby="EditProfileModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-width-50" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("AdminEditProfile", "AdminProfile", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-header bg-primary text-gray-100">
+                    <h5 class="modal-title">Edit Profile</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-gray-100">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="divEditProfileInfo" style="display: none;">
+                        <div class="col-md-12 text-center">
+                            <div class="alert alert-danger" style="padding: 10px;">
+                                <button type="button" class="close" id="btnEditProfileClose">×</button>
+                                <span id="InfoEditProfile"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>Salutation<span style="color: red;"> *</span></span>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(m => m.SalutationId, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlSalutation" })
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>First Name<span style="color: red;"> *</span></span>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control OnlyAlpha", @placeholder = "First Name *", @id = "txtFirstName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>Middle Name</span>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control OnlyAlpha", @placeholder = "Middle Name", @id = "txtMiddleName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>Last Name<span style="color: red;"> *</span></span>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control OnlyAlpha", @placeholder = "Last Name *", @id = "txtLastName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>Mobile No.<span style="color: red;"> *</span></span>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control checkContactNo", @placeholder = "Mobile No", @id = "txtMobileNo", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>Email Id<span style="color: red;"> *</span></span>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control allowCharForEmailId", @placeholder = "Email Id", @id = "txtEmailId", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.SalutationId, new { @id = "S" })
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnSaveEditProfile">Update Profile</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@*PROFILE IMAGE UPDATE MODAL*@
+<div class="modal fade" id="divImage" tabindex="-1" role="dialog" aria-labelledby="PasswordModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("AdminProfileUploadImage", "AdminProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-header bg-primary text-gray-100">
+                    <h5 class="modal-title">Change Profile Image</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-gray-100">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="divIInfo" style="display: none;">
+                        <div class="col-sm-12 text-center">
+                            <div class="alert alert-danger" style="padding: 10px;">
+                                <button type="button" class="close" id="btnIClose">×</button>
+                                <span id="InfoI"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-md-12">
+                            <span>Select Image<span style="color: red;"> * </span>(<span class="text-primary">Max allowed size : 100kb, Accepted format : jpg</span>)</span>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm-12">
+                            <input type="file" name="postedFile" onchange="readURL1(this)" />
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm-6 text-center mx-auto">
+                            <img id="imgPhotograph" class="rounded-circle" src="~/img/no-photo.png" alt="This feature may not work with older browser" style="min-width: 150px; min-height: 150px; max-width: 150px; max-height: 150px; margin: auto;" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <input type="submit" id="btnSubmit" value="Upload" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Areas/Admin/js/profile.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+}

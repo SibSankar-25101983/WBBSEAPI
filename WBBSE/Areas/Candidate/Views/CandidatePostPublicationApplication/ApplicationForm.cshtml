@@ -1,0 +1,160 @@
+﻿@using Common;
+@model List<ViewModel.VMPostPublication>
+
+@{
+    ViewBag.Title = "WBBSE Candidate :: Post Publication Application Form";
+    Layout = "~/Areas/Candidate/Views/Shared/_LayoutCandidate.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">
+        Application Form
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div class="row">
+        <div class="col-md-8 mx-auto font-weight-bold">
+            <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+                <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                <ul class="list-unstyled">
+                    <li id="liErrMsg">
+                        @Html.Raw(ViewData[ViewDataNames.SaveInfo])
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mx-auto font-weight-bold">
+            <div id="divV" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorAlertVisibility]">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <ul class="list-unstyled">
+                    <li>
+                        @Html.Raw(ViewData[ViewDataNames.ErrDesc])
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <ul class="list-unstyled">
+                    <li>
+                        @ViewData[ViewDataNames.SaveInfo]
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewData[ViewDataNames.AddYN] == "visible" && Model != null)
+{
+    using (Html.BeginForm("ApplicationForm", "CandidatePostPublicationApplication"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="alert alert-success">
+                    You Are Eligible For <strong>@Session[SessionNames.PostPublicationType]</strong>. Application Fees <strong>@Session[SessionNames.PostPublicationPrice]</strong> <i class="fas fa-rupee-sign"></i> Per Subject.
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-8 mx-auto">
+                <div class="alert alert-warning">
+                    <strong>WARNING !</strong> Please Fill-up The Application Form Carefully.
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-8 mx-auto border rounded shadow m-0 p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table table-hover">
+                        <thead>
+                            <tr class="bg-primary text-light font-weight-bold">
+                                <th>Subject Name</th>
+                                <th>Marks Obtained</th>
+                                <th>Grade</th>
+                                <th class="text-center">Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int i = 0;
+                                foreach (var item in Model)
+                                {
+                                    string name = "[" + i + "].AppliedYN";
+                                    <tr>
+                                        <td class="w-25 font-weight-bold">
+                                            @Model[i].SubjectName
+                                            @Html.HiddenFor(m => Model[i].ScrutinySubjectId)
+                                        </td>
+                                        <td class="w-25">
+                                            @Model[i].Marks
+                                        </td>
+                                        <td class="w-25">
+                                            @Model[i].Grade
+                                        </td>
+                                        <td class="w-25 text-center">
+                                            <div class="checkbox pl-3">
+                                                <label>
+                                                    <input type="checkbox" class="checkbox-custom apply" name="@name" value="@Model[i].AppliedYN"
+                                                           @if (Model[i].AppliedYN == "Y") { <text> checked </text>            } />
+                                                </label>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    i++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 pl-4">
+                        <button type="submit" id="btnApply" class="btn btn-primary">Apply</button>
+                        <a id="lnkPayment" class="btn btn-warning" href="@Session[SessionNames.PostPublicationPaymentPageLink]">Proceed To Payment</a>
+                        <a class="btn btn-secondary" href="/Candidate/CandidateHome/Home">Exit</a>
+                    </div>
+                    <div class="col-md-6 text-lg-right pl-4 pr-4">
+                        <h4><span class="badge badge-danger">Total Price : <span id="txtPrice">0 <i class="fas fa-rupee-sign"></i></span></span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section scripts
+{
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/Areas/Candidate/js/application-form.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            pps = parseFloat('@(Session[SessionNames.PostPublicationPrice] == null ? "0" : Session[SessionNames.PostPublicationPrice].ToString())');
+            CalculatePrice();
+            ChkLink();
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

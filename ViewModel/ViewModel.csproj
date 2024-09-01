@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9D72BF3E-3BA5-495B-8660-0D2534961312}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ViewModel</RootNamespace>
+    <AssemblyName>ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VMAdminLogin.cs" />
+    <Compile Include="VMBoardDesk.cs" />
+    <Compile Include="VMCandidateLogin.cs" />
+    <Compile Include="VMCandidateRegistration.cs" />
+    <Compile Include="VMContactUs.cs" />
+    <Compile Include="VMContentDetails.cs" />
+    <Compile Include="VMImage.cs" />
+    <Compile Include="VMInbox.cs" />
+    <Compile Include="VMMac.cs" />
+    <Compile Include="VMMacAuthorization.cs" />
+    <Compile Include="VMMarquee.cs" />
+    <Compile Include="VMMstBlock.cs" />
+    <Compile Include="VMMstBooks.cs" />
+    <Compile Include="VMMstCircle.cs" />
+    <Compile Include="VMMstDesignation.cs" />
+    <Compile Include="VMMstDistrict.cs" />
+    <Compile Include="VMMstGeographicalDistrict.cs" />
+    <Compile Include="VMMstLinkType.cs" />
+    <Compile Include="VMMstPreSchool.cs" />
+    <Compile Include="VMMstSalutation.cs" />
+    <Compile Include="VMMstSchool.cs" />
+    <Compile Include="VMMstSchoolCategory.cs" />
+    <Compile Include="VMMstSchoolManagement.cs" />
+    <Compile Include="VMMstSchoolMedium.cs" />
+    <Compile Include="VMMstSchoolRecognition.cs" />
+    <Compile Include="VMMstSchoolStatus.cs" />
+    <Compile Include="VMMstSchoolType.cs" />
+    <Compile Include="VMMstScrutiny.cs" />
+    <Compile Include="VMMstState.cs" />
+    <Compile Include="VMMstSubDivision.cs" />
+    <Compile Include="VMMstUser.cs" />
+    <Compile Include="VMMstUserGroup.cs" />
+    <Compile Include="VMMstUserType.cs" />
+    <Compile Include="VMMstZone.cs" />
+    <Compile Include="VMPostPublication.cs" />
+    <Compile Include="VMPostPublicationApplicationData.cs" />
+    <Compile Include="VMPreSchoolEditPermission.cs" />
+    <Compile Include="VMPreSchoolProfile.cs" />
+    <Compile Include="VMProfileData.cs" />
+    <Compile Include="VMProfileVerification .cs" />
+    <Compile Include="VMQuotes.cs" />
+    <Compile Include="VMReporting.cs" />
+    <Compile Include="VMSchoolEditPermission.cs" />
+    <Compile Include="VMSchoolLogin.cs" />
+    <Compile Include="VMSchoolProfile.cs" />
+    <Compile Include="VMSchoolTransfer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{7c7a65d6-76da-4421-8b12-62a2e70758ca}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

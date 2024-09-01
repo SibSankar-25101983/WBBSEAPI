@@ -1,0 +1,45 @@
+﻿@using Common;
+@model ViewModel.VMSchoolLogin
+
+@{
+    ViewBag.Title = "WBBSE :: Home";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@*@section htmlhead
+{
+    <link href="~/css/equal-height-columns.css" rel="stylesheet" />
+}*@
+
+@Html.Raw(ViewData[ViewDataNames.Section1].ToString())
+@Html.Raw(ViewData[ViewDataNames.Section2].ToString())
+
+<section id="aboutBoard" class="p-2">
+    <div class="container-fluid justify-content-center align-items-center">
+        <div class="row">
+            @Html.Raw(ViewData[ViewDataNames.Section3].ToString())
+        </div>
+    </div>
+</section>
+
+@Html.Raw(ViewData[ViewDataNames.Section4].ToString())
+@Html.Raw(ViewData[ViewDataNames.Section6].ToString())
+
+@section scripts
+{
+    <script src="~/js/client/hm.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        window.onbeforeunload = DisableButtons;
+        $(document).ready(function () {
+            try {
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

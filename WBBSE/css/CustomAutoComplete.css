@@ -1,0 +1,24 @@
+﻿/*JQUERY UI OVER-RIDE*/
+.ui-autocomplete {
+    position: absolute;
+    cursor: default;
+    z-index: 99999;
+    border: 1px solid #858796;
+    border-radius: 2px;
+    font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    /*background-color:#f3fffb;*/
+}
+
+.ui-menu-item {
+    border: 1px solid #858796;
+    border-radius: 2px;
+}
+
+/*.popover {
+            border-color:black;
+        }
+
+        .popover-body {
+            color:#78261f;
+        }*/
+/*********************/

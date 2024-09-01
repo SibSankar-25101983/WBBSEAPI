@@ -1,0 +1,105 @@
+﻿@using Common;
+@model ViewModel.VMInbox
+
+@{
+    ViewBag.Title = "WBBSE School :: Notice";
+    Layout = "~/Areas/Schools/Views/Shared/_LayoutSchool.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Notice</h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2 text-right mb-2 pt-2">
+        <span class="text-primary">Select Type</span>
+    </div>
+    <div class="col-sm-4 mb-2">
+        <select id="ddlNoticeType" class="form-control">
+            <option value="M" selected="selected">Non-Archived</option>
+            <option value="A">Archived</option>
+        </select>
+    </div>
+    <div class="col-sm-6 mb-2">
+        <div class="input-group text-right">
+            <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search Notice" />
+            <div class="input-group-append">
+                <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 table-responsive mb-4">
+        <table id="GridNotice" class="gj-grid table table-light table-bordered table-striped"></table>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Areas/Schools/js/notice.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function () {
+            ShowLoader();
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                $("#GridNotice").find("th").find("div").css("font-size", "13.5px");
+                $("#GridNotice").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+                UnreadNoticeListStatus();
+            };
+            grid = $("#GridNotice").grid({
+                dataKey: "InboxId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../SchoolNotice/GetSchoolInboxList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridNotice").off('DOMSubtreeModified');
+            });
+            
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

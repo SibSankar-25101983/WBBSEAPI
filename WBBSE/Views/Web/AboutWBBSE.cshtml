@@ -1,0 +1,111 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "About WBBSE";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">PROFILE</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">About Us </span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Profile</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="bg-light my-5">
+    <div class="container-fluid">
+        <div class="row border rounded m-1 shadow">
+            <div class="col-12 p-4 text-justify">
+                @*<h1>History</h1>*@
+                <p class="p-1">
+                    The <b>West Bengal Board of Secondary Education</b> came into being way back in 1951 as <b>West Bengal</b> state government administered autonomous examining
+                    authority for the Standard 10 examination (or <b>secondary school level</b> examination) of <b>West Bengal</b>.
+                    Established under the West Bengal Secondary Education Act of 1950, it was then called the <b>Board of Secondary Education</b>. <b>Sri Apurba Kr. Chanda</b>
+                    was the first Chairman of the Board. The Board of Secondary education was renamed as The <b>West Bengal Board of Secondary Education</b> in 1964, under the
+                    West Bengal Board of Secondary Education Act of 1963. The Board in its present look came into existence from January, 1964 with <b>Dr. J. C. Sengupta</b> as the Chairman.
+                    Currently, Professor Dr.Kalyanmoy Ganguly is the President and Paromita Roy is the Secretary in-charge of WBBSE.
+                </p>
+                <p class="p-1">
+                    <b><i>The WBBSE has under its control and regulation different types of secondary schools in the state of West Bengal</i></b>:-
+                </p>
+                <ul class="pl-5">
+                    <li>
+                        Government Sponsored Secondary School
+                    </li>
+                    <li>
+                        Non-Government Aided Secondary Schools
+                    </li>
+                    <li>
+                        DA getting Secondary School
+                    </li>
+                    <li>
+                        DA getting Anglo Indian Schools (Secondary)
+                    </li>
+                    <li>
+                        Un-Aided Private Schools
+                    </li>
+                    <li>
+                        As for govt. schools, WBBSE is the academic authority.
+                    </li>
+                </ul>
+                <p class="p-1">
+                    The board started its journey in 1951 with 1270 high schools taken over from Calcutta University. The number increased to 2312 by the end of 1963 and at present the Board handles about 11000 Jr.high and high schools.
+                    With the increase of recognized schools, the number of candidates appearing in the secondary examination has been increasing by leaps and bounds. In its first school leaving examination in 1952 the board handled 42000 candidates,
+                    which sky rocketed to a whopping 10,66,000 in 2019. In this context, the Board’s endeavour to promote women education must not be overlooked.
+                    It is reflected in the fact that the enroled percentage of girl students in this year's (2020) Madhyamik Examination was 56.70 % while that of boys was 43.30%.
+                </p>
+                <p class="p-1">
+                    Not only has the number of schools and students increased fast, but, its operational ambit has also increased manifold over the years.
+                    The board is no longer a mere exam regulatory body. Rather in the recent past WBBSE has undergone a complete makeover in its pivotal role of steersman in the field of
+                    school education. Based on the purview of RTE Act-2009 and the West Bengal Right of Children to Free and Compulsory Education Rules, 2012 the Board has
+                    set some directives in correlation with improving the quality of education as well as to ensure the discipline and time schedule of daily classes, and also
+                    to ensure minimum learning outcomes as per amendment of RTE-2009.
+                </p>
+                <p class="p-1">
+                    To equip the teachers well to carry out the day-to-day lessons in a desired manner so as to achieve the targeted goals of learning outcomes, the board
+                    conducts different workshops and in-service trainings.
+                </p>
+                <p class="p-1">
+                    Responding to the demands of time the Board has, time and again, restructured the secondary syllabi with the help of independent panel of expert
+                    (the latest been done in 2016 and another revision is going on). Keeping in view the national and international perspective the board has published text books of
+                    all the classes from VI to VIII and some of class-IX and class- X. Besides taking up the publication of text books for different classes, the Board accords approval
+                    to books published by different private publishing houses for the secondary level students. These private publications include books in Santali, Nepali and Urdu
+                    catering to specific linguistic demands. To keep pace with the changing time, the board has introduced additional subjects like Information Technology,
+                    Computer Application and Hardware Management.
+                </p>
+                <p class="p-1">
+                    The board publishes the Parshad Barta, a periodical which acts as a forum for sharing of experiences and views. First published in December, 1974,
+                    the Parshad Barta publishes different Circulars and GOs also with a view to helping school authorities about changing rules and regulations of the board.
+                    Teachers and students from the length and breadth of the state may also contribute their meaningful and enriching write ups.
+                </p>
+                <p class="p-1">
+                    Not only that, the Board has brought the process of @*recruitment and*@ appointment under its operational ambit. It has now become the appointing authority of Headmasters,
+                    secondary teaching and non-teaching staff including librarian.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

@@ -1,0 +1,155 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Sale Counter";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">WBBSE SALES COUNTER</span>
+            </div>
+            <div class="col-md-12 align-items-center custom-font-20">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Section / Department</span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Sales Counter</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="bd-example bd-example-tabs">
+            <div class="row">
+                <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                    <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-ListofBooks-tab" data-toggle="pill" href="#v-pills-ListofBooks" role="tab" aria-controls="v-pills-ListofBooks" aria-selected="true">List of Books</a>
+                        <a class="nav-link" id="v-pills-RequisitionSlip-tab" data-toggle="pill" href="#v-pills-RequisitionSlip" role="tab" aria-controls="v-pills-RequisitionSlip" aria-selected="false">Requisition Slip</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-ListofBooks" role="tabpanel" aria-labelledby="v-pills-ListofBooks-tab">
+                            <h6 class="text-center custom-font-20 font-weight-bold mt-2 mb-3">LIST OF BOOKS</h6>
+                            <div class="row mx-auto my-3">
+                                <div class="col-12">
+                                    <div class="table-responsive p-0">
+                                        <table id="GridBooks" class="gj-grid table table-light table-bordered table-striped table-responsive-md"></table>
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="text-center custom-font-15 font-weight-bold my-3">AVAILABILITY OF TEXT BOOKS PUBLISHED BY WBBSE</h6>
+                            <div class="p-2 text-justify">
+                                <div class="mb-2">
+                                    Text Books for Un-Aided/Private schools will be available at the Sales Counter at 77/2, Park Street, Kolkata-700016 after receiving approval from the DS (Academic), WBBSE.
+                                </div>
+                                <ol class="pl-3">
+                                    <li class="mb-1">
+                                        Documents to be submitted for approval to obtain required Text Books :
+                                        <ul class="list-unstyled pl-4 custom-text-indent">
+                                            <li class="mb-1"><b>A.</b> Prayer copy of the concerned School authority</li>
+                                            <li class="mb-1"><b>B.</b> Photocopy of School Recognition Memo</li>
+                                            <li class="mb-1"><b>C.</b> Present enrolment along with the Photocopy of the Attendance Register of the previous year</li>
+                                        </ul>
+                                    </li>
+                                    <li class="mb-1"> Concerned schools will avail a discount of 15 % on the price if approved by the authority.</li>
+                                </ol>
+                                @*<div class="mb-2">
+                                    <b>N.B.</b> Students/Guardians may purchase a single copy of each Text Book from the Sales Counter.
+                                </div>*@
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-RequisitionSlip" role="tabpanel" aria-labelledby="v-pills-RequisitionSlip-tab">
+                            <div class="row mx-auto">
+                                <div class="col-12">
+                                    <div class="table-responsive p-0">
+                                        <table id="GridRequisition" class="gj-grid table table-light table-bordered table-striped table-responsive-md"></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/BasicFunctions.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/js/client/sl.js?v=@DateTime.Now.ToFileTime()"></script>
+    <script type="text/javascript">
+        var gridRequisition, gridBook;
+        $("#v-pills-tab").click(function () {
+            setTimeout(chkFooter, 200);
+        });
+        $("#v-pills-RequisitionSlip-tab").click(function () {
+            ShowLoaderNew();
+            var onSuccessFunc = function (response) {
+                gridRequisition.render(response);
+                HideLoaderNew();
+                try {
+                    $("#GridRequisition div").removeAttr("title");
+                    $(".custom-view").prop("title", "View Requisition Slip");
+                    $("#GridRequisition").find("th").find("div").css("font-size", "13.5px");
+                    setTimeout(chkFooter, 200);
+                }
+                catch (err) {
+                    console.log(err);
+                }
+            };
+            gridRequisition = $("#GridRequisition").grid({
+                dataKey: "ContentId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../Web/GetRequisitionSlipList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            gridRequisition.reload({ searchString: '' });
+        });
+        $("#v-pills-ListofBooks-tab").click(function () {
+            ShowLoaderNew();
+            var onSuccessFunc = function (response) {
+                gridBook.render(response);
+                HideLoaderNew();
+                try {
+                    $("#GridBooks div").removeAttr("title");
+                    $("#GridBooks").find("th").find("div").css("font-size", "13.5px");
+                    setTimeout(chkFooter, 200);
+                }
+                catch (err) {
+                    console.log(err);
+                }
+            };
+            gridBook = $("#GridBooks").grid({
+                dataKey: "BookId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../Web/GetBookList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumnsAlternative])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            gridBook.reload({ searchString: '' });
+        });
+        $(document).ready(function () {
+            try {
+                $("#v-pills-ListofBooks-tab").click();
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

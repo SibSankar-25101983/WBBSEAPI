@@ -1,0 +1,796 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE Board Authorities Desk";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">WBBSE PAST AUTHORITIES</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                @*<a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a id="lnkCurrent" class="text-warning" href="#">Past Authorities</a>*@
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">About Us</span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning">Past Authorities</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-President-tab" data-toggle="pill" href="#v-pills-President" role="tab" aria-controls="v-pills-President" aria-selected="true">President</a>
+                    <a class="nav-link" id="v-pills-Secretary-tab" data-toggle="pill" href="#v-pills-Secretary" role="tab" aria-controls="v-pills-Secretary" aria-selected="false">Secretary</a>
+                    <a class="nav-link" id="v-pills-DeputySecretaryAdministration-tab" data-toggle="pill" href="#v-pills-DeputySecretaryAdministration" role="tab" aria-controls="v-pills-DeputySecretaryAdministration" aria-selected="false">Deputy Secretary (Administration)</a>
+                    <a class="nav-link" id="v-pills-DeputySecretaryAcademic-tab" data-toggle="pill" href="#v-pills-DeputySecretaryAcademic" role="tab" aria-controls="v-pills-DeputySecretaryAcademic" aria-selected="false">Deputy Secretary (Academic)</a>
+                    <a class="nav-link" id="v-pills-DeputySecretaryExamination-tab" data-toggle="pill" href="#v-pills-DeputySecretaryExamination" role="tab" aria-controls="v-pills-DeputySecretaryExamination" aria-selected="false">Deputy Secretary (Examination)</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content border p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-President" role="tabpanel" aria-labelledby="v-pills-President-tab">
+                        <h6 class="text-center pb-3 custom-font-20 font-weight-bold">PRESIDENT</h6>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-hover table-striped table-responsive-md">
+                                    <thead class="table-warning">
+                                        <tr>
+                                            <th scope="col" class="font-weight-bold text-center">SL NO</th>
+                                            <th scope="col" class="font-weight-bold">NAME</th>
+                                            <th scope="col" class="font-weight-bold text-center">DESIGNATION</th>
+                                            <th scope="col" class="font-weight-bold text-center">TENURE</th>
+                                            <th scope="col" class="font-weight-bold text-center">IMAGE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="align-middle">
+                                            <td class="font-weight-bold text-center align-middle">1</td>
+                                            <td class="align-middle">Apurba Kumar Chandra</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">26.04.1951 – 12.05.1954</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/A K Chanda.jpg" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">2</td>
+                                            <td class="align-middle">Justice Gopendra Nath Das</td>
+                                            <td class="text-center align-middle">Administrator</td>
+                                            <td class="text-center align-middle">13.05.1954 – 13.09.1955</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/G N Das.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">3</td>
+                                            <td class="align-middle">Dr. Jnanendra Nath Mukherjee</td>
+                                            <td class="text-center align-middle">Administrator</td>
+                                            <td class="text-center align-middle">14.09.1955 – 31.08.1956</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/J N Mukherjee.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">4</td>
+                                            <td class="align-middle">Dr. Sisir Kumar Mitra</td>
+                                            <td class="text-center align-middle">Administrator</td>
+                                            <td class="text-center align-middle">01.09.1956 – 30.04.1962</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/S K Mitra.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">5</td>
+                                            <td class="align-middle">Dr. Jyotish Chandra Sengupta</td>
+                                            <td class="text-center align-middle">Administrator</td>
+                                            <td class="text-center align-middle">01.05.1962 – 31.12.1963</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/J C Sengupta.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">6</td>
+                                            <td class="align-middle">Dr. Jyotish Chandra Sengupta</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">01.01.1964 – 31.12.1965</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/J C Sengupta.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">7</td>
+                                            <td class="align-middle">Dr. Anil Chandra Banerjee</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">01.01.1966 – 24.05.1966</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Anil Chandra Banerjee.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">8</td>
+                                            <td class="align-middle">Sree Jyotsna Nath Mallik</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">25.05.1966 – 02.07.1969</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/J N Mallik.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">9</td>
+                                            <td class="align-middle">Dr. Anukul Chandra Banerjee</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">04.07.1969 – 15.07.1970</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Anukul Chandra Banerjee.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">10</td>
+                                            <td class="align-middle">Prof. Bhupesh Chandra Mukherjee</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">16.07.1970 – 31.12.1972</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/B C Mukherjee.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">11</td>
+                                            <td class="align-middle">Prof. Satyendra Mohan Chatterjee</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">01.01.1973 – 13.09.1977</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Satyendra Mohan Chatterjee.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">12</td>
+                                            <td class="align-middle">Sree Satya Priya Roy</td>
+                                            <td class="text-center align-middle">Administrator</td>
+                                            <td class="text-center align-middle">14.09.1977 – 11.02.1978</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Satyapriya Roy.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        @*<tr>
+                                            <th scope="row" class="font-weight-bold text-center align-middle">13</th>
+                                            <td class="align-middle">Principal Bhabesh Maitra</td>
+                                            <td class="text-center align-middle">Administrator</td>
+                                            <td class="text-center align-middle">17.02.1978 – 13.03.1980</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Satyapriya Roy.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>*@
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">13</td>
+                                            <td class="align-middle">Prof. Bhabesh Maitra</td>
+                                            <td class="text-center align-middle">Administrator/President</td>
+                                            <td class="text-center align-middle">17.02.1978 – 13.03.1985</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Bhabesh Maitra.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">14</td>
+                                            <td class="align-middle">Prof. Ranju Gopal Mukherjee</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">14.03.1985 – 20.12.1989</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Ranju Gopal Mukherjee.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">15</td>
+                                            <td class="align-middle">Dr. Chittaranjan Banerjee</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">21.12.1989 – 20.12.1994</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Chitta Ranjan Banerjee.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">16</td>
+                                            <td class="align-middle">Dr. Chittaranjan Banerjee</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">21.12.1994 – 20.12.1999</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Chitta Ranjan Banerjee.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">17</td>
+                                            <td class="align-middle">Dr. Arun Kiron Chakraborty</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">21.12.1999 – 19.08.2001</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Arun Kiron Chakrabarti.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">18</td>
+                                            <td class="align-middle">Dr. Haraprosad Samaddar</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">20.08.2001 – 16.09.2002</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Haraprasad Samaddar.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">19</td>
+                                            <td class="align-middle">Prof. Dibyendu Bikas Hota</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">17.09.2002 – 15.11.2005</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Dibyendu Bikas Hota.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">20</td>
+                                            <td class="align-middle">Prof. Ujjwal Kumar Basu</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">16.11.2005  -  28.12.2007</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Ujjwal Kumar Basu.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">21</td>
+                                            <td class="align-middle">Dr.Gopa Dutta</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">28.12.2007  -  09.01.2008</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Gopa Dutta.jpg" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">22</td>
+                                            <td class="align-middle">Dr.Mamata Ray(Chaudhuri)</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">09.01.2008  -  01.02.2011</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Mamata Ray.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">23</td>
+                                            <td class="align-middle">Prof.Anjan Kumar Sengupta</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">01.02.2011  -  17.08.2011</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Anjan Kumar Sengupta.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">24</td>
+                                            <td class="align-middle">Prof. Chaitali Dutta</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">17.08.2011  -  31.07.2012</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Chaitali Dutta.JPG" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">25</td>
+                                            <td class="align-middle">Prof. Dr. Kalyanmoy Ganguly</td>
+                                            <td class="text-center align-middle">Administrator</td>
+                                            <td class="text-center align-middle">31.07.2012 - 31.07.2016</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Kalyanmay Ganguly.png" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold text-center align-middle">26</td>
+                                            <td class="align-middle">Prof. Dr. Kalyanmoy Ganguly</td>
+                                            <td class="text-center align-middle">President</td>
+                                            <td class="text-center align-middle">01.08.2016 - in Chair</td>
+                                            <td class="text-center align-middle">
+                                                <img src="~/ReadWriteData/ExPresident/Kalyanmay Ganguly.png" class="img-fluid img-thumbnail custom-thumbnail-img-grid cursor-hand view" alt="..." title="Click to view larger image">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-Secretary" role="tabpanel" aria-labelledby="v-pills-Secretary-tab">
+                        <h6 class="text-center pb-3 custom-font-20 font-weight-bold">SECRETARY</h6>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead class="table-warning">
+                                        <tr>
+                                            <th scope="col" class="font-weight-bold text-center">SL NO</th>
+                                            <th scope="col" class="font-weight-bold">Name</th>
+                                            <th scope="col" class="font-weight-bold text-center">Designation</th>
+                                            <th scope="col" class="font-weight-bold text-center">Tenure</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">1</th>
+                                            <td>Prof. Sushil Kumar Chatterjee</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">16.08.1955 -- 01.07.1955</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">2</th>
+                                            <td>Dr. Debiprosad Roychowdhury</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">12.08.1955 -- 10.07.1962</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">3</th>
+                                            <td>Sree Biswanath Banerjee</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">11.07.1962 -- 06.11.1966</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">4</th>
+                                            <td>Sree Durgadas Majumdar</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">07.11.1966 -- 02.05.1969</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">5</th>
+                                            <td>Prof. Nirmal Sinha</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">03.05.1969 – 11.06.1970</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">6</th>
+                                            <td>Sree Amal Chandra Chattarjee</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">11.06.1970 – 09.10.1972</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">7</th>
+                                            <td>Sree Anil Chandra Biswas</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">10.10.1972 – 31.12.1978</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">8</th>
+                                            <td>Prof. Nirmal Sinha</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">12.01.1979 – 31.01.1984</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">9</th>
+                                            <td>Dr. S. R. Bhattacherjee</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">19.04.1985 – 14.08.1985</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">10</th>
+                                            <td>Prof. Sudin Chattopadhyay</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">23.08.1985 – 31.01.1994</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">11</th>
+                                            <td>Prof. Ujjal Bose</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">01.02.1994 – 07.12.1998</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">12</th>
+                                            <td>Dr. Pradyot Kumar Halder</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">09.12.1998 – 03.12.2001</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">13</th>
+                                            <td>Dr. Amar Chandra Patra</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">03.12.2001 – 15.09.2003</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">14</th>
+                                            <td>Sree Swapan Bhattacharya</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">01.10.2003 – 04.08.2005</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">15</th>
+                                            <td>Prof. Swapan Kumar Sarkar</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">05.08.2005 – 15.09.2008</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">16</th>
+                                            <td>Dr. Partha Roy</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">16.09.2008 – 12.07.2011</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">17</th>
+                                            <td>Dr. Santi Prasad Sinha</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">12.07.2011 – 31.03.2013</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">18</th>
+                                            <td>Prof. Nabanita Chatterjee</td>
+                                            <td class="text-center">Secretary</td>
+                                            <td class="text-center">21.08.2013 – 18.08.2017</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">19</th>
+                                            <td>Smt. Paromita Roy, WBCS (Exe.)</td>
+                                            <td class="text-center">Secretary-in-charge</td>
+                                            <td class="text-center">22.11.2017 – in Chair</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-DeputySecretaryAdministration" role="tabpanel" aria-labelledby="v-pills-DeputySecretaryAdministration-tab">
+                        <h6 class="text-center pb-3 custom-font-20 font-weight-bold">DEPUTY SECRETARY (ADMINISTRATION)</h6>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead class="table-warning">
+                                        <tr>
+                                            <th scope="col" class="font-weight-bold text-center">SL NO</th>
+                                            <th scope="col" class="font-weight-bold">Name</th>
+                                            @*<th scope="col" class="font-weight-bold text-center">Designation</th>*@
+                                            <th scope="col" class="font-weight-bold text-center">Tenure</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">1</th>
+                                            <td>Sri Pasupati Barik, WBCS(Exe.)</td>
+                                            @*<td class="text-center">WBCS(Exe.)</td>*@
+                                            <td class="text-center">19.08.2002 – 30.11.2004</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">2</th>
+                                            <td>Sri Amarendra Bhattacharya, WBCS(Exe.)</td>
+                                            @*<td class="text-center">WBCS(Exe.)</td>*@
+                                            <td class="text-center">30.11.2004 – 28.02.2006</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">3</th>
+                                            <td>Sri Atanu Chattopadhyay, WBCS(Exe.)</td>
+                                            @*<td class="text-center">WBCS(Exe.)</td>*@
+                                            <td class="text-center">01.03.2006 – 31.08.2007</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">4</th>
+                                            <td>Prof. Swapan Kumar Sarkar, WBES</td>
+                                            @*<td class="text-center">WBES</td>*@
+                                            <td class="text-center">31.08.2007 – 08.07.2008</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">5</th>
+                                            <td>Sri Samar Chandra Ghosh, WBCS(Exe.)</td>
+                                            @*<td class="text-center">WBCS(Exe.)</td>*@
+                                            <td class="text-center">08.07.2008 – 29.01.2010</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">6</th>
+                                            <td>Sri Debabrata Chakrabarty, WBCS(Exe.)</td>
+                                            @*<td class="text-center">WBCS(Exe.)</td>*@
+                                            <td class="text-center">29.01.2010 – 30.09.2013</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">7</th>
+                                            <td>Prof. Subhashis Karan, WBES</td>
+                                            @*<td class="text-center">WBES</td>*@
+                                            <td class="text-center">30.09.2013 – 28.02.2014</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">8</th>
+                                            <td>Sri. Mrinmoy Biswas, WBCS(Exe.)</td>
+                                            @*<td class="text-center">WBCS(Exe.)</td>*@
+                                            <td class="text-center">28.02.2014 – 21.08.2017</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">9</th>
+                                            <td>Smt. Paromita Roy, WBCS(Exe.)</td>
+                                            @*<td class="text-center">WBCS(Exe.)</td>*@
+                                            <td class="text-center">28.08.2017 – in Chair</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-DeputySecretaryAcademic" role="tabpanel" aria-labelledby="v-pills-DeputySecretaryAcademic-tab">
+                        <h6 class="text-center pb-3 custom-font-20 font-weight-bold">DEPUTY SECRETARY (ACADEMIC)</h6>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead class="table-warning">
+                                        <tr>
+                                            <th scope="col" class="font-weight-bold text-center">SL NO</th>
+                                            <th scope="col" class="font-weight-bold">Name</th>
+                                            <th scope="col" class="font-weight-bold text-center">Designation</th>
+                                            <th scope="col" class="font-weight-bold text-center">Tenure</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">1</th>
+                                            <td>Sri Jibesh Chandra Nayek</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">29.10.1985 – 13.05.1988</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">2</th>
+                                            <td>Sri Gunendranath Majumder</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">09.12.1988 – 01.08.1994</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">3</th>
+                                            <td>Smt. Eeshita Chatterjee</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">01.08.1994 – 10.11.1997</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">4</th>
+                                            <td>Sri Anupam Chakraborty</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">15.12.1997 – 29.06.2001</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">5</th>
+                                            <td>Sri Shyam Sundar Sahana</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">29.06.2001 – 26.02.2004</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">6</th>
+                                            <td>Sri Anomitra Das</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">19.01.2004 – 15.05.2006</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">7</th>
+                                            <td>Sri Jayanta Jay Chattopadhyay</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">16.05.2006 – 01.03.2010</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">8</th>
+                                            <td>Sri Ujjwal Chattopadhyay</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">22.02.2010 – 31.07.2012</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">9</th>
+                                            <td>Sri Sandipta Kanti Nag</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">30.08.2012 – 02.04.2013</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">10</th>
+                                            <td>Sri Subhasish Karan</td>
+                                            <td class="text-center">WBES</td>
+                                            <td class="text-center">19.04.2013 – 27.06.2016</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">11</th>
+                                            <td>Smt. Rumpa Das</td>
+                                            <td class="text-center">Associate Professor</td>
+                                            <td class="text-center">01.07.2016 – 22.08.2017</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">12</th>
+                                            <td>Sri Sudarsan Das</td>
+                                            <td class="text-center">Retd. WBES</td>
+                                            <td class="text-center">23.08.2017 – 10.01.2018</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">13</th>
+                                            <td>Dr. Partha Karmakar</td>
+                                            <td class="text-center">Associate Professor in WBES</td>
+                                            <td class="text-center">11.01.2018 – in Chair </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-DeputySecretaryExamination" role="tabpanel" aria-labelledby="v-pills-DeputySecretaryExamination-tab">
+                        <h6 class="text-center pb-3 custom-font-20">Deputy Secretary (Examination)</h6>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead class="table-warning">
+                                        <tr>
+                                            <th scope="col" class="font-weight-bold text-center">SL NO</th>
+                                            <th scope="col" class="font-weight-bold">Name</th>
+                                            <th scope="col" class="font-weight-bold text-center">Name of the Examination</th>
+                                            <th scope="col" class="font-weight-bold text-center">Year</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">1</th>
+                                            <td class="align-middle">D. P. Roy Chowdhury</td>
+                                            <td class="text-center align-middle">School Final</td>
+                                            <td class="text-center align-middle">1952 - 1955</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">2</th>
+                                            <td class="align-middle">B. Banerjee</td>
+                                            <td class="text-center align-middle">School Final</td>
+                                            <td class="text-center align-middle">1956 - 1962</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">3</th>
+                                            <td class="align-middle">S. K. Sarkar</td>
+                                            <td class="text-center align-middle">School Final</td>
+                                            <td class="text-center align-middle">1963 - 1965</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">4</th>
+                                            <td class="align-middle">Sukhobodh Roy (Spl. Officer)</td>
+                                            <td class="text-center align-middle">School Final</td>
+                                            <td class="text-center align-middle">1966</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">5</th>
+                                            <td class="align-middle">A. Gupta</td>
+                                            <td class="text-center align-middle">School Final</td>
+                                            <td class="text-center align-middle">1967 - 1973</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">6</th>
+                                            <td class="align-middle">S. K. Sarkar</td>
+                                            <td class="text-center align-middle">School Final</td>
+                                            <td class="text-center align-middle">1974 - 1975</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">7</th>
+                                            <td class="align-middle">A. K. Dutta</td>
+                                            <td class="text-center align-middle">School Final</td>
+                                            <td class="text-center align-middle">1976 - 1980</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">8</th>
+                                            <td class="align-middle">S. Ghosh</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">1981 - 1983</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">9</th>
+                                            <td class="align-middle">K. C. Bhattacharjee</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">1984 - 1988</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">10</th>
+                                            <td class="align-middle">S. K. Mukherjee</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">1989 - 1993</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">11</th>
+                                            <td class="align-middle">N. Paul</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">1994 - 1998</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">12</th>
+                                            <td class="align-middle">B. Bagchi</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">1999</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">13</th>
+                                            <td class="align-middle">A. N. Chakraborty</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2000</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">14</th>
+                                            <td class="align-middle">Biman Banerjee</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2001</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">15</th>
+                                            <td class="align-middle">Bilas Bindu Bajani</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2002</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">16</th>
+                                            <td class="align-middle">Gopa Basu(Dutta)</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2003 - 2006</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">17</th>
+                                            <td class="align-middle">P. Ghosh</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2007 - 2009</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">18</th>
+                                            <td class="align-middle">S. Sengupta</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2010 - 2011</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">19</th>
+                                            <td class="align-middle">J. Ghosh</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2012</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">20</th>
+                                            <td class="align-middle">S. Saha</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2013 - 2016</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">21</th>
+                                            <td class="align-middle">D. Bajerjee</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2017</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="font-weight-bold text-center">22</th>
+                                            <td class="align-middle">M. Banerjee(Bhadra)</td>
+                                            <td class="text-center align-middle">Madhyamik Pariksha</td>
+                                            <td class="text-center align-middle">2018 - in Chair</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- View Modal -->
+<div class="modal fade" id="popupModalView" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div id="divModalContentView" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title" id="name"></h4>
+                <button type="button" class="close text-light close-clear" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center" id="divPopupBodyView">
+                <img id="imgView" class="img-fluid custom-past-authorities-img" src="#" alt="Not Found" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-clear" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/js/BasicFunctions.js"></script>
+    <script src="~/js/client/ppg.js?v=@DateTime.Now.ToFileTime()"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                ShowLoaderNew();
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

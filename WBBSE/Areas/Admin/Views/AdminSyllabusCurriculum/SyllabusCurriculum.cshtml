@@ -1,0 +1,227 @@
+﻿@model ViewModel.VMContentDetails
+@using Common;
+@{
+    ViewBag.Title = "WBBSE Admin :: Syllabus & Curriculum";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Syllabus & Curriculum</h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.ContentId)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.LinkType)
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+@section header
+{
+    <div class="row pb-2">
+        <div class="col-md-5">
+            <div class="input-group">
+                <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search by Content"/>
+                <div class="input-group-append">
+                    <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            @if (ViewData[ViewDataNames.AddYN] == "visible")
+            {
+                <div class="btn-group float-right">
+                    <button type="button" id="btnAdd" class="btn btn-outline-secondary" accesskey="A">Add New</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<div class="table-responsive">
+    <table id="GridSyllabusCurriculum" class="gj-grid table table-light table-bordered table-striped"></table>
+</div>
+
+@*Main Modal*@
+<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-50">
+        <div id="divModalContent" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title"><span id="lblModalHeader"></span></h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm("SyllabusCurriculum", "AdminSyllabusCurriculum", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-body" id="divPopupBody">
+                    <div class="alert alert-danger alert-dismissible" id="AlertInfo">
+                        <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                        <strong><span id="AlertInfoMsg"></span></strong>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Note:</strong> Marked with an astrix(<span style="color: red;"> * </span>) is mandatory data.
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Content<span style="color: red;"> * </span></span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.TextAreaFor(m => m.BodyTextOriginal, new { @class = "form-control alpha", @placeholder = "Add Content", @id = "txtBodyText", @rows = 6, @maxlength = 4000, @style="resize:none;", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Link Type<span style="color: red;"> * </span></span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.LinkTypeId, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @style = "width:100%;", @id = "ddlLinkType" })
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="trUrl1">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">URL<span style="color: red;"> * </span></span>
+                        </div>
+                    </div>
+                    <div class="row mb-4" id="trUrl2">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(m => m.URL, new { @class = "form-control alpha", @placeholder = "URL *", @id = "txtURL", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row pb-2" id="trPdf1">
+                        <div class="col-md-12">
+                            <span>Select PDF<span style="color: red;"> * </span>(<span class="text-primary">Maximum Size Allowed : 4 mb</span>)</span>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="row pb-4" id="trPdf2">
+                        <div class="col-sm-12">
+                            <input type="file" id="fuPdf" name="postedFiles" accept="application/pdf" />
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-2">
+                            <span class="font-weight-bold">New</span>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="checkbox" id="chkNewYN" name="NewYN" class="checkbox-custom" />
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-2">
+                            <span class="font-weight-bold">Archive</span>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="checkbox" id="chkArchiveYN" name="ArchiveYN" class="checkbox-custom" />
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.EntType, new { @id = "e" })
+                    @Html.HiddenFor(m => m.ContentId, new { @id = "C" })
+                    @Html.HiddenFor(m => m.PdfFilePath, new { @id = "P" })
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <input type="submit" id="btnSave" value="Save" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- View Modal -->
+<div class="modal fade" id="popupModalView" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-50">
+        <div id="divModalContentView" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title">Syllabus & Curriculum :: View</h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center" id="divPopupBodyView">
+                <table class="table table-bordered table-striped table-hover">
+                    <tbody id="trViewData">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Areas/Admin/js/syllabus.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function () {
+            DisableButtons();
+            ShowLoader();
+            ClearData();
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                $("#GridSyllabusCurriculum").find("th").find("div").css("font-size", "13.5px");
+                $("#GridSyllabusCurriculum").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+                EnableButtons();
+            };
+            grid = $("#GridSyllabusCurriculum").grid({
+                dataKey: "ContentId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../AdminSyllabusCurriculum/GetSyllabusCurriculumList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridSyllabusCurriculum").off('DOMSubtreeModified');
+            });
+
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

@@ -1,0 +1,178 @@
+﻿@using Common;
+@model List<ViewModel.VMMac>
+
+@{
+    ViewBag.Title = "WBBSE Admin :: Mac Request List";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/css/CustomTable.css" rel="stylesheet" />
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">MAC Request List
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @Html.Raw(ViewData[ViewDataNames.SaveInfo])
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+@section header
+{
+    @using (Html.BeginForm("MacRequestListSearch", "AdminMacAuthorization", new RouteValueDictionary(new { @x = Session[SessionNames.URL] })))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="row pb-2">
+            <div class="col-md-9">
+                <div class="input-group">
+                    <input type="text" id="txtFromDate" name="FromDate" class="form-control" placeholder="From Date">
+                    <input type="text" id="txtToDate" name="ToDate" class="form-control" placeholder="To Date">
+                    <input type="text" id="txtSearch" name="SearchString" class="form-control" placeholder="Search Computer" style="width: 30%;">
+                    <div class="input-group-append">
+                        <select id="ddlSearchType" class="form-control" name="SearchType">
+                            <option value="1" selected="selected">By Computer Name</option>
+                            <option value="2">By Machine Id</option>
+                        </select>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="submit" id="btnSearch" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+@using (Html.BeginForm("MacRequestList", "AdminMacAuthorization"))
+{
+    <div class="row pb-2">
+        <div class="col-md-9">
+            <div class="alert alert-danger">
+                <strong>WARNING !</strong> Be careful while authorizing any computer. Verify any request manually before approving.
+            </div>
+        </div>
+        <div class="col-md-3">
+            @if (ViewData[ViewDataNames.AddYN] == "visible")
+            {
+                <div class="btn-group float-right">
+                    <button type="submit" id="btnApprove" class="btn btn-outline-danger">Approve/Reject Computer(s)</button>
+                </div>
+            }
+        </div>
+    </div>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="table-responsive border mb-4">
+        <table id="GridMACRequestList" class="table table-striped table-fixed">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="col-1">Sl No
+                    </th>
+                    <th class="col-2">Computer Name
+                    </th>
+                    <th class="col-5">Machine Id
+                    </th>
+                    <th class="col-2">Request Date
+                    </th>
+                    <th class="col-1">IP Address
+                    </th>
+                    <th class="col-1">Select
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="trMsg">
+                    <td id="lblNoRecord" colspan="6" style="display:@ViewData[ViewDataNames.ErrorAlertVisibility]">No record found.</td>
+                </tr>
+                @{
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    string name = "[" + i + "].AuthorizedYN";
+                        <tr>
+                            <td class="col-1">
+                                @Model[i].SlNo
+                                @Html.HiddenFor(m => Model[i].TblId)
+                            </td>
+                            <td class="col-2">
+                                @Model[i].ComputerName
+                            </td>
+                            <td class="col-5">
+                                @Model[i].MachineId
+                            </td>
+                            <td class="col-2">
+                                @Model[i].CreationDateTime
+                            </td>
+                            <td class="col-1 pl-3">
+                                @Model[i].IpAddress
+                            </td>
+                            <td class="col-1">
+                                <div class="checkbox pl-3">
+                                    <label>
+                                        <input type="checkbox" class="checkbox-custom" name="@name" value="@Model[i].AuthorizedYN"
+                                    @if (Model[i].AuthorizedYN == "Y")
+                                    {
+                                        <text> checked </text> 
+                                    }
+                                    />
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    i++;
+                }
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@section scripts
+{
+    <script src="~/Areas/Admin/js/mac-list.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            HideLoader();
+            
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

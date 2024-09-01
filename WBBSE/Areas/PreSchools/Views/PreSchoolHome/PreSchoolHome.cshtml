@@ -1,0 +1,33 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "Junior School :: Home";
+    Layout = "~/Areas/PreSchools/Views/Shared/_LayoutPreSchool.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">Dashboard</h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none; text-align: center;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+<div id="divProfile" class="row"></div>
+
+@section scripts
+{
+    <script src="~/js/Chart.min.js"></script>
+    <script src="~/js/utils.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/Areas/PreSchools/js/preschool-home.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+}

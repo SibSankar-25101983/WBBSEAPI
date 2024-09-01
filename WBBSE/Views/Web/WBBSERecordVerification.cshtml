@@ -1,0 +1,59 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Record Verification";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">Record Verification</span>
+            </div>
+            <div class="col-md-12 align-items-center custom-font-20">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Sections / Department </span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Record Verification</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="row border rounded m-1 bg-light shadow">
+            <div class="col-12 p-4">
+                <div class="p-2 text-justify">
+                    <ul class="list-unstyled custom-text-indent">
+                        <li><strong>a. </strong>The record verification form should be downloaded from the <strong><a href="/Web/SearchPage?l=@GblFunctions.encryptPassword(MenuCode.DownloadForms)" class="card-text text-primary" title="Click here to go to download section">Download Section</a> </strong> and then filled up accurately. </li>
+                        <li>
+                            <strong>b. </strong>Fill up the form providing all detailed information </li>
+                        <li>
+                            <strong>c. </strong>The applicant will be requested to deposit requisite fees through challan to be filled up in triplicate to the cash section of Board at <strong>77/2 Park Street, Kolkata-16</strong>. (Fees is waived for certain Govt. / undertakings /PSU. Depts. generating no revenue. )
+                        </li>
+                        <li>
+                            <strong>d. </strong>Once done, submit the filled up form along with the relevant documents to the concerned section.
+                        </li>  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) {
+
+            }
+        });
+    </script>
+}

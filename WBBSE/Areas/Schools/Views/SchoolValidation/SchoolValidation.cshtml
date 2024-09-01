@@ -1,0 +1,20 @@
+﻿@using Common;
+
+@{
+    ViewBag.Title = "SchoolValidation";
+    Layout = "~/Areas/Schools/Views/Shared/_LayoutSchool.cshtml";
+}
+
+
+
+@section info
+{
+    <div id="divS" class="alert alert-denger">      
+        <h2>Alert!</h2>
+        <ul style="list-style-type: none; text-align: center;">
+            <li>
+                @Html.Raw(ViewData[ViewDataNames.RawData])
+            </li>
+        </ul>
+    </div>
+}

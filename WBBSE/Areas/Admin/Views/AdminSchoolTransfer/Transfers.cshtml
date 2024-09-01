@@ -1,0 +1,164 @@
+﻿@using Common;
+@model ViewModel.VMSchoolTransfer
+
+@{
+    ViewBag.Title = "WBBSE Admin :: School Transfer";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/vendor/jqueryUI/jquery-ui.css" rel="stylesheet" />
+    <link href="~/css/select2.min.css" rel="stylesheet" />
+    <link href="~/css/CustomAutoComplete.css" rel="stylesheet" />
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">School Transfer
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @Html.ValidationMessageFor(m => m.SchoolId)
+            </li>
+            <li>
+                @Html.Raw(ViewData[ViewDataNames.SaveInfo])
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+@section header
+{
+    <div class="row pb-2">
+        <div class="col-sm-7 mb-1">
+            <div class="input-group">
+                <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search School">
+                <div class="input-group-append">
+                    <button type="button" id="btnSearch" class="btn btn-primary" title="View Transfer Details">View Transfer</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            @if (ViewData[ViewDataNames.AddYN] == "visible")
+            {
+                <div class="btn-group float-right">
+                    <button type="button" id="btnAdd" class="btn btn-outline-secondary" accesskey="A">Add New</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<div class="row pb-2">
+    <div class="col-sm-12">
+        <div id="divTransferData"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-75">
+        <div id="divModalContent" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title" id="myModalLabel"><span id="lblModalHeader"></span></h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm("Transfers", "AdminSchoolTransfer", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-body" id="divPopupBody">
+                    <div class="alert alert-danger alert-dismissible" id="AlertInfo">
+                        <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                        <strong><span id="AlertInfoMsg"></span></strong>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Note:</strong> Marked with an astrix(<span style="color: red;"> * </span>) is mandatory data.
+                    </div>
+                    <div class="row mb-2" id="divSchoolText">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Select School</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4" id="divSchoolControl">
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(m=>m.SchoolName, new { @id="txtSchoolName", @class="form-control alpha", @placeholder="Select School", @maxlength="100", @oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                            @*<input type="text" id="txtSchoolName" class="form-control alpha" placeholder="Junior School Name" maxlength="200" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />*@
+                        </div>
+                        <div id="divSubDivision" class="col-sm-4">
+                            <span id="lblSubDivision" class="bg-success form-control text-light rounded" style="display: none; font-size: medium; font-weight: 600;"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Sub-Division</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div id="divSubDivisionDropDown" class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.SubDivisionId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlSubDivision" })
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            <div id="divTransferSaveMsg" class="alert alert-danger"></div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.EntType, new { @id = "e" })
+                    @Html.HiddenFor(m => m.SchoolId, new { @id = "S" })
+                    @Html.HiddenFor(m => m.SchoolId, new { @id = "SS" })
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/vendor/jqueryUI/jquery-ui.js"></script>
+    <script src="~/js/select2.min.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/Areas/Admin/js/transfer.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            HideLoader();
+
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

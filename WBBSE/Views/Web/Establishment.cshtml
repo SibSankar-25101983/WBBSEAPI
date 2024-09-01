@@ -1,0 +1,69 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Establishment";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner py-3">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="custom-heading-website">Establishment</span>
+            </div>
+            <div class="col-md-12 align-items-center" style="font-size: 20px;">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><span class="text-light">Sections / Department </span> <i class="fa fa-angle-double-right"></i><span id="lnkCurrent" class="text-warning"> Establishment</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="my-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 mb-3 mr-lg-0 pr-lg-0">
+                <div class="nav flex-column nav-pills border rounded shadow bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-Establishment-tab" data-toggle="pill" href="#v-pills-Establishment" role="tab" aria-controls="v-pills-Establishment" aria-selected="true">Establishment</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content border p-2 border rounded shadow-lg bg-light" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-Establishment" role="tabpanel" aria-labelledby="v-pills-Establishment-tab">
+                        <ul class="fa-ul mt-3">
+                            <li class="mb-2">
+                                <i class="fa-li fa fa-genderless"></i> Looks after entire Establishment matters of existing officers and the employees of the Board and their recreation and welfare activities.
+                            </li>
+                            <li class="mb-2">
+                                <i class="fa-li fa fa-genderless"></i> Ensuring appointment, posting and transfer of the staff as well as awarding promotion to them in accordance with the relevant rules and regulations in vogue in the Board.
+                            </li>
+                            <li class="mb-2">
+                                <i class="fa-li fa fa-genderless"></i> Maintenance and sanction of leave enjoyed by the staff members of the Board.
+                            </li>
+                            <li class="mb-2">
+                                <i class="fa-li fa fa-genderless"></i> Modernization of the Board's Office Management System by optimal utilization of Computers and conduct in-service Computer Training.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) {
+
+            }
+        });
+    </script>
+}

@@ -1,0 +1,114 @@
+﻿@using Common;
+
+@{
+    ViewBag.Title = "WBBSE :: Tender";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/css/CustomStyle.css" rel="stylesheet" />
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner">
+        <div class="row">
+            <div class="col-12 pt-5">
+                <span class="custom-heading-website">TENDER</span>
+            </div>
+        </div>
+        <div class="row" style="font-size: 20px;">
+            <div class="col-12 pb-5 align-items-center">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a class="text-warning" id="lnkCurrent" href="#">Tender</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="bg-light">
+    <div class="container-fluid">
+        <div class="row border rounded m-5">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-2 p-4 pb-0 text-right">
+                        <span class="text-primary">Select Type</span>
+                    </div>
+                    <div class="col-sm-4 p-4 pb-0">
+                        <select id="ddlTenderType" class="form-control">
+                            <option value="M" selected="selected">Non-Archived</option>
+                            <option value="A">Archived</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 p-4 pb-0">
+                        <div class="input-group text-right">
+                            <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search Tender" />
+                            <div class="input-group-append">
+                                <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <table id="GridTender" class="gj-grid table table-light table-bordered table-responsive"></table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    <script src="~/js/client/tn.js?v=@DateTime.Now.ToFileTime()"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function () {
+            $("#lnkCurrent").prop("href", window.location.href);
+            try {
+                var onSuccessFunc = function (response) {
+                    grid.render(response);
+                    HideLoader();
+                    try {
+                        $("#GridTender div").removeAttr("title");
+                        $(".custom-pdf").prop("title", Content.LinkType.PDF);
+                        $(".custom-url").prop("title", Content.LinkType.URL);
+                        $(".custom-view").prop("title", "View Circular");
+                        $("#GridTender").find("th").find("div").css("font-size", "13.5px");
+                        setTimeout(chkFooter, 100);
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                    $("#GridTender").on('DOMSubtreeModified', chkMod);
+                };
+
+                grid = $("#GridTender").grid({
+                    dataKey: "ContentId",
+                    uiLibrary: "fontawesome",
+                    iconsLibrary: 'fontawesome',
+                    dataSource: { url: "../../Web/GetTenderList", success: onSuccessFunc },
+                    columns: [
+                        @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                    ],
+                    pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+                });
+                grid.on('pageChanging', function (e, newPage) {
+                    $("#GridTender").off('DOMSubtreeModified');
+                });
+
+                $("#lnkCurrent").prop("href", window.location.href);
+                //remove active link
+                $("#ulMainMenu li").removeClass("custom-navbar");
+                //get new active link id
+                var activeLinkId = "@ViewData[ViewDataNames.ActiveLinkLI]";
+                var activeLI = document.getElementById(activeLinkId);
+                activeLI.classList.add("custom-navbar");
+            }
+            catch (err) { }
+        });
+    </script>
+}

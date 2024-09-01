@@ -1,0 +1,37 @@
+﻿@using Common;
+
+@{
+    ViewBag.Title = "WBBSE Candidate :: Application Form Print";
+    Layout = "~/Areas/Candidate/Views/Shared/_LayoutCandidate.cshtml";
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2 d-print-none">
+        Application Form Print
+    </h1>
+    <hr class="pb-2 d-print-none" />
+}
+
+@Html.Raw(ViewData[ViewDataNames.RawData])
+
+@section scripts
+{
+    <script type="text/javascript">
+        $('#btnPrint').click(function () {
+            window.print();
+        });
+        //anchor active
+        var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+        var currentA = document.getElementById(activeLink);
+        currentA.classList.add("active");
+        //anchor div
+        var activeDIV = currentA.parentElement.parentElement.id;
+        var currentDIV = document.getElementById(activeDIV);
+        currentDIV.classList.add("show");
+        //anchor li
+        var activeLI = currentA.parentElement.parentElement.parentElement.id;
+        var currentLI = document.getElementById(activeLI);
+        currentLI.classList.add("active");
+    </script>
+}

@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Officers";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+
+<br />
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner">
+        <div class="row">
+            <div class="col-12 pt-5">
+                <span class="custom-heading-website">OFFICERS</span>
+            </div>
+        </div>
+        <div class="row" style="font-size: 20px;">
+            <div class="col-12 pb-5 align-items-center">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a id="lnkCurrent" class="text-warning">OFFICERS</a>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="card border-info mb-3" style="max-width: 18rem;">
+    <div class="card-header">Administration of the Board</div>
+    <div class="card-body text-info">
+        <h5 class="card-title">President :-</h5>
+        <p class="card-text">
+            Professor Dr.Kalyanmoy Ganguly
+Phone:-Off.:-2217 4268,2321 3089.
+Fax.:- 2229-9660,2321-3812.
+        </p>
+        <p>
+            Secretary in-charge:-Paromita Roy,W.B.C.S.(Exe.).
+Phone.:-Off.:-2229 3775,2321 3816.
+        </p>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try {
+                $("#lnkCurrent").prop("href", window.location.href);
+            }
+            catch (err) {
+                console.log(err.responseText);
+            }
+        });
+    </script>
+}
+
+

@@ -1,0 +1,50 @@
+﻿@using Common;
+@{
+    ViewBag.Title = "WBBSE :: Board Desk Details";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/css/CustomStyle.css" rel="stylesheet" />
+}
+
+
+<section id="Position" class="bg-light">
+    <div class="container-fluid text-center text-light custom-banner">
+        <div class="row">
+            <div class="col-12 pt-5">                
+            </div>
+        </div>
+        <div class="row" style="font-size: 20px;">
+            <div class="col-12 pb-5 align-items-center">
+                <a class="text-light" href="/Web/Default">Home</a> <i class="fa fa-angle-double-right"></i><a class="text-warning" id="lnkCurrent" href="#"> @ViewData[ViewDataNames.RawDataHeader]</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content" class="bg-light">
+    <div class="container-fluid">
+        <div class="row border rounded m-5">
+            <div class="col-12 p-4" style="font-size: 18px; font-weight: 400;"> 
+                <p class="text-center">               
+                    <img src="@ViewData[ViewDataNames.Section1]" class="img-fluid rounded border" />                    
+               </p>
+            </div>
+            <div class="col-12 p-4 text-justify" style="font-size: 18px; font-weight: 400;">                
+                @Html.Raw(ViewData[ViewDataNames.RawData])
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts
+{
+    <script type="text/javascript">     
+        $(document).ready(function () {          
+            $("#lnkCurrent").prop("href", window.location.href);            
+        });
+    </script>
+}

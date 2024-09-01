@@ -1,0 +1,10 @@
+﻿.custom-captcha-img {
+    border-radius: 25px;
+    background-color: #f2fff8;
+    border-color: black;
+}
+
+.custom-captcha-anchor {
+    cursor: pointer;
+    margin-left: 8px;
+}

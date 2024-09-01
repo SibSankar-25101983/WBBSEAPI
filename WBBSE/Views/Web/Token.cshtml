@@ -1,0 +1,128 @@
+﻿@model ViewModel.VMMac
+@using Common;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>WBBSE :: Token</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/img/Favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="~/img/Favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/img/Favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/img/Favicons/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/img/Favicons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/img/Favicons/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/img/Favicons/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/img/Favicons/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/Favicons/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="~/img/Favicons/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/img/Favicons/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/Favicons/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="~/img/Favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=../../Error/JSDisabled.html" />
+    </noscript>
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/CustomStyle.css" rel="stylesheet" />
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/vendor/fontawesome-free/js/fontawesome.min.js"></script>
+    <script src="~/js/BasicFunctions.js"></script>
+    <script src="~/js/Message.js"></script>
+</head>
+<body>
+    <!--Loader-->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <section id="icon" class="bg-light p-2">
+        <div class="container h-100 clearfix">
+            <div class="row justify-content-center align-items-center" style="color: #00a2ea;">
+                <div class="col-sm-2 text-center">
+                    <img class="img-fluid rounded mr-4" src="../../img/logo.png" style="max-height: 90px; max-width: 90px;">
+                </div>
+                <div class="col-sm-10">
+                    <p class="pt-3 text-center text-justify" style="font-weight: 400; font-size: 42px;">West Bengal Board of Secondary Education</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="SectionInfo" class="mt-5">
+        <div class="container h-100">
+            <div class="row align-items-center h-100">
+                <div class="col-sm-12 mx-auto">
+                    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <ul style="list-style-type: none; text-align: center;">
+                            <li>
+                                @ViewData[ViewDataNames.SaveInfo]
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <ul style="list-style-type: none; text-align: center;">
+                            <li>
+                                @ViewData[ViewDataNames.SaveInfo]
+                            </li>
+                        </ul>
+                    </div>
+                    <table class="table table-bordered table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <td colspan="2" class="bg-dark text-light" style="text-align: center;">
+                                    <strong>MACHINE DETAILS</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Machine Name
+                                </td>
+                                <td>
+                                    @Html.Raw(Model.ComputerName)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Machine Id
+                                </td>
+                                <td>
+                                    @Html.Raw(Model.MachineId)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @if (Session[SessionNames.MachineName] != null && Session[SessionNames.MachineId] != null)
+                    {
+                        using (Html.BeginForm("Token", "Web", FormMethod.Post))
+                        {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <a href="./" class="btn btn-primary">Go to Home</a>
+                            if (Session[SessionNames.MachineName] != null && Session[SessionNames.MachineId] != null)
+                            {
+                                <button id="btnRequest" type="submit" class="btn btn-success float-right">Request Access</button>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="fWebsite" class="mt-5 text-center text-light p-2 custom-footer" style="background-color: #365f91;">
+        <p><strong>Disclaimer:</strong> This site is designed and Developed by <strong>NIC</strong> and the contents are provided by WBBSE</p>
+        Copyright © 2019 WBBSE | All rights reserved
+    </footer>
+    <script src="~/js/client/tk.js?v=@DateTime.Now.ToFileTime()"></script>
+</body>
+</html>

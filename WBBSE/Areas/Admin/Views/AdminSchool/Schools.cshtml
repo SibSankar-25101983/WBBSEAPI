@@ -1,0 +1,502 @@
+﻿@model ViewModel.VMMstSchool
+@using Common;
+
+@{
+    ViewBag.Title = "WBBSE Admin :: Schools";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section htmlhead
+{
+    <link href="~/vendor/jqueryUI/jquery-ui.css" rel="stylesheet" />
+    <link href="~/css/select2.min.css" rel="stylesheet" />
+    <link href="~/css/CustomAutoComplete.css" rel="stylesheet" />
+}
+
+@section pageheader
+{
+    <h1 class="h3 font-weight-bold text-info text-uppercase mb-1 pb-2">High Schools
+    </h1>
+    <hr class="pb-2" />
+}
+
+@section info
+{
+    <div id="divE" class="alert alert-danger alert-dismissible" style="display:@ViewData[ViewDataNames.ErrorVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @Html.ValidationMessageFor(m => m.SchoolId)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.SchoolName)
+            </li>
+            @*<li>
+                @Html.ValidationMessageFor(m => m.DISECode)
+            </li>*@
+            <li>
+                @Html.ValidationMessageFor(m => m.SubDivisionId)
+            </li>
+            <li>
+                @Html.ValidationMessageFor(m => m.DesignationId)
+            </li>
+            <li>
+                @Html.Raw(ViewData[ViewDataNames.SaveInfo])
+            </li>
+        </ul>
+    </div>
+    <div id="divS" class="alert alert-success alert-dismissible" style="display:@ViewData[ViewDataNames.SucessVisibility]">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul style="list-style-type: none;">
+            <li>
+                @ViewData[ViewDataNames.SaveInfo]
+            </li>
+        </ul>
+    </div>
+}
+
+@section header
+{
+    <div class="row pb-2">
+        <div class="col-md-5">
+            <div class="input-group">
+                <input type="text" id="txtSearch" class="form-control alpha" placeholder="Search School">
+                <div class="input-group-append">
+                    <select id="ddlSearchType" class="form-control">
+                        <option value="N" selected="selected">By School Name</option>
+                        <option value="I">By Index No</option>
+                    </select>
+                </div>
+                <div class="input-group-append">
+                    <select id="ddlLockUnLock" class="form-control">
+                        <option value="A" selected="selected">All School</option>
+                        <option value="Y">Locked School</option>
+                        <option value="N">Not Locked School</option>
+                    </select>
+                </div>
+                <div class="input-group-append">
+                    <button type="button" id="btnSearch" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            @if (ViewData[ViewDataNames.ReportYN] == "visible")
+            {
+                <button type="button" id="btnShowReport" class="btn btn-outline-success" data-toggle="modal" data-target="#reportModal">Download Report</button>
+                <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                    <div class="modal-dialog modal-lg modal-width-50">
+                        <div id="divModalReportContent" class="modal-content">
+                            <div class="modal-header bg-primary text-light">
+                                <h4 class="modal-title">Report Type</h4>
+                                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+                            </div>
+                            @using (Html.BeginForm("DownloadReport", "AdminSchool"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="modal-body" id="divPopupReportBody" style="font-size: 20px;">
+                                    <div class="row mb-2">
+                                        <div class="col-4 text-right">
+                                            Select Report Type
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio1">
+                                                    <input type="radio" class="form-check-input" id="radio1" name="ReportType" value="1" checked>Excel
+                                                </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio2">
+                                                    <input type="radio" class="form-check-input" id="radio2" name="ReportType" value="2">Pdf
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-4"></div>
+                                        <div class="col-8">
+                                            <div class="btn-group">
+                                                <button type="submit" id="btnReport" class="btn btn-primary">Download Report</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-4">
+            @if (ViewData[ViewDataNames.AddYN] == "visible")
+            {
+                <div class="btn-group float-right">
+                    <button type="button" id="btnAdd" class="btn btn-outline-secondary" accesskey="A">Add New</button>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!--Loader-->
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<div class="table-responsive">
+    <table id="GridSchool" class="gj-grid table table-light table-bordered table-striped"></table>
+</div>
+
+<!-- Main Modal -->
+<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-75">
+        <div id="divModalContent" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title" id="myModalLabel"><span id="lblModalHeader"></span></h4>
+                <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm("Schools", "AdminSchool", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-body" id="divPopupBody">
+                    <div class="alert alert-danger alert-dismissible" id="AlertInfo">
+                        @*<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>*@
+                        <button type="button" class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+                        <strong><span id="AlertInfoMsg"></span></strong>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Note:</strong> Marked with an astrix(<span style="color: red;"> * </span>) is mandatory data.
+                    </div>
+                    <div class="row mb-2" id="divOrderDetailsText">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Order Details </span><span style="color: red">*</span>
+                            <span id="OrderDetailsMsg" class="alert-info pt-1 pb-1 pl-2 pr-2 rounded"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-4" id="divOrderDetailsControl">
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.OrderNo, new { @class = "form-control alpha", @placeholder = "Order No *", @id = "txtOrderNo", @maxlength = 20, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.OrderDate, new { @class = "form-control alpha", @placeholder = "Order Date (dd-MM-yyyy) *", @id = "txtOrderDate", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="divPreSchoolText">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Select Junior School</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4" id="divPreSchoolControl">
+                        <div class="col-sm-12">
+                            <input type="text" id="txtPreSchoolName" class="form-control alpha" placeholder="Junior School Name" maxlength="200" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">School Name</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(m => m.SchoolName, new { @class = "form-control alpha", @placeholder = "School Name *", @id = "txtSchoolName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    @*<div class="row mb-2" id="divSchoolIndexText">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Index No</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4" id="divSchoolIndexControl">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(m => m.IndexNo, new { @class = "form-control checkContactNo", @placeholder = "Index No *", @id = "txtIndexNo", @maxlength = 3, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>*@
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">DISE Code</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(m => m.DISECode, new { @class = "form-control checkContactNo", @placeholder = "DISE Code *", @id = "txtDISECode", @maxlength = 11, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Sub-Division</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-6">
+                            @Html.DropDownListFor(m => m.SubDivisionId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlSubDivision" })
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="lblDist" class="bg-success p-2 text-light rounded" style="display: none; font-size: small; font-weight: 600;"></span>
+                            <span id="lblZone" class="bg-success p-2 text-light rounded" style="display: none; font-size: small; font-weight: 600;"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="divSchoolIndexText">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Index No</span><span style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4" id="divSchoolIndexControl">
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.IndexNo, new { @class = "form-control checkContactNo", @placeholder = "Index No *", @id = "txtIndexNo", @maxlength = 3, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    @*<div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Circle</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-6">
+                            @Html.DropDownListFor(m => m.CircleId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlCircle" })
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="lblBlock" class="bg-success p-2 text-light rounded" style="display: none; font-size: small; font-weight: 600;"></span>
+                        </div>
+                    </div>*@
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Address</span><span class="chkStar" style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control alpha", @placeholder = "Street/Locality Name *", @id = "txtAddressLine1", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control alpha", @placeholder = "Area *", @id = "txtAddressLine2", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.GramPanchayet, new { @class = "form-control alpha", @placeholder = "Gram Panchayat", @id = "txtGramPanchayet", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.PostOffice, new { @class = "form-control alpha", @placeholder = "Post Office", @id = "txtPostOffice", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.PoliceStation, new { @class = "form-control alpha", @placeholder = "Police Station", @id = "txtPoliceStation", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.City, new { @class = "form-control alpha", @placeholder = "City *", @id = "txtCity", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-2">
+                            @Html.TextBoxFor(m => m.PinCode, new { @class = "form-control checkContactNo", @placeholder = "Pin Code *", @id = "txtPinCode", @maxlength = 6, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.DropDownListFor(m => m.DistrictId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlDistrict" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Contact Details</span><span class="chkStar" style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.StdCode, new { @class = "form-control checkContactNo", @placeholder = "Std Code", @id = "txtStdCode", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control checkContactNo", @placeholder = "Phone No", @id = "txtPhoneNo", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control checkContactNo", @placeholder = "Mobile No *", @id = "txtMobileNo", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.FaxNo, new { @class = "form-control checkContactNo", @placeholder = "Fax No", @id = "txtFaxNo", @maxlength = 10, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control allowCharForEmailId", @placeholder = "Email Id *", @id = "txtEmailId", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.Website, new { @class = "form-control allowCharForWebsite", @placeholder = "Website", @id = "txtWebsite", @maxlength = 100, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">School Type</span><span class="chkStar" style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.SchoolTypeId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlSchoolType" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">School Category</span><span class="chkStar" style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.SchoolCategoryId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlSchoolCategory" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">School Status</span><span class="chkStar" style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.SchoolStatusId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlSchoolStatus" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">School Medium</span><span class="chkStar" style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.SchoolMediumId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlSchoolMedium" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">School Recognization</span><span class="chkStar" style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.SchoolRecognitionId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlSchoolRecognition" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">School Management</span><span class="chkStar" style="color: red"> *</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.SchoolManagementId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlSchoolManagement" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">School Head Name</span>@*<span style="color: red"> *</span>*@
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-2">
+                            @Html.DropDownListFor(m => m.SchoolHeadSalutationId, Enumerable.Empty<SelectListItem>(), new { @class = "form-control", @id = "ddlSchoolHeadSalutation" })
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(m => m.SchoolHeadFirstName, new { @class = "form-control OnlyAlpha", @placeholder = "First Name", @id = "txtSchoolHeadFirstName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.SchoolHeadMiddleName, new { @class = "form-control OnlyAlpha", @placeholder = "Middle Name", @id = "txtSchoolHeadMiddleName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.SchoolHeadLastName, new { @class = "form-control OnlyAlpha", @placeholder = "Last Name", @id = "txtSchoolHeadLastName", @maxlength = 200, @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="font-weight-bold">Designation </span><span style="color: red">*</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            @Html.DropDownListFor(m => m.DesignationId, Enumerable.Empty<SelectListItem>(), new { @class = "js-example-responsive", @style = "width:100%;", @id = "ddlDesignation" })
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            <div class="alert alert-info" id="UserCreationMsg">
+                            </div>
+                            <div class="alert alert-danger">
+                                <strong>WARNING! </strong>Please check all data carefully before clicking on <b>Save</b> button
+                            </div>
+                            <div class="alert alert-warning" id="UnLockMsg">
+                            </div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.EntType, new { @id = "e" })
+                    @Html.HiddenFor(m => m.SchoolId, new { @id = "S" })
+                    @Html.HiddenFor(m => m.PreSchoolId, new { @id = "P" })
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
+                    <button type="submit" id="btnUnlock" class="btn btn-danger" title="Un-Lock Edit for School Profile">Un-Lock</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- View Modal -->
+<div class="modal fade" id="popupModalView" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-width-75">
+        <div id="divModalContentView" class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title">School Data :: View Record</h4>
+                <button type="button" class="close text-light" data-dismiss="modal" onclick="ClearViewData()">&times;</button>
+            </div>
+            <div class="modal-body" id="divPopupBodyView">
+                <table class="table table-bordered table-striped table-hover">
+                    <tbody id="tblViewData"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ClearViewData()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/vendor/jqueryUI/jquery-ui.js"></script>
+    <script src="~/js/select2.min.js"></script>
+    <script src="~/Areas/Admin/js/school.js?v=@DateTime.Now.ToFileTime().ToString()"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function () {
+            DisableButtons();
+            ShowLoader();
+            var onSuccessFunc = function (response) {
+                grid.render(response);
+                $("#GridSchool").on('DOMSubtreeModified', chkMod);
+                HideLoader();
+                EnableButtons();
+            };
+            grid = $("#GridSchool").grid({
+                dataKey: "SchoolId",
+                uiLibrary: "fontawesome",
+                iconsLibrary: 'fontawesome',
+                dataSource: { url: "../../AdminSchool/GetSchoolList", success: onSuccessFunc },
+                columns: [
+                    @Html.Raw(@ViewData[ViewDataNames.GridColumns])
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 25, 50, 100] }
+            });
+            grid.on('pageChanging', function (e, newPage) {
+                $("#GridSchool").off('DOMSubtreeModified');
+            });
+            
+            //anchor active
+            var activeLink = "@ViewData[ViewDataNames.ActiveLinkA]";
+            var currentA = document.getElementById(activeLink);
+            currentA.classList.add("active");
+            //anchor div
+            var activeDIV = currentA.parentElement.parentElement.id;
+            var currentDIV = document.getElementById(activeDIV);
+            currentDIV.classList.add("show");
+            //anchor li
+            var activeLI = currentA.parentElement.parentElement.parentElement.id;
+            var currentLI = document.getElementById(activeLI);
+            currentLI.classList.add("active");
+        });
+    </script>
+}

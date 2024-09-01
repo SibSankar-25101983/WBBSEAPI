@@ -1,0 +1,32 @@
+﻿@using Common;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>WBBSE :: View PDF</title>
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div style="margin: auto; width: 50%;"></div>
+    <object id="viewData" data="@ViewData[ViewDataNames.RawData]" style="width:100%;" type="application/pdf">
+        <a href="@ViewData[ViewDataNames.RawData]" target="_blank">
+            Click here to
+            download the PDF file.
+        </a>
+    </object>
+    <footer id="fWebsite" class="mt-5 text-center text-light p-2" style="background-color: #365f91;">
+        <p><strong>Disclaimer:</strong> This site is designed and Developed by <strong><a href="https://www.nic.in/" target="_blank" rel="noopener">NIC</a></strong> and the contents are provided by WBBSE</p>
+        Copyright © 2019 WBBSE | All rights reserved
+    </footer>
+    <script type="text/javascript">
+        $("#viewData").css('height', screen.availHeight + 'px');
+    </script>
+</body>
+</html>
